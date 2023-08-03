@@ -1,8 +1,7 @@
 1. Issue ticket number and link: [number]();
-2. Responsible:
-3. Screenshot:
-4. Done 02.08.2023;
-5. Description of changes:
+2. Screenshot:
+3. Done 02.08.2023;
+4. Description of changes:
   - [x] 1 task item (10/10)
-  - [x] 2 task item (0/10)
-6. Сomments:
+  - [ ] 2 task item (0/10)
+5. Сomments:
