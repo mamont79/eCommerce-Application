@@ -1,4 +1,4 @@
-import { StyledButton, CheckButton } from '../../components/button';
+import { StyledButton, StyledCheckButton } from '../../components/button';
 import WelcomeWrapper from './style';
 
 function Welcome() {
@@ -7,7 +7,7 @@ function Welcome() {
       <h1>Hello world</h1>
       <StyledButton>Open</StyledButton>
       <StyledButton $primary>Close</StyledButton>
-      <CheckButton>Check</CheckButton>
+      <StyledCheckButton>Check</StyledCheckButton>
     </WelcomeWrapper>
   );
 }
