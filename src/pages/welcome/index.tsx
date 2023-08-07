@@ -1,7 +1,7 @@
 import { StyledBtn, StyledCheckBtn } from '../../components/styledBtn';
 import WelcomeWrapper from './style';
 
-function Welcome() {
+export default function Welcome() {
   return (
     <WelcomeWrapper>
       <h1>Hello world</h1>
@@ -11,4 +11,3 @@ function Welcome() {
     </WelcomeWrapper>
   );
 }
-export default Welcome;
