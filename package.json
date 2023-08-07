@@ -10,7 +10,9 @@
     "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
     "prepare": "husky install",
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write .",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.26",
@@ -19,11 +21,14 @@
     "styled-components": "^6.0.7"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.0.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "@vitest/coverage-v8": "^0.34.1",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
@@ -35,17 +40,10 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "husky": "^8.0.0",
-    "lint-staged": "^13.2.3",
+    "jsdom": "^22.1.0",
     "prettier": "3.0.1",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --quiet --cache --fix"
-    ],
-    "*.{json,js,ts,jsx,tsx,html}": [
-      "prettier --write"
-    ]
+    "vite": "^4.4.5",
+    "vitest": "^0.34.1"
   }
 }

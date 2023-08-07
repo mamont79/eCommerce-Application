@@ -7,21 +7,11 @@ module.exports = {
     'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
-    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'prettier',
   ],
   overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: ['.eslintrc.{js,cjs}'],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -35,7 +25,7 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',
-      { functions: false, classes: true, variables: true, typedefs: true },
+      { functions: false, classes: false, variables: true, typedefs: true },
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',
   },

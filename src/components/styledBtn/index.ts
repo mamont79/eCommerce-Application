@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledButton = styled.button<{ $primary?: boolean }>`
+const StyledBtn = styled.button<{ $primary?: boolean }>`
   background: ${({ $primary }) => ($primary ? '#fc8600' : '#ffffff')};
   color: ${({ $primary }) => ($primary ? '#ffffff' : '#fc8600')};
   font-size: 1em;
@@ -17,10 +17,10 @@ const StyledButton = styled.button<{ $primary?: boolean }>`
   }
 `;
 
-const StyledCheckButton = styled(StyledButton)`
+const StyledCheckBtn = styled(StyledBtn)`
   color: #ff3a17;
   border-color: #ff3a17;
   background: #ffffff;
 `;
 
-export { StyledButton, StyledCheckButton };
+export { StyledBtn, StyledCheckBtn };
