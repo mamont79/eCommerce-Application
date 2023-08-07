@@ -21,8 +21,10 @@ Creation of a working e-comerce training project for possible further use as a t
 ----
 
 ## Installation
-**Recommended ide: VS Code
-npm v 18.17.0**
+**Recommended ide: VS Code**
+
+**npm v 18.17.0**
+
 *If you don’t have node.js and npm install from this : [Node.js](https://nodejs.org/en/download)*
 
 
@@ -32,7 +34,7 @@ git clone https://github.com/mamont79/eCommerce-Application.git
 ```
 * Open project in VS Code
 
-* install dependencies
+* Install dependencies
 ```
 npm install 
 // or
@@ -51,10 +53,9 @@ npm run prepare
 3.	vscode-styled-components
 4.	You may need to restart the editor after installation
 
-[![N|Solid](https://github.com/mamont79/eCommerce-Application/assets/43904197/eb61e39c-7d0f-4186-81d2-54f3e9bc7115)](https://eslint.org/)
-[![N|Solid](https://github.com/mamont79/eCommerce-Application/assets/43904197/1c5321f7-94da-4057-96a8-4bab068c5426)](https://prettier.io/)
-[![N|Solid](https://github.com/mamont79/eCommerce-Application/assets/43904197/30e9fb67-4e6b-4c6f-b412-c5084ae15684)](https://styled-components.com/)
-
+ [![eslint](https://github.com/mamont79/eCommerce-Application/assets/43904197/eb61e39c-7d0f-4186-81d2-54f3e9bc7115)](https://eslint.org/)
+ [![prettier](https://github.com/mamont79/eCommerce-Application/assets/43904197/1c5321f7-94da-4057-96a8-4bab068c5426)](https://prettier.io/)
+ [![styled-components](https://github.com/mamont79/eCommerce-Application/assets/43904197/30e9fb67-4e6b-4c6f-b412-c5084ae15684)](https://styled-components.com/)
 ----
 
 ## Usage
@@ -65,7 +66,7 @@ npm start
 
 * Create a build directory with a production build of your app
 ```
-Npm run build
+npm run build
 ```
 
 * Run linter for autocheck your code
