@@ -16,7 +16,7 @@ Creation of a working e-comerce training project for possible further use as a t
 * React, Styled Components 
 * Vite 
 * CommerceTools
-* Jest
+* Vitest
 * Eslin, Prettier, Husky
 
 ----
@@ -94,14 +94,14 @@ npm run prettier
 
 * Run Jest tests
   
-*tests runs before each commit automatically by Jest*
+*tests runs before each commit automatically by Vitest*
 ```
 npm run test
 ```
 
 * Generat test outcome reports
   
- *tests runs before each commit automatically by Jest*
+ *tests runs before each commit automatically by Vitest*
 ```
 npm run coverage
 ```
