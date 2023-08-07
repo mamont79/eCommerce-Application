@@ -1,2 +1,3 @@
 # eCommerce-Application
-This platform replicates real-world shopping experiences in a digital environment . It's a comprehensive online shopping portal that provides an interactive and seamless experience to users. 
+
+This platform replicates real-world shopping experiences in a digital environment . It's a comprehensive online shopping portal that provides an interactive and seamless experience to users.
