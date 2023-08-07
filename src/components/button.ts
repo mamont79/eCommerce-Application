@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledButton = styled.button<{ $primary?: boolean }>`
-  background: ${($primary) => ($primary ? '#fc8600' : '#ffffff')};
+  background: ${({ $primary }) => ($primary ? '#fc8600' : '#ffffff')};
   color: ${({ $primary }) => ($primary ? '#ffffff' : '#fc8600')};
   font-size: 1em;
   margin: 1em;
@@ -12,7 +12,7 @@ const StyledButton = styled.button<{ $primary?: boolean }>`
   transition: all 1s;
 
   &:hover {
-    background: ${($primary) => ($primary ? '#ffffff' : '#fc8600')};
+    background: ${({ $primary }) => ($primary ? '#fc8600' : '#ffffff')};
     color: ${({ $primary }) => ($primary ? '#ffffff' : '#fc8600')};
   }
 `;
