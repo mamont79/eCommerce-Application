@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1691417290469" clover="3.2.0">
-  <project timestamp="1691417290469" name="All files">
+<coverage generated="1691434482809" clover="3.2.0">
+  <project timestamp="1691434482810" name="All files">
     <metrics statements="26" coveredstatements="26" conditionals="8" coveredconditionals="4" methods="3" coveredmethods="3" elements="37" coveredelements="33" complexity="0" loc="26" ncloc="26" packages="1" files="1" classes="1"/>
     <file name="index.ts" path="F:\FrontEnd\RSSchool\Projects\Stage1_2023\eCommerce-Application\src\components\styledBtn\index.ts">
       <metrics statements="26" coveredstatements="26" conditionals="8" coveredconditionals="4" methods="3" coveredmethods="3"/>

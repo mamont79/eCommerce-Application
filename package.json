@@ -41,18 +41,9 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "husky": "^8.0.0",
     "jsdom": "^22.1.0",
-    "lint-staged": "^13.2.3",
     "prettier": "3.0.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vitest": "^0.34.1"
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --quiet --cache --fix"
-    ],
-    "*.{json,js,ts,jsx,tsx,html}": [
-      "prettier --write"
-    ]
   }
 }
