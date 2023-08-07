@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const WelcomeWrapper = styled.div`
   display: block;
   margin: 0 auto;
   width: fit-content;
 `;
 
-export default Wrapper;
+export default WelcomeWrapper;

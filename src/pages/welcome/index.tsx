@@ -1,13 +1,14 @@
-import { Button, CheckButton } from '../../components/button';
-import Wrapper from './style';
+import { StyledButton, CheckButton } from '../../components/button';
+import WelcomeWrapper from './style';
 
-export default function Welcome() {
+function Welcome() {
   return (
-    <Wrapper>
+    <WelcomeWrapper>
       <h1>Hello world</h1>
-      <Button>Open</Button>
-      <Button $primary>Close</Button>
+      <StyledButton>Open</StyledButton>
+      <StyledButton $primary>Close</StyledButton>
       <CheckButton>Check</CheckButton>
-    </Wrapper>
+    </WelcomeWrapper>
   );
 }
+export default Welcome;
