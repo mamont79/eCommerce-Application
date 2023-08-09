@@ -46,8 +46,5 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vitest": "^0.34.1"
-  },
-  "lint-staged": {
-    "*.{tsx, ts}": ["eslint --report-unused-disable-directives --max-warnings 0 --fix", "prettier --write"]
   }
 }
