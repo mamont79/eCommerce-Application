@@ -25,3 +25,5 @@ dist-ssr
 vite.config.ts
 .eslintrc.cjs
 test-setup
+lint-staged.config.mjs
+coverage
