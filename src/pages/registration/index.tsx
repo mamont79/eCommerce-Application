@@ -1,3 +1,9 @@
+import RegistrationWrapper from './style';
+
 export default function Registration() {
-  return <div>registration page</div>;
+  return (
+    <RegistrationWrapper>
+      <input type="text" />
+    </RegistrationWrapper>
+  );
 }
