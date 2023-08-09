@@ -14,6 +14,7 @@ const StyledInput = styled.input<{ $margin?: string; $maxWidth?: string }>`
   outline: 0;
   outline-offset: 0;
 
+
   &:invalid {
     border: solid 2px #e00000;
   }
