@@ -1,4 +1,4 @@
-import isValidPrefix from './recipient-name-validation/isValidPrefix';
+import isValidPrefix from './prefix-validation/isValidPrefix';
 
 export default function isValidEmail(text: string): boolean {
   const [prefix] = text.split('@');

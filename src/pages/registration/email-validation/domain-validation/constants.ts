@@ -1,0 +1,3 @@
+export const VALID_DOMAIN_LABEL_SYMBOLS_PATTERN = /[a-zA-Z0-9-]/;
+export const MAX_DOMAIN_TOTAL_LENGTH = 253;
+export const MAX_DOMAIN_LABEL_LENGTH = 63;
