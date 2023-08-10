@@ -7,8 +7,8 @@ describe('Email', () => {
     expect(isValidEmail(validEmail)).toBeTruthy();
   });
   it('can be this short "a@s.c"', () => {
-    const validEmail = 'a@s.c';
-    expect(isValidEmail(validEmail)).toBeTruthy();
+    const shortestValidEmail = 'a@s.c';
+    expect(isValidEmail(shortestValidEmail)).toBeTruthy();
   });
   it('shold consist of prefix and domain separated by "@" sign', () => {
     const emailWithdoubleAtSign = 'example@@mail.ru';
