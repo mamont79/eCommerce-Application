@@ -1,4 +1,8 @@
-import { MAX_DOMAIN_LABEL_LENGTH, MAX_DOMAIN_TOTAL_LENGTH, VALID_DOMAIN_LABEL_SYMBOLS_PATTERN } from './constants';
+import {
+  MAX_DOMAIN_LABEL_LENGTH,
+  MAX_DOMAIN_TOTAL_LENGTH,
+  VALID_DOMAIN_LABEL_SYMBOLS_PATTERN,
+} from './constants';
 
 export default function isValidDomain(domain: string): boolean {
   let isValid = true;
@@ -6,8 +10,8 @@ export default function isValidDomain(domain: string): boolean {
   const labels = domain.split('.');
   if (labels.length < 2) isValid = false;
   labels.forEach((label) => {
-    if(!isValidLabel(label)) isValid = false;
-  })
+    if (!isValidLabel(label)) isValid = false;
+  });
   return isValid;
 }
 
