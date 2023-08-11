@@ -10,8 +10,8 @@ import Registration from './pages/registration';
 export default function App() {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
       <Route path="/" element={<Welcome />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/registration" element={<Registration />} />
       <Route path="/notFound" element={<NotFound />} />
     </Routes>
