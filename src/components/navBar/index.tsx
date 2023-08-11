@@ -2,18 +2,18 @@
 import { Link } from 'react-router-dom';
 import StyledNavigation from './style';
 import StyledWraperHeader from './header';
-import MainSvgImg from '../../assets/mainSvg';
-import LoginSvgImg from '../../assets/loginSvg';
+import BasketSvg from '../../assets/basketIcon';
+import DoorSvg from '../../assets/doorIcon';
 
 export default function NavBar() {
   return (
     <StyledWraperHeader>
       <StyledNavigation>
         <Link to="/">
-          <MainSvgImg />
+          <BasketSvg color="#FFA555" />
         </Link>
         <Link to="/login">
-          <LoginSvgImg />
+          <DoorSvg color="#FFA555" />
         </Link>
       </StyledNavigation>
     </StyledWraperHeader>
