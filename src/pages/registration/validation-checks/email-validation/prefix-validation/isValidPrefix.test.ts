@@ -7,7 +7,9 @@ describe('Email prefix (part of an email before "@"-sign)', () => {
     const validPrefix = 'example';
     expect(isValidPrefix(validPrefix)).toBeTruthy();
   });
-  it(`may contain special characters: ${VALID_SPECIAL_CHARACTERS.join(' ')}`, () => {
+  it(`may contain special characters: ${VALID_SPECIAL_CHARACTERS.join(
+    ' '
+  )}`, () => {
     const validPrefix = 'ex.a_m-ple';
     expect(isValidPrefix(validPrefix)).toBeTruthy();
   });

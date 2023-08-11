@@ -13,7 +13,7 @@ function hasDigits(password: string): boolean {
   let hasDigit = false;
 
   password.split('').forEach((char) => {
-    if(!isLetter(char)) hasDigit = true;
+    if (!isLetter(char)) hasDigit = true;
   });
 
   return hasDigit;

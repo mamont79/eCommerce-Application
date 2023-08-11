@@ -30,7 +30,9 @@ function isValidFormat(name: string): boolean {
 
 function isValidSymbol(char: string): boolean {
   const isWordCharacterPattern = /[\w]/;
-  return isWordCharacterPattern.test(char) || VALID_SPECIAL_CHARACTERS.includes(char);
+  return (
+    isWordCharacterPattern.test(char) || VALID_SPECIAL_CHARACTERS.includes(char)
+  );
 }
 
 function isSpecChar(char: string): boolean {
