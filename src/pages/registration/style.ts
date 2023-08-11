@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+export const StyledWrapper = styled.div`
   display: block;
   margin: 0 auto;
 `;
