@@ -5,4 +5,11 @@ export const StyledWrapper = styled.div`
   margin: 0 auto;
 `;
 
-export default StyledWrapper;
+export const StyledHeading = styled.h2`
+  margin-bottom: 25px;
+`;
+
+export const StyledLink = styled.a`
+  display: block;
+  margin-bottom: 50px;
+`;
