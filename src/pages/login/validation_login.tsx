@@ -4,6 +4,7 @@ import StyledErrorSpan from '../../components/styledErrorSpan';
 import { StyledInputContainer } from './style';
 import {
   StyledInput,
+  StyledPasswordInputIcon,
   StyledPasswordInputWrapper,
 } from '../../components/styledInput';
 
@@ -63,6 +64,16 @@ function ValidatedLoginPassword() {
     setPasswordTouched(true);
   };
 
+  const ChangeVisibilityHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    const passwordVisibility = (
+      (e.target as HTMLElement).previousSibling as HTMLInputElement
+    ).type;
+
+    ((e.target as HTMLElement).previousSibling as HTMLInputElement).type =
+      passwordVisibility === 'text' ? 'password' : 'text';
+    (e.target as HTMLElement).classList.toggle('visible');
+  };
+
   const passwordHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const numberCheck = /(?=.*[0-9])/;
     const specialSymbolCheck = /(?=.*[!@#$%^&*])/;
@@ -114,6 +125,7 @@ function ValidatedLoginPassword() {
           onBlur={() => blurPasswordHandler()}
           onChange={(e) => passwordHandler(e)}
         />
+        <StyledPasswordInputIcon onClick={(e) => ChangeVisibilityHandler(e)} />
       </StyledPasswordInputWrapper>
       {passwordTouched && passwordError && (
         <StyledErrorSpan>{passwordError}</StyledErrorSpan>

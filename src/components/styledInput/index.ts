@@ -26,19 +26,24 @@ const StyledInput = styled.input<{ $margin?: string; $maxWidth?: string }>`
 
 const StyledPasswordInputWrapper = styled.div`
   position: relative;
+`;
 
-  &::after {
-    content: '';
-    position: absolute;
+const StyledPasswordInputIcon = styled.div`
+  content: '';
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  right: 10px;
+  margin: auto 0;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  background: url('/src/assets/password-invisible.svg') no-repeat;
+
+  &.visible {
     top: 30px;
-    bottom: 0;
-    right: 10px;
-    margin: auto 0;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
     background: url('/src/assets/password-visible.svg') no-repeat;
   }
 `;
 
-export { StyledInput, StyledPasswordInputWrapper };
+export { StyledInput, StyledPasswordInputWrapper, StyledPasswordInputIcon };
