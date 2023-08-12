@@ -5,7 +5,7 @@ export const StyledErrorPage = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - 83px);
+  height: calc(100vh - 165px);
   color: #ffa555;
   background: #ffffff;
 `;

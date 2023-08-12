@@ -4,7 +4,7 @@ const StyledNavigation = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90px;
+  width: 135px;
   height: 27px;
   margin: auto 60px auto auto;
 `;
