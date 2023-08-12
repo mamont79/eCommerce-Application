@@ -16,4 +16,8 @@ const StyledLoginForm = styled.form`
   }
 `;
 
-export default StyledLoginForm;
+const StyledInputContainer = styled.div`
+  display: contents;
+`;
+
+export { StyledLoginForm, StyledInputContainer };
