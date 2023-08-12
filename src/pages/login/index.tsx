@@ -13,7 +13,9 @@ export default function Login() {
       <ValidatedLoginEmail />
       <ValidatedLoginPassword />
       <a href="1">Forgot your password?</a>
-      <StyledBtn $primary>Log in</StyledBtn>
+      <StyledBtn $primary $margin="50px 0 0 0">
+        Log in
+      </StyledBtn>
       <Link to="/registration">Don&apos;t have an account yet? Singn up</Link>
     </StyledLoginForm>
   );

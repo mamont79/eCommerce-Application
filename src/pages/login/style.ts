@@ -10,10 +10,6 @@ const StyledLoginForm = styled.form`
   a {
     margin: 20px 0 0 0;
   }
-
-  button {
-    margin: 50px 0 0 0;
-  }
 `;
 
 const StyledInputContainer = styled.div`
