@@ -13,12 +13,12 @@ function ValidatedLoginEmail() {
   const [emailTouched, setEmailTouched] = useState(false);
   const [emailError, setEmailError] = useState('');
 
-  const blurEmailHandler = () => {
+  const focusEmailHandler = () => {
     setEmailTouched(true);
   };
 
   const emailHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const re =
+    const separatorsCheck =
       /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
     const Spaces =
       e.target.value.toString().slice(0, 1) === ' ' ||
@@ -26,10 +26,13 @@ function ValidatedLoginEmail() {
 
     setEmail(e.target.value);
 
-    if (!re.test(String(e.target.value).toLowerCase()) || Spaces) {
+    if (Spaces) {
       setEmailError(
-        "email is invalid. Please check domain name, special symbols like '@', '.' or leading and trailing whitespace."
+        'mail address must not contain leading or trailing whitespace.'
       );
+      e.target.classList.add('invalid');
+    } else if (!separatorsCheck.test(String(e.target.value).toLowerCase())) {
+      setEmailError("Email address must contain an '@' and domain name.");
       e.target.classList.add('invalid');
     } else {
       setEmailError('');
@@ -45,7 +48,7 @@ function ValidatedLoginEmail() {
         placeholder="e-mail"
         name="email"
         value={email}
-        onBlur={() => blurEmailHandler()}
+        onFocus={() => focusEmailHandler()}
         onChange={(e) => emailHandler(e)}
       />
       {emailTouched && emailError && (
@@ -58,9 +61,9 @@ function ValidatedLoginEmail() {
 function ValidatedLoginPassword() {
   const [password, setPassword] = useState('');
   const [passwordTouched, setPasswordTouched] = useState(false);
-  const [passwordError, setPasswordError] = useState('Error password');
+  const [passwordError, setPasswordError] = useState('');
 
-  const blurPasswordHandler = () => {
+  const focusPasswordHandler = () => {
     setPasswordTouched(true);
   };
 
@@ -122,7 +125,7 @@ function ValidatedLoginPassword() {
           placeholder="Password"
           name="password"
           value={password}
-          onBlur={() => blurPasswordHandler()}
+          onFocus={() => focusPasswordHandler()}
           onChange={(e) => passwordHandler(e)}
         />
         <StyledPasswordInputIcon onClick={(e) => ChangeVisibilityHandler(e)} />
