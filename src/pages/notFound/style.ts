@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledErrorPage = styled.div`
+export const StyledErrorPage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,4 +10,16 @@ const StyledErrorPage = styled.div`
   background: #ffffff;
 `;
 
-export default StyledErrorPage;
+export const StyledErrorMessage = styled.h1`
+  text-align: center;
+`;
+
+export const StyledErrorSolution = styled.h2`
+  text-align: center;
+`;
+
+export const StyledIconWrapper = styled.div`
+  width: 350px;
+  height: 277px;
+  margin: 10px auto;
+`;
