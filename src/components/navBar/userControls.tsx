@@ -4,7 +4,7 @@ import {
   StyledSecondHeaderRow,
   StyledTextLink,
 } from './header';
-import LazzoneIconSvg from '../../assets/lizzonIcon';
+import LazzoneIconSvg from '../../assets/lazzoneIcon';
 import UserSearchInput from './userSearchInput';
 
 export default function UserControls() {
