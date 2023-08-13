@@ -6,14 +6,14 @@ const StyledLoginForm = styled.form`
   margin: 0 35px;
   width: 40%;
   position: relative;
-
-  a {
-    margin: 20px 0 0 0;
-  }
 `;
 
 const StyledInputContainer = styled.div`
   display: contents;
 `;
 
-export { StyledLoginForm, StyledInputContainer };
+const StyledLinkContainer = styled.div`
+  margin: 20px 0 0 0;
+`;
+
+export { StyledLoginForm, StyledInputContainer, StyledLinkContainer };

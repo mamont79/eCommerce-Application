@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 import { StyledBtn } from '../../components/styledBtn';
 import { StyledLoginForm } from './style';
-import {
-  ValidatedLoginEmail,
-  ValidatedLoginPassword,
-} from './validation_login';
+import ValidatedLoginEmail from './validation-chekcs/email-validation/isValidEmail';
+import ValidatedLoginPassword from './validation-chekcs/password-validation/isValidPassword';
 
 export default function Login() {
   return (
@@ -16,7 +14,8 @@ export default function Login() {
       <StyledBtn $primary $margin="50px 0 0 0">
         Log in
       </StyledBtn>
-      <Link to="/registration">Don&apos;t have an account yet? Singn up</Link>
+      <Link to="/registration">Don&apos;t have an account yet? Singn up</Link>{' '}
+      {/* // сделаем контейнер */}
     </StyledLoginForm>
   );
 }
