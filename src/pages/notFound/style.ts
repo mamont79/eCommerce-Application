@@ -11,10 +11,12 @@ export const StyledErrorPage = styled.div`
 
 export const StyledErrorMessage = styled.h1`
   text-align: center;
+  margin: 10px auto;
 `;
 
 export const StyledErrorSolution = styled.h2`
   text-align: center;
+  margin: 10px auto;
 `;
 
 export const StyledIconWrapper = styled.div`

@@ -29,7 +29,7 @@ export const StyledControls = styled.div`
   vertical-align: bottom;
   width: calc(100% - 80px);
   height: 35px;
-  margin: auto auto 0 36px;
+  margin: auto auto 7px 36px;
 `;
 
 export const StyledTextLink = styled.p`
