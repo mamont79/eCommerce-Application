@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import StyledErrorSpan from '../../../../components/styledErrorSpan';
 import { StyledInput } from '../../../../components/styledInput';
-import { StyledInputContainer } from '../../style';
+import { StyledInputContainer } from '../../login-styles/style';
 import getEmailHandler from './helpers/get-email-handler';
 
 function ValidatedLoginEmail() {
