@@ -1,20 +1,12 @@
-import { Link } from 'react-router-dom';
-import StyledNavigation from './style';
-import StyledWraperHeader from './header';
-import BasketSvg from '../../assets/basketIcon';
-import DoorSvg from '../../assets/doorIcon';
+import { StyledWraperHeader } from './header';
+import NavigationLinks from './navigationLinks';
+import UserControls from './userControls';
 
 export default function NavBar() {
   return (
     <StyledWraperHeader>
-      <StyledNavigation>
-        <Link to="/">
-          <BasketSvg color="#FFA555" />
-        </Link>
-        <Link to="/login">
-          <DoorSvg color="#FFA555" />
-        </Link>
-      </StyledNavigation>
+      <NavigationLinks />
+      <UserControls />
     </StyledWraperHeader>
   );
 }
