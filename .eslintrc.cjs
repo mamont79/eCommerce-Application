@@ -11,8 +11,7 @@ module.exports = {
     'plugin:react/recommended',
     'prettier',
   ],
-  overrides: [
-  ],
+  overrides: [],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
