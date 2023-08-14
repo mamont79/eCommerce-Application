@@ -5,7 +5,7 @@ import {
   StyledInput,
   StyledPasswordInputIcon,
 } from '../../../../components/styledInput';
-import { StyledInputContainer } from '../../style';
+import { StyledInputContainer } from '../../login-styles/style';
 import getPasswordHandler from './helpers/get-password-handler';
 import changePasswordVisibility from './helpers/change-password-visibility';
 
