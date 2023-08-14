@@ -1,8 +1,19 @@
 import styled from 'styled-components';
 
-const StyledWelcomeWrapper = styled.div`
-  display: block;
-  margin: 0 auto;
+const StyledLoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin: 0 35px;
+  width: 40%;
+  position: relative;
 `;
 
-export default StyledWelcomeWrapper;
+const StyledInputContainer = styled.div`
+  display: contents;
+`;
+
+const StyledLinkContainer = styled.div`
+  margin: 20px 0 0 0;
+`;
+
+export { StyledLoginForm, StyledInputContainer, StyledLinkContainer };
