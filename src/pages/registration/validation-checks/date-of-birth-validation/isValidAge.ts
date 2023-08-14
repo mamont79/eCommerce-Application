@@ -1,6 +1,7 @@
 import USER_MIN_AGE from './constants';
 
-export default function isValidDateOfBirth(date: Date): boolean {
+export default function isValidDateOfBirth(dateString: string): boolean {
+  const date = new Date(dateString);
   const ageInYears = getAge(date);
   return USER_MIN_AGE <= ageInYears;
 }

@@ -8,8 +8,3 @@ export const StyledWrapper = styled.div`
 export const StyledHeading = styled.h2`
   margin-bottom: 25px;
 `;
-
-export const StyledLink = styled.a`
-  display: block;
-  margin-bottom: 50px;
-`;
