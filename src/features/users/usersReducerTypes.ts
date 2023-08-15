@@ -10,4 +10,5 @@ export interface UsersState {
   user: User;
   status: UserStatusTypes | null;
   message: string | null;
+  value: number;
 }
