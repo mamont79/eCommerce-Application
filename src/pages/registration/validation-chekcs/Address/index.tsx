@@ -1,9 +1,9 @@
 import { ReactNode, useState } from 'react';
-import ValidatedStreetNameInput from './street-validation/isValidStreet';
-import ValidatedCityInput from './city-validation/isValidStreet';
-import ValidatedPostalCodeInput from './postal-code-validation/ValidatedPostalCode';
+import ValidatedStreetNameInput from './ValidatedStreetInput';
+import ValidatedCityInput from './ValidatedCityInput';
+import ValidatedPostalCodeInput from './ValidatedPostalCodeInput';
 import CountrySelect from './CountrySelect';
-import COUNTRY from './country-postalcode-map';
+import COUNTRY from './CountryPostalCodeMap';
 import { StyledBlockWrapper } from '../../RegistrationForm/style';
 
 export default function AddressContainer({

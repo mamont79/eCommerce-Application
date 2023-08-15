@@ -3,7 +3,7 @@ import { StyledInputContainer } from '../../../RegistrationForm/style';
 import { StyledInput } from '../../../../../components/styledInput';
 import StyledErrorSpan from '../../../../../components/styledErrorSpan';
 import getPostalCodeValidator from './helpers/getPostalCodeValidator';
-import COUNTRY from '../country-postalcode-map';
+import COUNTRY from '../CountryPostalCodeMap';
 
 function ValidatedPostalCodeInput({
   chosenCountry,

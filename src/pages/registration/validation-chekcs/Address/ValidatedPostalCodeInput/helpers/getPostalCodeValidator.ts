@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import isValidPostalCode from './isValidPostalCode';
-import type COUNTRY from '../../country-postalcode-map';
+import type COUNTRY from '../../CountryPostalCodeMap';
 
 export default function getPostalCodeValidator(
   setPostalCode: (a: string) => void,
