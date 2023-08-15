@@ -14,20 +14,20 @@ export default function RegistrationForm() {
       <StyledBlockWrapper>
         <ValidatedRegistrationName placeholder="Name" />
         <ValidatedRegistrationName placeholder="Last Name" />
-        <ValidatedBirthDateInput $max-width="140px" />
+        <ValidatedBirthDateInput />
         <ValidatedEmailInput />
         <ValidatedPasswordInput />
       </StyledBlockWrapper>
 
       <StyledBlockWrapper>
         <AddressContainer>
-          <h3>Shipping address</h3>
+          <h3 style={{ margin: '0' }}>Shipping address</h3>
         </AddressContainer>
         <Checkbox checkboxId="billing-as-shipping-address-checkbox">
           Shipping and billing address coincide
         </Checkbox>
         <AddressContainer>
-          <h3>Billing address</h3>
+          <h3 style={{ margin: '0' }}>Billing address</h3>
         </AddressContainer>
       </StyledBlockWrapper>
 

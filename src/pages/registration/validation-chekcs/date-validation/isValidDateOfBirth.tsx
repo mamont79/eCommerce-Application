@@ -14,7 +14,7 @@ function ValidatedBirthDateInput() {
   return (
     <StyledInputContainer>
       <StyledInput
-        $maxWidth="170px"
+        $maxWidth="fit-content"
         type="date"
         placeholder="Date of Birth"
         name="birthdate"
