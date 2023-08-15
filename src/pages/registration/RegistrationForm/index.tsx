@@ -1,92 +1,44 @@
-import { StyledBtn } from '../../../components/styledBtn';
-import StyledInput from '../../../components/styledInput';
-import StyledSelect from '../../../components/StyledSelect';
-import { StyledForm, StyledWrapper } from './style';
+import { Link } from 'react-router-dom';
 import Checkbox from '../../../components/Checkobox';
-import handleInput from '../validation-checks/HandleInput';
-import CustomRegistrationInput from '../CustomRegistrationInput';
-import isValidName from '../validation-checks/name-validation/isValidName';
-import isValidDateOfBirth from '../validation-checks/date-of-birth-validation/isValidAge';
-import isValidEmail from '../validation-checks/email-validation/isValidEmail';
-import isValidPassword from '../validation-checks/password-validation/isValidPassword';
+import ValidatedBirthDateInput from '../validation-chekcs/date-validation/isValidDateOfBirth';
+import ValidatedEmailInput from '../validation-chekcs/email-validation/isValidEmail';
+import ValidatedRegistrationName from '../validation-chekcs/name-validation/isValidName';
+import ValidatedPasswordInput from '../validation-chekcs/password-validation/isValidPassword';
+import { StyledBlockWrapper, StyledForm } from './style';
+import { StyledBtn } from '../../../components/styledBtn';
+import AddressContainer from '../validation-chekcs/Address';
 
 export default function RegistrationForm() {
   return (
-    <StyledForm action="#">
-      <StyledWrapper>
-        <CustomRegistrationInput
-          placeholder="First Name"
-          type="text"
-          onInput={handleInput(isValidName)}
-        />
-        <CustomRegistrationInput
-          placeholder="Second Name"
-          type="text"
-          onInput={handleInput(isValidName)}
-        />
-        <CustomRegistrationInput
-          $maxWidth="168px"
-          type="date"
-          onInput={handleInput(isValidDateOfBirth)}
-        />
-        <CustomRegistrationInput
-          placeholder="E-mail"
-          type="email"
-          onInput={handleInput(isValidEmail)}
-        />
-        <CustomRegistrationInput
-          placeholder="Password"
-          type="password"
-          onInput={handleInput(isValidPassword)}
-        />
-      </StyledWrapper>
+    <StyledForm action="submit">
+      <StyledBlockWrapper>
+        <ValidatedRegistrationName placeholder="Name" />
+        <ValidatedRegistrationName placeholder="Last Name" />
+        <ValidatedBirthDateInput $max-width="140px" />
+        <ValidatedEmailInput />
+        <ValidatedPasswordInput />
+      </StyledBlockWrapper>
 
-      <StyledWrapper>
-        <StyledWrapper>
-          <StyledSelect id="country" defaultValue="country">
-            <option value="country" hidden disabled>
-              Country
-            </option>
-            <option value="de">Germany</option>
-            <option value="us">United States</option>
-            <option value="au">Australia</option>
-            <option value="es">Spain</option>
-          </StyledSelect>
-          <StyledInput type="text" placeholder="City" />
-          <StyledInput type="text" placeholder="Street" />
-          <StyledInput $maxWidth="168px" type="text" placeholder="Index" />
-        </StyledWrapper>
-
-        <Checkbox checkboxId="same-shipping-address-checkbox">
-          Billing address coincide with shipping address
+      <StyledBlockWrapper>
+        <AddressContainer>
+          <h3>Shipping address</h3>
+        </AddressContainer>
+        <Checkbox checkboxId="billing-as-shipping-address-checkbox">
+          Shipping and billing address coincide
         </Checkbox>
+        <AddressContainer>
+          <h3>Billing address</h3>
+        </AddressContainer>
+      </StyledBlockWrapper>
 
-        <StyledWrapper>
-          <StyledSelect id="country" defaultValue="country">
-            <option value="country" hidden disabled>
-              Country
-            </option>
-            <option value="de">Germany</option>
-            <option value="us">United States</option>
-            <option value="au">Australia</option>
-            <option value="es">Spain</option>
-          </StyledSelect>
-          <StyledInput type="text" placeholder="City" />
-          <StyledInput type="text" placeholder="Street" />
-          <StyledInput $maxWidth="168px" type="text" placeholder="Index" />
-        </StyledWrapper>
-      </StyledWrapper>
-
-      <StyledWrapper>
-        <Checkbox checkboxId="user-consent-checkbox">
-          <a href="2">
-            Hereby I provide my consent for personal data processing
-          </a>
+      <StyledBlockWrapper>
+        <Checkbox checkboxId="user-data-processing-consent">
+          <Link to="1">
+            Hereby, I provide my consent for personal data processing.
+          </Link>
         </Checkbox>
-        <StyledBtn $primary type="submit" style={{ margin: '0' }}>
-          Register
-        </StyledBtn>
-      </StyledWrapper>
+        <StyledBtn $primary>Register</StyledBtn>
+      </StyledBlockWrapper>
     </StyledForm>
   );
 }

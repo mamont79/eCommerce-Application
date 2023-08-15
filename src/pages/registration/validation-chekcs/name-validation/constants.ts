@@ -1,0 +1,3 @@
+const NAME_ALLOWED_SYMBOLS_PATTERN = /[a-zA-Z]/;
+
+export default NAME_ALLOWED_SYMBOLS_PATTERN;

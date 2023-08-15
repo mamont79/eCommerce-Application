@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
-import { StyledWrapper, StyledHeading } from './style';
 import RegistrationForm from './RegistrationForm';
 
-export default function Registration() {
+export default function Login() {
   return (
-    <StyledWrapper>
-      <StyledHeading>Glad to see you</StyledHeading>
-      <Link to="/login">Already have an account? Login!</Link>
+    <div>
+      <h2>Glad to see you!</h2>
+      <Link to="/login">Alreade have an account? Login!</Link>
       <RegistrationForm />
-    </StyledWrapper>
+    </div>
   );
 }
