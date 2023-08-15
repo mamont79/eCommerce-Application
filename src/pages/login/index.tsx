@@ -13,7 +13,7 @@ export default function Login() {
       <LoginLink to="1">Forgot your password?</LoginLink>
       <LoginBtn $primary>Log in</LoginBtn>
       <LoginLink to="/registration">
-        Don&apos;t have an account yet? Singn up
+        Don&apos;t have an account yet? Sign up
       </LoginLink>
     </StyledLoginForm>
   );
