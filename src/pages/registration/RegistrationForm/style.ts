@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import StyledInput from '../../../components/styledInput';
 
 export const StyledForm = styled.form`
   display: flex;
@@ -6,7 +7,7 @@ export const StyledForm = styled.form`
   gap: 20px;
 `;
 
-export const StyledBlockWrapper = styled.div`
+export const FormGroup = styled.div`
   width: clamp(250px, 40vw, 630px);
 
   display: flex;
@@ -16,4 +17,12 @@ export const StyledBlockWrapper = styled.div`
   @media (max-width: 767px) {
     width: 100%;
   }
+`;
+
+export const ShortStyledInput = styled(StyledInput)`
+  max-width: fit-content;
+`;
+
+export const StyledH3 = styled.h3`
+  margin: 0;
 `;
