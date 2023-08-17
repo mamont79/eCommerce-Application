@@ -9,8 +9,6 @@ const StyledFormInput = styled(Field)`
   padding: 10px 20px;
   border: 1px solid #c4c4c4;
   border-radius: 7px;
-  margin: 0;
-  max-width: 630px;
   width: -webkit-fill-available;
   outline: 0;
   outline-offset: 0;

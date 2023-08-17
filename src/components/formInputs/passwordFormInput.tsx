@@ -4,14 +4,14 @@ import {
   StyledFormPasswordInputIcon,
 } from '../styledInput';
 import changePasswordVisibility from './helpers/changePasswordVisibility';
-import validationPassword from './validation/validationPassword';
+import getPasswordErrorMsg from './validation/validationPassword';
 
 export default function PasswordFormInput() {
   return (
     <StyledFormPasswordInputWrapper>
       <StyledFormInput
         type="password"
-        validate={validationPassword}
+        validate={getPasswordErrorMsg}
         placeholder="Password"
         name="password"
       />

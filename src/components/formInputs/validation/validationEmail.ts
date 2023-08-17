@@ -1,7 +1,7 @@
 import { EMAIL_SEPARATORS_CHECK } from './constants';
 import checkSpaces from './helpers/check-spaces';
 
-function validationEmail(value: string): string {
+function getEmailErrorMsg(value: string): string {
   if (!value) {
     return 'Field e-mail cannot be empty';
   }
@@ -15,4 +15,4 @@ function validationEmail(value: string): string {
   return '';
 }
 
-export default validationEmail;
+export default getEmailErrorMsg;

@@ -7,7 +7,7 @@ import {
 } from './constants';
 import checkSpaces from './helpers/check-spaces';
 
-function validationPassword(value: string): string {
+function getPasswordErrorMsg(value: string): string {
   if (!value) {
     return 'Field password cannot be empty';
   }
@@ -33,4 +33,4 @@ function validationPassword(value: string): string {
   return '';
 }
 
-export default validationPassword;
+export default getPasswordErrorMsg;
