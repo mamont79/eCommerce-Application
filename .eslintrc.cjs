@@ -27,6 +27,7 @@ module.exports = {
       { functions: false, classes: false, variables: true, typedefs: true },
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',
-    "import/prefer-default-export": "off"
+    'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
 };
