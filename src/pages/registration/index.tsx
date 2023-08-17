@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import RegistrationForm from './RegistrationForm/index';
 import {
   StyledH2,
   StyledPageContentWrapper,
   StyledPageHeadingWrapper,
 } from './style';
+import { RegistrationForm } from './RegistrationForm/CustomFormElements/CustomForm';
 
 export default function Registration() {
   return (
