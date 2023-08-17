@@ -21,7 +21,7 @@ export default function PasswordFormInput() {
         name="password"
       />
       <StyledFormPasswordInputIcon
-        $visible={isVisible}
+        visible={isVisible}
         onClick={changePasswordVisibility}
       />
     </StyledFormPasswordInputWrapper>

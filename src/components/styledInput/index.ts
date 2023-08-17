@@ -23,18 +23,18 @@ const StyledFormPasswordInputWrapper = styled.div`
   margin: 0;
 `;
 
-const StyledFormPasswordInputIcon = styled.div<{ $visible?: boolean }>`
+const StyledFormPasswordInputIcon = styled.div<{ visible?: boolean }>`
   content: '';
   position: absolute;
-  top: ${({ $visible }) => ($visible ? '14px' : '25px')};
+  top: ${({ visible }) => (visible ? '14px' : '25px')};
   bottom: 0;
   right: 10px;
   margin: auto 0;
   width: 25px;
   height: 25px;
   cursor: pointer;
-  background: ${({ $visible }) =>
-    $visible
+  background: ${({ visible }) =>
+    visible
       ? "url('/src/assets/password-visible.svg') no-repeat"
       : "url('/src/assets/password-invisible.svg') no-repeat"};
 `;
