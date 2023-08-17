@@ -19,7 +19,7 @@ export default function Welcome() {
     <WelcomeWrapper>
       <h1>Hello world</h1>
       <StyledBtn onClick={handleIncrement}>Open</StyledBtn>
-      <StyledBtn $primary onClick={handleDecrement}>
+      <StyledBtn primary onClick={handleDecrement}>
         Close
       </StyledBtn>
       <StyledCheckBtn>Check</StyledCheckBtn>
@@ -42,7 +42,7 @@ export default function Welcome() {
               placeholder="email"
             />
             {errors.email && touched.email && <p>{errors.email}</p>}
-            <StyledBtn $primary type="submit">
+            <StyledBtn primary type="submit">
               Form
             </StyledBtn>
           </Form>
