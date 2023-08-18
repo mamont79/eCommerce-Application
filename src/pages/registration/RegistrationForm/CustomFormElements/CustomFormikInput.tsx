@@ -1,5 +1,5 @@
-import { Field } from 'formik';
 import { IValidator } from '../validators/types';
+import { StyledFormInput } from '../../../../components/styledInput';
 
 export function CustomFormikInput({
   name,
@@ -15,7 +15,7 @@ export function CustomFormikInput({
   getValidationMsg: IValidator;
 }) {
   return (
-    <Field
+    <StyledFormInput
       name={name}
       type={type}
       disabled={disabled}

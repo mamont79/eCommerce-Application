@@ -10,6 +10,8 @@ import { getEmailErrorMsg } from '../validators/getEmailErrorMsg';
 import { getPasswordErrorMsg } from '../validators/getPasswordErrorMsg';
 import { CustomFromikCheckbox } from './CustomFormikCheckbox';
 import { Address } from './Address';
+import StyledErrorMessage from '../../../../components/errorMessage/styledErrorMessage';
+import { StyledBtn } from '../../../../components/styledBtn';
 
 export const StyledFormikForm = styled(Form)`
   display: flex;
@@ -18,16 +20,6 @@ export const StyledFormikForm = styled(Form)`
 `;
 
 export function RegistrationForm() {
-  const fieldNames: { [key: string]: string } = {};
-  Object.keys(registrationFormFields).forEach((key) => {
-    fieldNames[key] = key;
-  });
-  // const [isSameShippingAndBillingAddress, setSameShippingAndBillingAddress] =
-  //   useState<boolean>(true);
-  // function handleCheckboxClick() {
-  //   setSameShippingAndBillingAddress(!isSameShippingAndBillingAddress);
-  // }
-
   return (
     <Formik
       initialValues={registrationFormFields}
@@ -37,49 +29,51 @@ export function RegistrationForm() {
       }}
     >
       {({ errors, touched }) => (
-        <Form>
+        <StyledFormikForm>
           <FormGroup>
             <CustomFormikInput
-              name={fieldNames.firstName}
+              name="firstName"
               placeholder="First name"
               getValidationMsg={getTextErrorMsg}
             />
             {errors.firstName && touched.firstName && (
-              <div>{errors.firstName}</div>
+              <StyledErrorMessage>{errors.firstName}</StyledErrorMessage>
             )}
             <CustomFormikInput
-              name={fieldNames.secondName}
+              name="secondName"
               placeholder="Second name"
               getValidationMsg={getTextErrorMsg}
             />
             {errors.secondName && touched.secondName && (
-              <div>{errors.secondName}</div>
+              <StyledErrorMessage>{errors.secondName}</StyledErrorMessage>
             )}
             <CustomFormikInput
-              name={fieldNames.birthDate}
+              name="birthDate"
               type="date"
               getValidationMsg={getBirthDateErrorMsg}
             />
             {errors.birthDate && touched.birthDate && (
-              <div>{errors.birthDate}</div>
+              <StyledErrorMessage>{errors.birthDate}</StyledErrorMessage>
             )}
             <CustomFormikInput
-              name={fieldNames.email}
+              name="email"
               getValidationMsg={getEmailErrorMsg}
               type="email"
               placeholder="email"
             />
-            {errors.email && touched.email && <div>{errors.email}</div>}
+            {errors.email && touched.email && (
+              <StyledErrorMessage>{errors.email}</StyledErrorMessage>
+            )}
             <CustomFormikInput
-              name={fieldNames.password}
+              name="password"
               type="password"
               getValidationMsg={getPasswordErrorMsg}
             />
             {errors.password && touched.password && (
-              <div>{errors.password}</div>
+              <StyledErrorMessage>{errors.password}</StyledErrorMessage>
             )}
             <CustomFromikCheckbox
-              name={fieldNames.userDataProcessingConsent}
+              name="userDataProcessingConsent"
               label={
                 <Link to="/notFound">
                   Hereby I provide my consent for processing my personal data.
@@ -96,10 +90,14 @@ export function RegistrationForm() {
               label="Billing address same as shipping address."
             />
             <StyledH3>Billing address</StyledH3>
-            <Address errors={errors} touched={touched} billing />
+            {/* <Address errors={errors} touched={touched} billing /> */}
           </FormGroup>
-          <button type="submit">Submit</button>
-        </Form>
+          <FormGroup>
+            <StyledBtn primary type="submit">
+              Submit
+            </StyledBtn>
+          </FormGroup>
+        </StyledFormikForm>
       )}
     </Formik>
   );

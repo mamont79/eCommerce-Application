@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import StyledInput from '../../../components/styledInput';
 
 export const StyledForm = styled.form`
   display: flex;
@@ -17,10 +16,6 @@ export const FormGroup = styled.div`
   @media (max-width: 767px) {
     width: 100%;
   }
-`;
-
-export const ShortStyledInput = styled(StyledInput)`
-  max-width: fit-content;
 `;
 
 export const StyledH3 = styled.h3`

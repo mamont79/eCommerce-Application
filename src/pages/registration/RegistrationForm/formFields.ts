@@ -1,5 +1,7 @@
+import { CountriesData } from './CustomFormElements/constants';
+
 export type BasicAddressFields = {
-  country: string;
+  country: keyof CountriesData;
   postalCode: string;
   city: string;
   street: string;

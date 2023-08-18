@@ -5,11 +5,10 @@ import { makeCountryOptions } from '../CountryOptions';
 import { CustomFormikInput } from '../CustomFormikInput';
 import { CustomFormikSelect } from '../CustomFormikSelect';
 import { COUNTRIES_DATA } from '../constants';
-// import { getPostalCodeErrorMsg } from '../../validators/getPostalCodeErrorMsg';
 import { AddressFields } from '../../formFields';
 import { cancelValidate } from '../../validators/noValidate';
 import { getRequiredErrorMsg } from '../../validators/getRequiredErrorMsg';
-// import { setBillingAsShippingAddress } from './setBillingAsShippingAddress';
+import StyledErrorMessage from '../../../../../components/errorMessage/styledErrorMessage';
 
 export function Address({
   billing,
@@ -34,36 +33,57 @@ export function Address({
       />
       {billing
         ? errors.billingCountry &&
-          touched.billingCountry && <div>{errors.billingCountry}</div>
+          touched.billingCountry && (
+            <StyledErrorMessage>{errors.billingCountry}</StyledErrorMessage>
+          )
         : errors.shippingCountry &&
-          touched.shippingCountry && <div>{errors.shippingCountry}</div>}
+          touched.shippingCountry && (
+            <StyledErrorMessage>{errors.shippingCountry}</StyledErrorMessage>
+          )}
       {/* <CustomFormikInput
         name={`${billing ? 'billing' : 'shipping'}PostalCode`}
         placeholder="Postal code"
-        getValidationMsg={getPostalCodeErrorMsg}
+        getValidationMsg={() => getPostalCodeErrorMsg(values.shippingCountry)}
       /> */}
+      {billing
+        ? errors.billingPostalCode &&
+          touched.billingPostalCode && (
+            <StyledErrorMessage>{errors.billingPostalCode}</StyledErrorMessage>
+          )
+        : errors.shippingPostalCode &&
+          touched.shippingPostalCode && (
+            <StyledErrorMessage>{errors.shippingPostalCode}</StyledErrorMessage>
+          )}
       <CustomFormikInput
         name={`${billing ? 'billing' : 'shipping'}City`}
         placeholder="City"
         disabled={isSame}
-        getValidationMsg={isSame ? getTextErrorMsg : cancelValidate}
+        getValidationMsg={isSame ? cancelValidate : getTextErrorMsg}
       />
       {billing
         ? errors.billingCity &&
-          touched.billingCity && <div>{errors.billingCity}</div>
+          touched.billingCity && (
+            <StyledErrorMessage>{errors.billingCity}</StyledErrorMessage>
+          )
         : errors.shippingCity &&
-          touched.shippingCity && <div>{errors.shippingCity}</div>}
+          touched.shippingCity && (
+            <StyledErrorMessage>{errors.shippingCity}</StyledErrorMessage>
+          )}
       <CustomFormikInput
         name={`${billing ? 'billing' : 'shipping'}Street`}
         placeholder="Street"
         disabled={isSame}
-        getValidationMsg={isSame ? getTextErrorMsg : cancelValidate}
+        getValidationMsg={isSame ? cancelValidate : getTextErrorMsg}
       />
       {billing
         ? errors.billingStreet &&
-          touched.billingStreet && <div>{errors.billingStreet}</div>
+          touched.billingStreet && (
+            <StyledErrorMessage>{errors.billingStreet}</StyledErrorMessage>
+          )
         : errors.shippingStreet &&
-          touched.shippingStreet && <div>{errors.shippingStreet}</div>}
+          touched.shippingStreet && (
+            <StyledErrorMessage>{errors.shippingStreet}</StyledErrorMessage>
+          )}
     </FormGroup>
   );
 }
