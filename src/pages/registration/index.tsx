@@ -4,7 +4,7 @@ import {
   StyledPageContentWrapper,
   StyledPageHeadingWrapper,
 } from './style';
-import { RegistrationForm } from './RegistrationForm/CustomFormElements/CustomForm';
+import { RegistrationForm } from './RegistrationForm/CustomFormElements/RegistrationForm';
 
 export default function Registration() {
   return (

@@ -1,18 +1,26 @@
 import { Field } from 'formik';
+import { IValidator } from '../validators/types';
 
 export function CustomFormikSelect({
   defaultOption,
+  disabled,
   name,
-  // value,
   options,
+  getValidationMsg,
 }: {
   defaultOption: string;
+  disabled?: boolean;
   name: string;
-  // value: string;
   options: JSX.Element[];
+  getValidationMsg: IValidator;
 }) {
   return (
-    <Field name={name} as="select">
+    <Field
+      disabled={disabled}
+      name={name}
+      as="select"
+      validate={getValidationMsg}
+    >
       <option value="" hidden>
         {defaultOption}
       </option>
@@ -20,3 +28,7 @@ export function CustomFormikSelect({
     </Field>
   );
 }
+
+CustomFormikSelect.defaultProps = {
+  disabled: false,
+};

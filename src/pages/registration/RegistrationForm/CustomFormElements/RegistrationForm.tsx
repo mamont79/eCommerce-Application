@@ -1,15 +1,15 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
-import { registrationFormValues } from '../formFields';
-import { FormGroup } from '../style';
+import { registrationFormFields } from '../formFields';
+import { FormGroup, StyledH3 } from '../style';
 import { CustomFormikInput } from './CustomFormikInput';
 import { getBirthDateErrorMsg } from '../validators/getBirthDateErrorMsg';
 import { getTextErrorMsg } from '../validators/getTextErrorMsg';
 import { getEmailErrorMsg } from '../validators/getEmailErrorMsg';
 import { getPasswordErrorMsg } from '../validators/getPasswordErrorMsg';
-import { CustomFormikSelect } from './CustomFormikSelect';
-import { makeCountryOptions } from './CountryOptions';
-import { COUNTRIES_DATA } from './constants';
+import { CustomFromikCheckbox } from './CustomFormikCheckbox';
+import { Address } from './Address';
 
 export const StyledFormikForm = styled(Form)`
   display: flex;
@@ -19,13 +19,18 @@ export const StyledFormikForm = styled(Form)`
 
 export function RegistrationForm() {
   const fieldNames: { [key: string]: string } = {};
-  Object.keys(registrationFormValues).forEach((key) => {
+  Object.keys(registrationFormFields).forEach((key) => {
     fieldNames[key] = key;
   });
+  // const [isSameShippingAndBillingAddress, setSameShippingAndBillingAddress] =
+  //   useState<boolean>(true);
+  // function handleCheckboxClick() {
+  //   setSameShippingAndBillingAddress(!isSameShippingAndBillingAddress);
+  // }
 
   return (
     <Formik
-      initialValues={registrationFormValues}
+      initialValues={registrationFormFields}
       onSubmit={(values) => {
         // eslint-disable-next-line no-console
         console.log(JSON.stringify(values, null, 2));
@@ -73,13 +78,27 @@ export function RegistrationForm() {
             {errors.password && touched.password && (
               <div>{errors.password}</div>
             )}
-            <CustomFormikSelect
-              name={fieldNames.shippingCountry}
-              defaultOption="Country"
-              options={makeCountryOptions(COUNTRIES_DATA)}
+            <CustomFromikCheckbox
+              name={fieldNames.userDataProcessingConsent}
+              label={
+                <Link to="/notFound">
+                  Hereby I provide my consent for processing my personal data.
+                </Link>
+              }
             />
           </FormGroup>
-          <button type="submit">Sm</button>
+
+          <FormGroup>
+            <StyledH3>Shipping address</StyledH3>
+            <Address errors={errors} touched={touched} />
+            <CustomFromikCheckbox
+              name="sameBillingShippingCheckbox"
+              label="Billing address same as shipping address."
+            />
+            <StyledH3>Billing address</StyledH3>
+            <Address errors={errors} touched={touched} billing />
+          </FormGroup>
+          <button type="submit">Submit</button>
         </Form>
       )}
     </Formik>

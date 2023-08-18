@@ -3,11 +3,13 @@ import { IValidator } from '../validators/types';
 
 export function CustomFormikInput({
   name,
+  disabled,
   type,
   placeholder,
   getValidationMsg,
 }: {
   name: string;
+  disabled?: boolean;
   type?: string;
   placeholder?: string;
   getValidationMsg: IValidator;
@@ -16,6 +18,7 @@ export function CustomFormikInput({
     <Field
       name={name}
       type={type}
+      disabled={disabled}
       placeholder={placeholder}
       validate={getValidationMsg}
     />
@@ -25,4 +28,5 @@ export function CustomFormikInput({
 CustomFormikInput.defaultProps = {
   type: 'text',
   placeholder: '',
+  disabled: false,
 };
