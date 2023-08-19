@@ -3,16 +3,16 @@ import { IValidator } from '../validators/types';
 
 export function CustomFormikSelect({
   defaultOption,
-  disabled,
   name,
   options,
   getValidationMsg,
+  disabled,
 }: {
-  defaultOption: string;
   disabled?: boolean;
+  defaultOption: string;
   name: string;
   options: JSX.Element[];
-  getValidationMsg: IValidator;
+  getValidationMsg?: IValidator;
 }) {
   return (
     <Field
@@ -31,4 +31,5 @@ export function CustomFormikSelect({
 
 CustomFormikSelect.defaultProps = {
   disabled: false,
+  getValidationMsg: null,
 };

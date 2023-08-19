@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { FormikErrors, FormikTouched } from 'formik';
 import { FormGroup } from '../../style';
 import { getTextErrorMsg } from '../../validators/getTextErrorMsg';
@@ -5,22 +6,42 @@ import { makeCountryOptions } from '../CountryOptions';
 import { CustomFormikInput } from '../CustomFormikInput';
 import { CustomFormikSelect } from '../CustomFormikSelect';
 import { COUNTRIES_DATA } from '../constants';
-import { AddressFields } from '../../formFields';
+import { AddressFields, RegistrationFormValues } from '../../formFields';
 import { cancelValidate } from '../../validators/noValidate';
 import { getRequiredErrorMsg } from '../../validators/getRequiredErrorMsg';
 import StyledErrorMessage from '../../../../../components/errorMessage/styledErrorMessage';
+import { getPostalCodeValidator } from '../../validators/getPostalCodeErrorMsg';
 
 export function Address({
+  isSame,
   billing,
   errors,
   touched,
+  values,
 }: {
+  isSame?: boolean;
   errors: FormikErrors<AddressFields>;
   touched: FormikTouched<AddressFields>;
   billing?: boolean;
+  values: RegistrationFormValues;
 }) {
   const countryOptions = makeCountryOptions(COUNTRIES_DATA);
-  const isSame = false;
+  const [shippingPostalCodeValidator, setShippingPostalCodeValidator] =
+    useState<ReturnType<typeof getPostalCodeValidator>>(
+      getPostalCodeValidator('')
+    );
+  const [billingPostalCodeValidator, setBillingPostalCodeValidator] = useState<
+    ReturnType<typeof getPostalCodeValidator>
+  >(getPostalCodeValidator(''));
+
+  useEffect(() => {
+    setShippingPostalCodeValidator(
+      getPostalCodeValidator(values.shippingCountry)
+    );
+    setBillingPostalCodeValidator(
+      getPostalCodeValidator(values.billingCountry)
+    );
+  }, [values.shippingCountry, values.billingCountry]);
 
   return (
     <FormGroup>
@@ -28,8 +49,8 @@ export function Address({
         name={`${billing ? 'billing' : 'shipping'}Country`}
         options={countryOptions}
         defaultOption="Country"
-        getValidationMsg={isSame ? cancelValidate : getRequiredErrorMsg}
         disabled={isSame}
+        getValidationMsg={isSame ? cancelValidate : getRequiredErrorMsg}
       />
       {billing
         ? errors.billingCountry &&
@@ -40,11 +61,19 @@ export function Address({
           touched.shippingCountry && (
             <StyledErrorMessage>{errors.shippingCountry}</StyledErrorMessage>
           )}
-      {/* <CustomFormikInput
+      <CustomFormikInput
         name={`${billing ? 'billing' : 'shipping'}PostalCode`}
         placeholder="Postal code"
-        getValidationMsg={() => getPostalCodeErrorMsg(values.shippingCountry)}
-      /> */}
+        disabled={isSame}
+        getValidationMsg={
+          // eslint-disable-next-line no-nested-ternary
+          isSame
+            ? cancelValidate
+            : billing
+            ? billingPostalCodeValidator
+            : shippingPostalCodeValidator
+        }
+      />
       {billing
         ? errors.billingPostalCode &&
           touched.billingPostalCode && (
@@ -90,4 +119,5 @@ export function Address({
 
 Address.defaultProps = {
   billing: false,
+  isSame: false,
 };

@@ -1,7 +1,7 @@
 import { getBirthDateErrorMsg } from './getBirthDateErrorMsg';
 import { getEmailErrorMsg } from './getEmailErrorMsg';
 import { getPasswordErrorMsg } from './getPasswordErrorMsg';
-import { getPostalCodeErrorMsg } from './getPostalCodeErrorMsg';
+import { getPostalCodeValidator } from './getPostalCodeErrorMsg';
 import { getRequiredErrorMsg } from './getRequiredErrorMsg';
 import { getTextErrorMsg } from './getTextErrorMsg';
 import { cancelValidate } from './noValidate';
@@ -11,6 +11,6 @@ export type IValidator =
   | typeof getBirthDateErrorMsg
   | typeof getTextErrorMsg
   | typeof getPasswordErrorMsg
-  | typeof getPostalCodeErrorMsg
+  | ReturnType<typeof getPostalCodeValidator>
   | typeof cancelValidate
   | typeof getRequiredErrorMsg;

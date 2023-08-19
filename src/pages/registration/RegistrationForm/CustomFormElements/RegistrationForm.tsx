@@ -2,16 +2,16 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 import { registrationFormFields } from '../formFields';
-import { FormGroup, StyledH3 } from '../style';
+import { FormGroup } from '../style';
 import { CustomFormikInput } from './CustomFormikInput';
 import { getBirthDateErrorMsg } from '../validators/getBirthDateErrorMsg';
 import { getTextErrorMsg } from '../validators/getTextErrorMsg';
 import { getEmailErrorMsg } from '../validators/getEmailErrorMsg';
 import { getPasswordErrorMsg } from '../validators/getPasswordErrorMsg';
 import { CustomFromikCheckbox } from './CustomFormikCheckbox';
-import { Address } from './Address';
 import StyledErrorMessage from '../../../../components/errorMessage/styledErrorMessage';
 import { StyledBtn } from '../../../../components/styledBtn';
+import { RegistrationPageAddressBlock } from './Address/RegistrationPageAddressBlock';
 
 export const StyledFormikForm = styled(Form)`
   display: flex;
@@ -28,7 +28,7 @@ export function RegistrationForm() {
         console.log(JSON.stringify(values, null, 2));
       }}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, setFieldValue, values }) => (
         <StyledFormikForm>
           <FormGroup>
             <CustomFormikInput
@@ -82,20 +82,15 @@ export function RegistrationForm() {
             />
           </FormGroup>
 
+          <RegistrationPageAddressBlock
+            errors={errors}
+            touched={touched}
+            values={values}
+            setFieldValue={setFieldValue}
+          />
+
           <FormGroup>
-            <StyledH3>Shipping address</StyledH3>
-            <Address errors={errors} touched={touched} />
-            <CustomFromikCheckbox
-              name="sameBillingShippingCheckbox"
-              label="Billing address same as shipping address."
-            />
-            <StyledH3>Billing address</StyledH3>
-            {/* <Address errors={errors} touched={touched} billing /> */}
-          </FormGroup>
-          <FormGroup>
-            <StyledBtn primary type="submit">
-              Submit
-            </StyledBtn>
+            <StyledBtn type="submit">Submit</StyledBtn>
           </FormGroup>
         </StyledFormikForm>
       )}
