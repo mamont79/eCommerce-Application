@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FormikErrors, FormikTouched } from 'formik';
-import { Address } from '.';
+import { Address } from './Address';
 import { FormGroup, StyledH3 } from '../../style';
 import { AddressFields, RegistrationFormValues } from '../../formFields';
 

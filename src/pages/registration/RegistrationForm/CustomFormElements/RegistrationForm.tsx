@@ -11,7 +11,7 @@ import { getPasswordErrorMsg } from '../validators/getPasswordErrorMsg';
 import { CustomFromikCheckbox } from './CustomFormikCheckbox';
 import StyledErrorMessage from '../../../../components/errorMessage/styledErrorMessage';
 import { StyledBtn } from '../../../../components/styledBtn';
-import { RegistrationPageAddressBlock } from './Address/RegistrationPageAddressBlock';
+import { RegistrationPageAddressBlock } from './AddressBlock/RegistrationPageAddressBlock';
 
 export const StyledFormikForm = styled(Form)`
   display: flex;
