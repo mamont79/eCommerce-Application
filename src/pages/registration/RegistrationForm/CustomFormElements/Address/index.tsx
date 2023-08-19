@@ -7,7 +7,7 @@ import { CustomFormikInput } from '../CustomFormikInput';
 import { CustomFormikSelect } from '../CustomFormikSelect';
 import { COUNTRIES_DATA } from '../constants';
 import { AddressFields, RegistrationFormValues } from '../../formFields';
-import { cancelValidate } from '../../validators/noValidate';
+import { cancelValidate } from '../../validators/cancelValidate';
 import { getRequiredErrorMsg } from '../../validators/getRequiredErrorMsg';
 import StyledErrorMessage from '../../../../../components/errorMessage/styledErrorMessage';
 import { getPostalCodeValidator } from '../../validators/getPostalCodeErrorMsg';
@@ -27,12 +27,9 @@ export function Address({
 }) {
   const countryOptions = makeCountryOptions(COUNTRIES_DATA);
   const [shippingPostalCodeValidator, setShippingPostalCodeValidator] =
-    useState<ReturnType<typeof getPostalCodeValidator>>(
-      getPostalCodeValidator('')
-    );
-  const [billingPostalCodeValidator, setBillingPostalCodeValidator] = useState<
-    ReturnType<typeof getPostalCodeValidator>
-  >(getPostalCodeValidator(''));
+    useState<ReturnType<typeof getPostalCodeValidator>>(cancelValidate);
+  const [billingPostalCodeValidator, setBillingPostalCodeValidator] =
+    useState<ReturnType<typeof getPostalCodeValidator>>(cancelValidate);
 
   useEffect(() => {
     setShippingPostalCodeValidator(
@@ -67,10 +64,10 @@ export function Address({
         disabled={isSame}
         getValidationMsg={
           // eslint-disable-next-line no-nested-ternary
-          isSame
-            ? cancelValidate
-            : billing
-            ? billingPostalCodeValidator
+          billing
+            ? isSame
+              ? cancelValidate
+              : billingPostalCodeValidator
             : shippingPostalCodeValidator
         }
       />

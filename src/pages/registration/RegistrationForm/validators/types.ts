@@ -4,7 +4,7 @@ import { getPasswordErrorMsg } from './getPasswordErrorMsg';
 import { getPostalCodeValidator } from './getPostalCodeErrorMsg';
 import { getRequiredErrorMsg } from './getRequiredErrorMsg';
 import { getTextErrorMsg } from './getTextErrorMsg';
-import { cancelValidate } from './noValidate';
+import { cancelValidate } from './cancelValidate';
 
 export type IValidator =
   | typeof getEmailErrorMsg
