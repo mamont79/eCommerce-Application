@@ -21,6 +21,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-redux": "^7.1.25",
     "@types/styled-components": "^5.1.26",
+    "axios": "^1.4.0",
     "formik": "^2.4.3",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",
