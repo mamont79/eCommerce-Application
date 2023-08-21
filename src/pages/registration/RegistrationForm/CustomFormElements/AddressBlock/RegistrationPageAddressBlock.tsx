@@ -38,6 +38,10 @@ export function RegistrationPageAddressBlock({
     setFieldValue,
   ]);
 
+  function toggleBillingSameAsShipping() {
+    setBillingSameAsShipping(!isBillingSameAsShipping);
+  }
+
   return (
     <FormGroup>
       <StyledBLockHeading>Shipping address</StyledBLockHeading>
@@ -48,7 +52,7 @@ export function RegistrationPageAddressBlock({
           id="billingSameAsShipping"
           type="checkbox"
           checked={isBillingSameAsShipping}
-          onChange={() => setBillingSameAsShipping(!isBillingSameAsShipping)}
+          onChange={toggleBillingSameAsShipping}
         />
         Billing same as shipping address
       </label>
