@@ -8,8 +8,20 @@ export const registrationCustomer = async () => {
     const authToken = getTokenCookie('access_token');
     console.log(authToken);
 
-    const response = await axiosInstance({});
-    console.log(response.data);
+    const response = await axiosInstance({
+      method: 'post',
+      url: '/me/signup',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`,
+      },
+      data: {
+        email: 'billy@rambler.ru',
+        firstName: 'Bill',
+        lastName: 'Clinton',
+        password: 'Bill!Clinton99',
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);
