@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 import { registrationFormFields } from '../formFields';
-import { FormGroup } from '../style';
 import { getBirthDateErrorMsg } from '../validators/getBirthDateErrorMsg';
 import { getTextErrorMsg } from '../validators/getTextErrorMsg';
-import { CustomFromikCheckbox } from './CustomFormikCheckbox';
+import { FormGroup } from '../style';
+import { CustomFormikCheckbox } from './CustomFormikCheckbox';
 import StyledErrorMessage from '../../../../components/errorMessage/styledErrorMessage';
 import { RegistrationPageAddressBlock } from './AddressBlock/RegistrationPageAddressBlock';
 import { StyledPasswordInputWrapper } from '../../../../components/formInputs/StyledPasswordInputWrapper';
@@ -76,7 +76,7 @@ export function RegistrationForm() {
             {errors.password && touched.password && (
               <StyledErrorMessage>{errors.password}</StyledErrorMessage>
             )}
-            <CustomFromikCheckbox
+            <CustomFormikCheckbox
               name="userDataProcessingConsent"
               label="Hereby I provide my consent for processing my personal data."
             />

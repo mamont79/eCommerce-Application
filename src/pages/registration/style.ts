@@ -14,7 +14,3 @@ export const StyledPageHeadingWrapper = styled.div`
   align-items: flex-start;
   gap: 20px;
 `;
-
-export const StyledH2 = styled.h2`
-  margin: 0;
-`;

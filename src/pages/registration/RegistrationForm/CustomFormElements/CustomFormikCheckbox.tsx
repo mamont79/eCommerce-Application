@@ -1,6 +1,6 @@
 import { Field } from 'formik';
 
-export function CustomFromikCheckbox({
+export function CustomFormikCheckbox({
   label,
   name,
 }: {

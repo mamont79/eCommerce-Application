@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FormikErrors, FormikTouched } from 'formik';
 import { Address } from './Address';
-import { FormGroup, StyledH3 } from '../../style';
+import { FormGroup, StyledBLockHeading } from '../../style';
 import { AddressFields, RegistrationFormFields } from '../../formFields';
 
 export function RegistrationPageAddressBlock({
@@ -40,7 +40,7 @@ export function RegistrationPageAddressBlock({
 
   return (
     <FormGroup>
-      <StyledH3>Shipping address</StyledH3>
+      <StyledBLockHeading>Shipping address</StyledBLockHeading>
       <Address errors={errors} touched={touched} values={values} />
 
       <label htmlFor="billingSameAsShipping">
@@ -53,7 +53,7 @@ export function RegistrationPageAddressBlock({
         Billing same as shipping address
       </label>
 
-      <StyledH3>Billing address</StyledH3>
+      <StyledBLockHeading>Billing address</StyledBLockHeading>
       <Address
         errors={errors}
         touched={touched}

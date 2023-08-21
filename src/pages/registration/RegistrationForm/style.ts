@@ -18,6 +18,6 @@ export const FormGroup = styled.div`
   }
 `;
 
-export const StyledH3 = styled.h3`
+export const StyledBLockHeading = styled.h3`
   margin: 0;
 `;
