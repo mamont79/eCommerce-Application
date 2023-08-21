@@ -1,4 +1,6 @@
+import { ToastContainer } from 'react-toastify';
 import { Route } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 import Welcome from './pages/welcome';
 import Login from './pages/login';
 import NotFound from './pages/notFound';
@@ -20,6 +22,7 @@ export default function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="*" element={<NotFound />} />
       </StyledRoutes>
+      <ToastContainer />
       <Footer />
     </StyledPageWrapper>
   );

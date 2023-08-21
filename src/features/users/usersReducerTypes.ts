@@ -7,8 +7,9 @@ export enum UserStatusTypes {
 export type User = { userName?: string; email?: string; phone?: string };
 
 export interface UsersState {
-  user: User;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  user: any;
   status: UserStatusTypes | null;
-  message: string | null;
-  value: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  message: any | null;
 }
