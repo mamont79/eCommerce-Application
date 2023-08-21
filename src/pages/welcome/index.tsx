@@ -9,6 +9,9 @@ import {
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import WelcomeWrapper from './style';
 import validationEmail from './validation';
+import { getTokenCookie } from '../../api/cookieToken';
+
+getTokenCookie('access_token');
 
 export default function Welcome() {
   const count = useAppSelector((state) => state.users.value);

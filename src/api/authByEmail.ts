@@ -5,6 +5,7 @@ import {
   CTP_CLIENT_SECRET,
   CTP_PROJECT_KEY,
 } from '../constants/commerceApi';
+import { saveTokenToCookie } from './cookieToken';
 import { authInstance } from './index';
 
 // eslint-disable-next-line consistent-return
@@ -25,6 +26,7 @@ export const getAuthEmailToken = async () => {
         },
       }
     );
+    saveTokenToCookie(response.data.access_token, response.data.expires_in);
     return response.data;
   } catch (error) {
     console.error(error);
