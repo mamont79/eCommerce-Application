@@ -5,9 +5,10 @@ import StyledErrorMessage from '../../components/errorMessage/styledErrorMessage
 import { StyledFormikInput } from '../../components/StyledInput';
 import getEmailErrorMsg from '../../components/formInputs/validation/getEmailErrorMsg';
 import getPasswordErrorMsg from '../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
-import { FormGroup, StyledForm } from '../registration/RegistrationForm/style';
-import { StyledH2, StyledPageContentWrapper } from '../registration/style';
 import { StyledBtn } from '../../components/StyledBtn';
+import { StyledPageName } from '../../components/StyledPageName';
+import { FormGroup, StyledForm } from '../registration/RegistrationForm/style';
+import { StyledPageContentWrapper } from '../registration/style';
 
 export default function Login() {
   return (
@@ -23,7 +24,7 @@ export default function Login() {
     >
       {({ errors, touched, values }) => (
         <StyledPageContentWrapper>
-          <StyledH2>Glad to see you!</StyledH2>
+          <StyledPageName>Glad to see you!</StyledPageName>
           <StyledForm>
             <FormGroup>
               <StyledFormikInput
