@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FormikErrors, FormikTouched } from 'formik';
 import { Address } from './Address';
 import { FormGroup, StyledH3 } from '../../style';
-import { AddressFields, RegistrationFormValues } from '../../formFields';
+import { AddressFields, RegistrationFormFields } from '../../formFields';
 
 export function RegistrationPageAddressBlock({
   errors,
@@ -16,8 +16,8 @@ export function RegistrationPageAddressBlock({
     field: string,
     value: string | boolean,
     shouldValidate?: boolean
-  ) => Promise<void | FormikErrors<RegistrationFormValues>>;
-  values: RegistrationFormValues;
+  ) => Promise<void | FormikErrors<RegistrationFormFields>>;
+  values: RegistrationFormFields;
 }) {
   const [isBillingSameAsShipping, setBillingSameAsShipping] =
     useState<boolean>(true);
@@ -57,8 +57,8 @@ export function RegistrationPageAddressBlock({
       <Address
         errors={errors}
         touched={touched}
-        billing
         values={values}
+        billing
         isSame={isBillingSameAsShipping}
       />
     </FormGroup>

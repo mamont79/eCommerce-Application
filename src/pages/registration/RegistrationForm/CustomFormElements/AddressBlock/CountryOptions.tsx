@@ -1,4 +1,4 @@
-import { type CountriesData, type SingleCountryData } from './constants';
+import { type CountriesData, type SingleCountryData } from '../constants';
 
 export function makeCountryOptions(countries: CountriesData) {
   return Object.entries(countries).map((country) => makeOption(country));

@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 import { registrationFormFields } from '../formFields';
 import { FormGroup } from '../style';
-import { CustomFormikInput } from './CustomFormikInput';
 import { getBirthDateErrorMsg } from '../validators/getBirthDateErrorMsg';
 import { getTextErrorMsg } from '../validators/getTextErrorMsg';
-import { getEmailErrorMsg } from '../validators/getEmailErrorMsg';
-import { getPasswordErrorMsg } from '../validators/getPasswordErrorMsg';
 import { CustomFromikCheckbox } from './CustomFormikCheckbox';
 import StyledErrorMessage from '../../../../components/errorMessage/styledErrorMessage';
-import { StyledBtn } from '../../../../components/styledBtn';
 import { RegistrationPageAddressBlock } from './AddressBlock/RegistrationPageAddressBlock';
+import { StyledPasswordInputWrapper } from '../../../../components/formInputs/StyledPasswordInputWrapper';
+import getPasswordErrorMsg from '../../../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
+import { StyledFormikInput } from '../../../../components/StyledInput';
+import { StyledBtn } from '../../../../components/StyledBtn';
+import getEmailErrorMsg from '../../../../components/formInputs/validation/getEmailErrorMsg';
 
 export const StyledFormikForm = styled(Form)`
   display: flex;
@@ -31,54 +32,53 @@ export function RegistrationForm() {
       {({ errors, touched, setFieldValue, values }) => (
         <StyledFormikForm>
           <FormGroup>
-            <CustomFormikInput
+            <StyledFormikInput
               name="firstName"
               placeholder="First name"
-              getValidationMsg={getTextErrorMsg}
+              validate={getTextErrorMsg}
             />
             {errors.firstName && touched.firstName && (
               <StyledErrorMessage>{errors.firstName}</StyledErrorMessage>
             )}
-            <CustomFormikInput
+            <StyledFormikInput
               name="secondName"
               placeholder="Second name"
-              getValidationMsg={getTextErrorMsg}
+              validate={getTextErrorMsg}
             />
             {errors.secondName && touched.secondName && (
               <StyledErrorMessage>{errors.secondName}</StyledErrorMessage>
             )}
-            <CustomFormikInput
+            <StyledFormikInput
               name="birthDate"
               type="date"
-              getValidationMsg={getBirthDateErrorMsg}
+              validate={getBirthDateErrorMsg}
             />
             {errors.birthDate && touched.birthDate && (
               <StyledErrorMessage>{errors.birthDate}</StyledErrorMessage>
             )}
-            <CustomFormikInput
+            <StyledFormikInput
               name="email"
-              getValidationMsg={getEmailErrorMsg}
               type="email"
               placeholder="email"
+              validate={getEmailErrorMsg}
             />
             {errors.email && touched.email && (
               <StyledErrorMessage>{errors.email}</StyledErrorMessage>
             )}
-            <CustomFormikInput
-              name="password"
-              type="password"
-              getValidationMsg={getPasswordErrorMsg}
-            />
+            <StyledPasswordInputWrapper values={values}>
+              <StyledFormikInput
+                name="password"
+                type="password"
+                placeholder="Password"
+                validate={getPasswordErrorMsg}
+              />
+            </StyledPasswordInputWrapper>
             {errors.password && touched.password && (
               <StyledErrorMessage>{errors.password}</StyledErrorMessage>
             )}
             <CustomFromikCheckbox
               name="userDataProcessingConsent"
-              label={
-                <Link to="/notFound">
-                  Hereby I provide my consent for processing my personal data.
-                </Link>
-              }
+              label="Hereby I provide my consent for processing my personal data."
             />
           </FormGroup>
 
@@ -90,7 +90,10 @@ export function RegistrationForm() {
           />
 
           <FormGroup>
-            <StyledBtn type="submit">Submit</StyledBtn>
+            <Link to="/login">Already have an account? Login!</Link>
+            <StyledBtn $primary type="submit">
+              Submit
+            </StyledBtn>
           </FormGroup>
         </StyledFormikForm>
       )}
