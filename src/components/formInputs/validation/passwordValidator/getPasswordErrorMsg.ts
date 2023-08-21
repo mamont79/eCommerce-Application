@@ -5,7 +5,7 @@ import {
   PASSWORD_SYMOLS_NUMBER_CHECK,
   PASSWORD_UPPER_CASE_SYMBOL_CHECK,
 } from './constants';
-import checkSpaces from './helpers/check-spaces';
+import checkSpaces from '../helpers/check-spaces';
 
 function getPasswordErrorMsg(value: string): string {
   if (!value) {

@@ -1,4 +1,4 @@
-import { EMAIL_SEPARATORS_CHECK } from './constants';
+import { EMAIL_SEPARATORS_CHECK } from './passwordValidator/constants';
 import checkSpaces from './helpers/check-spaces';
 
 function getEmailErrorMsg(value: string): string {
