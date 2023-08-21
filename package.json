@@ -15,10 +15,15 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@commercetools/importapi-sdk": "^4.6.2",
+    "@commercetools/platform-sdk": "^5.0.0",
+    "@commercetools/sdk-client-v2": "^2.2.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-redux": "^7.1.25",
     "@types/styled-components": "^5.1.26",
+    "axios": "^1.4.0",
     "formik": "^2.4.3",
+    "node-fetch": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
