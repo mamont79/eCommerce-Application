@@ -17,7 +17,6 @@ import { UserStatusTypes } from '../../features/users/usersReducerTypes';
 import {
   fetchAuthEmailToken,
   fetchLoginMeCustomer,
-  reset,
 } from '../../features/users/usersSlice';
 import { LoginData } from '../../api/authTypes';
 
@@ -28,7 +27,6 @@ export default function Login() {
   const { user, status, message } = useAppSelector((state) => state.users);
 
   useEffect(() => {
-    // debugger;
     if (status === UserStatusTypes.ERROR) {
       toast.error(message, {
         position: 'top-right',
@@ -58,9 +56,6 @@ export default function Login() {
       );
       navigate('/');
     }
-    return () => {
-      dispatch(reset());
-    };
   }, [user, message, status, navigate, dispatch]);
 
   return (

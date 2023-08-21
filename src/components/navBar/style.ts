@@ -9,4 +9,9 @@ const StyledNavigation = styled.nav`
   margin: auto 60px auto auto;
 `;
 
-export default StyledNavigation;
+const StyledGreeting = styled.p`
+  color: #ffa555;
+  margin: auto auto auto 60px;
+  font-weight: 700;
+`;
+export { StyledNavigation, StyledGreeting };

@@ -11,6 +11,7 @@ import {
   StyledRoutes,
   StyledPageWrapper,
 } from './components/routerWrapper/style';
+import Logout from './pages/logout';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />} />
       </StyledRoutes>
       <ToastContainer />
