@@ -7,11 +7,11 @@ import getEmailErrorMsg from '../../components/formInputs/validation/getEmailErr
 import getPasswordErrorMsg from '../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
 import { StyledPageName } from '../../components/StyledPageName';
 import { StyledBtn } from '../../components/StyledBtn';
-import { StyledPageContentWrapper } from '../style';
 import {
   FormGroup,
   StyledFormikForm,
 } from '../../components/formInputs/commonStyle';
+import { StyledPageContentWrapper } from '../registration/style';
 
 export default function Login() {
   return (
