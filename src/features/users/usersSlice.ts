@@ -5,6 +5,8 @@ import { UsersState } from './usersReducerTypes';
 import { RootState } from '../../store/store';
 import { getAuthToken } from '../../api/auth';
 import { getAuthEmailToken } from '../../api/authByEmail';
+import { registrationCustomer } from '../../api/registration';
+import { loginMeCustomer } from '../../api/login';
 
 const initialState: UsersState = {
   user: {},
@@ -45,6 +47,24 @@ export const fetchAuthEmailToken = createAsyncThunk(
   'users/fetchAuthEmailToken',
   async () => {
     const response = await getAuthEmailToken();
+    // eslint-disable-next-line no-console
+    console.log(response);
+  }
+);
+
+export const fetchRegisterCustomer = createAsyncThunk(
+  'users/fetchRegisterCustomer',
+  async () => {
+    const response = await registrationCustomer();
+    // eslint-disable-next-line no-console
+    console.log(response);
+  }
+);
+
+export const fetchLoginCustomer = createAsyncThunk(
+  'users/fetchLoginCustomer',
+  async () => {
+    const response = await loginMeCustomer();
     // eslint-disable-next-line no-console
     console.log(response);
   }

@@ -5,7 +5,7 @@ import StyledErrorMessage from '../../components/errorMessage/styledErrorMessage
 import { StyledFormikInput } from '../../components/StyledInput';
 import getEmailErrorMsg from '../../components/formInputs/validation/getEmailErrorMsg';
 import getPasswordErrorMsg from '../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
-import { StyledBtn } from '../../components/StyledBtn';
+import { StyledBtn } from '../../components/styledBtn';
 import { StyledPageName } from '../../components/StyledPageName';
 import { FormGroup, StyledForm } from '../registration/RegistrationForm/style';
 import { StyledPageContentWrapper } from '../registration/style';

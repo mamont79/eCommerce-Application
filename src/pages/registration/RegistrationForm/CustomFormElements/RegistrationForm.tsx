@@ -11,7 +11,7 @@ import { RegistrationPageAddressBlock } from './AddressBlock/RegistrationPageAdd
 import { StyledPasswordInputWrapper } from '../../../../components/formInputs/StyledPasswordInputWrapper';
 import getPasswordErrorMsg from '../../../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
 import { StyledFormikInput } from '../../../../components/StyledInput';
-import { StyledBtn } from '../../../../components/StyledBtn';
+import { StyledBtn } from '../../../../components/styledBtn';
 import getEmailErrorMsg from '../../../../components/formInputs/validation/getEmailErrorMsg';
 
 export const StyledFormikForm = styled(Form)`

@@ -4,14 +4,13 @@ import {
   decrement,
   fetchAuthEmailToken,
   fetchAuthToken,
+  fetchLoginCustomer,
+  fetchRegisterCustomer,
   increment,
 } from '../../features/users/usersSlice';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import WelcomeWrapper from './style';
 import validationEmail from './validation';
-import { getTokenCookie } from '../../api/cookieToken';
-
-getTokenCookie('access_token');
 
 export default function Welcome() {
   const count = useAppSelector((state) => state.users.value);
@@ -28,6 +27,12 @@ export default function Welcome() {
   const handleEmailToken = () => {
     dispatch(fetchAuthEmailToken());
   };
+  const handleLogin = () => {
+    dispatch(fetchLoginCustomer());
+  };
+  const handleRegistration = () => {
+    dispatch(fetchRegisterCustomer());
+  };
 
   return (
     <WelcomeWrapper>
@@ -41,6 +46,12 @@ export default function Welcome() {
       </StyledBtn>
       <StyledBtn type="submit" onClick={handleEmailToken}>
         Get Email Token
+      </StyledBtn>
+      <StyledBtn type="submit" onClick={handleRegistration}>
+        Register
+      </StyledBtn>
+      <StyledBtn type="submit" onClick={handleLogin}>
+        login
       </StyledBtn>
       <StyledCheckBtn>Get Customers</StyledCheckBtn>
       <p>{count}</p>

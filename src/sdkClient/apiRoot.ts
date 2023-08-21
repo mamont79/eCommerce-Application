@@ -11,6 +11,16 @@ const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
 // This code has the same effect as sending a GET request to the commercetools Composable Commerce API without any endpoints.
 export const getProject = () => apiRoot.get().execute();
 
-export function createCustomer() {
-  apiRoot.customers();
-}
+export const createCustomer = () =>
+  apiRoot
+    .customers()
+    .post({
+      // The CustomerDraft is the object within the body
+      body: {
+        email: 'paululul@gmail.com',
+        firstName: 'Paul',
+        lastName: 'Lol',
+        password: 'Paul=Lol123',
+      },
+    })
+    .execute();
