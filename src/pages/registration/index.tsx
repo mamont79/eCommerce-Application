@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
-import {
-  StyledPageContentWrapper,
-  StyledPageHeadingWrapper,
-} from './style';
+import { StyledPageContentWrapper, StyledPageHeadingWrapper } from '../style';
 import { StyledPageName } from '../../components/StyledPageName';
 import { RegistrationForm } from './RegistrationForm/CustomFormElements/RegistrationForm';
 
