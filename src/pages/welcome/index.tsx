@@ -1,5 +1,5 @@
 import { Formik, Form, Field } from 'formik';
-import { StyledBtn, StyledCheckBtn } from '../../components/styledBtn';
+import { StyledBtn, StyledCheckBtn } from '../../components/StyledBtn';
 import { decrement, increment } from '../../features/users/usersSlice';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import WelcomeWrapper from './style';
@@ -19,7 +19,7 @@ export default function Welcome() {
     <WelcomeWrapper>
       <h1>Hello world</h1>
       <StyledBtn onClick={handleIncrement}>Open</StyledBtn>
-      <StyledBtn primary onClick={handleDecrement}>
+      <StyledBtn $primary onClick={handleDecrement}>
         Close
       </StyledBtn>
       <StyledCheckBtn>Check</StyledCheckBtn>
@@ -42,7 +42,7 @@ export default function Welcome() {
               placeholder="email"
             />
             {errors.email && touched.email && <p>{errors.email}</p>}
-            <StyledBtn primary type="submit">
+            <StyledBtn $primary type="submit">
               Form
             </StyledBtn>
           </Form>
