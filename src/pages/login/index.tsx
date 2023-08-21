@@ -77,6 +77,7 @@ export default function Login() {
       {({ errors, touched }) => (
         <StyledPageContentWrapper>
           <StyledPageName>Glad to see you!</StyledPageName>
+
           <StyledLoginForm>
             <FormGroup>
               <StyledFormikInput
@@ -108,6 +109,7 @@ export default function Login() {
               </LoginLink>
             </FormGroup>
           </StyledLoginForm>
+
         </StyledPageContentWrapper>
       )}
     </Formik>

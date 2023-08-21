@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { FormikErrors, FormikTouched } from 'formik';
 import { Address } from './Address';
-import { FormGroup, StyledBLockHeading } from '../../style';
+import { StyledBLockHeading } from '../../style';
 import { AddressFields, RegistrationFormFields } from '../../formFields';
+import { FormGroup } from '../../../../../components/formInputs/commonStyle';
 
 export function RegistrationPageAddressBlock({
   errors,

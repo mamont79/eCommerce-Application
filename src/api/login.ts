@@ -18,4 +18,5 @@ export const loginMeCustomer = async (loginData: LoginData) => {
   );
 
   return response.data;
+
 };

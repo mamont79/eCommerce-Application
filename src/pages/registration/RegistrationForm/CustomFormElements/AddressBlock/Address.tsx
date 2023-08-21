@@ -1,15 +1,15 @@
 import { FormikErrors, FormikTouched } from 'formik';
-import { FormGroup } from '../../style';
-import { getTextErrorMsg } from '../../validators/getTextErrorMsg';
-import { makeCountryOptions } from './CountryOptions';
+import { StyledFormikInput } from '../../../../../components/StyledInput';
+import { FormGroup } from '../../../../../components/formInputs/commonStyle';
 import { CustomFormikSelect } from '../../../../../components/StyledSelect';
+import StyledErrorMessage from '../../../../../components/errorMessage/styledErrorMessage';
 import { COUNTRIES_DATA } from '../constants';
 import { AddressFields, RegistrationFormFields } from '../../formFields';
+import { makeCountryOptions } from './CountryOptions';
+import { getTextErrorMsg } from '../../validators/getTextErrorMsg';
 import { cancelValidate } from '../../validators/cancelValidate';
 import { getRequiredErrorMsg } from '../../validators/getRequiredErrorMsg';
-import StyledErrorMessage from '../../../../../components/errorMessage/styledErrorMessage';
 import { getPostalCodeValidator } from '../../validators/getPostalCodeErrorMsg';
-import { StyledFormikInput } from '../../../../../components/StyledInput';
 
 export function Address({
   errors,

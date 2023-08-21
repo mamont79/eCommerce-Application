@@ -1,24 +1,20 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Form, Formik } from 'formik';
+import { Formik } from 'formik';
 import { registrationFormFields } from '../formFields';
 import { getBirthDateErrorMsg } from '../validators/getBirthDateErrorMsg';
 import { getTextErrorMsg } from '../validators/getTextErrorMsg';
-import { FormGroup } from '../style';
 import { CustomFormikCheckbox } from './CustomFormikCheckbox';
 import StyledErrorMessage from '../../../../components/errorMessage/styledErrorMessage';
-import { RegistrationPageAddressBlock } from './AddressBlock/RegistrationPageAddressBlock';
 import { StyledPasswordInputWrapper } from '../../../../components/formInputs/StyledPasswordInputWrapper';
 import getPasswordErrorMsg from '../../../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
 import { StyledFormikInput } from '../../../../components/StyledInput';
-import { StyledBtn } from '../../../../components/StyledBtn';
 import getEmailErrorMsg from '../../../../components/formInputs/validation/getEmailErrorMsg';
-
-export const StyledFormikForm = styled(Form)`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-`;
+import { StyledBtn } from '../../../../components/StyledBtn';
+import {
+  FormGroup,
+  StyledFormikForm,
+} from '../../../../components/formInputs/commonStyle';
+import { RegistrationPageAddressBlock } from './AddressBlock/RegistrationPageAddressBlock';
 
 export function RegistrationForm() {
   return (
