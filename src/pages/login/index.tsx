@@ -5,9 +5,7 @@ import { Formik } from 'formik';
 import { LoginLink, StyledLoginForm } from './style';
 import { StyledPasswordInputWrapper } from '../../components/formInputs/StyledPasswordInputWrapper';
 import StyledErrorMessage from '../../components/errorMessage/styledErrorMessage';
-import { StyledFormikInput } from '../../components/styledInput';
 import getEmailErrorMsg from '../../components/formInputs/validation/getEmailErrorMsg';
-import getPasswordErrorMsg from '../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { UserStatusTypes } from '../../features/users/usersReducerTypes';
 import {
@@ -15,10 +13,11 @@ import {
   fetchLoginMeCustomer,
 } from '../../features/users/usersSlice';
 import { LoginData } from '../../api/authTypes';
-import { StyledPageName } from '../../components/StyledPageName';
+import { StyledPageName } from '../../components/StyledPageTitle';
 import { FormGroup } from '../../components/formInputs/commonStyle';
 import { StyledBtn } from '../../components/styledBtn';
 import { StyledPageContentWrapper } from '../registration/style';
+import { StyledFormikInput } from '../../components/StyledInput';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -88,14 +87,7 @@ export default function Login() {
               {errors.email && touched.email && (
                 <StyledErrorMessage>{errors.email}</StyledErrorMessage>
               )}
-              <StyledPasswordInputWrapper>
-                <StyledFormikInput
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  validate={getPasswordErrorMsg}
-                />
-              </StyledPasswordInputWrapper>
+              <StyledPasswordInputWrapper />
               {errors.password && touched.password && (
                 <StyledErrorMessage>{errors.password}</StyledErrorMessage>
               )}

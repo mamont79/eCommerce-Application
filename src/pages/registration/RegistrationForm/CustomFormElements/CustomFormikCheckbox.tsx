@@ -1,12 +1,10 @@
 import { Field } from 'formik';
+import { IRegistrationPageCheckboxProps } from './type';
 
-export function CustomFormikCheckbox({
+export function RegistrationPageCheckbox({
   label,
   name,
-}: {
-  label: string | JSX.Element;
-  name: string;
-}) {
+}: IRegistrationPageCheckboxProps) {
   return (
     <div>
       <Field name={name} id={name} type="checkbox" />

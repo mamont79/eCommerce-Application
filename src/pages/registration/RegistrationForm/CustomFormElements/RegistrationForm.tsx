@@ -3,14 +3,11 @@ import { Formik } from 'formik';
 import { registrationFormFields } from '../formFields';
 import { getBirthDateErrorMsg } from '../validators/getBirthDateErrorMsg';
 import { getTextErrorMsg } from '../validators/getTextErrorMsg';
-import { CustomFormikCheckbox } from './CustomFormikCheckbox';
+import { RegistrationPageCheckbox } from './CustomFormikCheckbox';
 import StyledErrorMessage from '../../../../components/errorMessage/styledErrorMessage';
 import { StyledPasswordInputWrapper } from '../../../../components/formInputs/StyledPasswordInputWrapper';
-import getPasswordErrorMsg from '../../../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
 import { StyledFormikInput } from '../../../../components/StyledInput';
-
 import { StyledBtn } from '../../../../components/styledBtn';
-
 import getEmailErrorMsg from '../../../../components/formInputs/validation/getEmailErrorMsg';
 
 import {
@@ -18,16 +15,11 @@ import {
   StyledFormikForm,
 } from '../../../../components/formInputs/commonStyle';
 import { RegistrationPageAddressBlock } from './AddressBlock/RegistrationPageAddressBlock';
+import { handleSubmit } from './handleSubmit';
 
 export function RegistrationForm() {
   return (
-    <Formik
-      initialValues={registrationFormFields}
-      onSubmit={(values) => {
-        // eslint-disable-next-line no-console
-        console.log(JSON.stringify(values, null, 2));
-      }}
-    >
+    <Formik initialValues={registrationFormFields} onSubmit={handleSubmit}>
       {({ errors, touched, setFieldValue, values }) => (
         <StyledFormikForm>
           <FormGroup>
@@ -64,18 +56,11 @@ export function RegistrationForm() {
             {errors.email && touched.email && (
               <StyledErrorMessage>{errors.email}</StyledErrorMessage>
             )}
-            <StyledPasswordInputWrapper values={values}>
-              <StyledFormikInput
-                name="password"
-                type="password"
-                placeholder="Password"
-                validate={getPasswordErrorMsg}
-              />
-            </StyledPasswordInputWrapper>
+            <StyledPasswordInputWrapper />
             {errors.password && touched.password && (
               <StyledErrorMessage>{errors.password}</StyledErrorMessage>
             )}
-            <CustomFormikCheckbox
+            <RegistrationPageCheckbox
               name="userDataProcessingConsent"
               label="Hereby I provide my consent for processing my personal data."
             />
