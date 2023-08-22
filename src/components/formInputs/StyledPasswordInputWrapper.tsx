@@ -1,17 +1,15 @@
-import { useState, ReactNode } from 'react';
-import {
-  StyledFormPasswordInputWrapper,
-  StyledFormPasswordInputIcon,
-  StyledFormikInput,
-} from '../StyledInput';
+import { ReactNode, useState } from 'react';
 import getPasswordErrorMsg from './validation/passwordValidator/getPasswordErrorMsg';
+import {
+  StyledFormPasswordInputIcon,
+  StyledFormPasswordInputWrapper,
+  StyledFormikInput,
+} from '../styledInput';
 
 export function StyledPasswordInputWrapper({
   children,
-  values,
 }: {
   children: ReactNode;
-  values: { password: string };
 }) {
   const [isVisible, setVisibile] = useState<boolean>(false);
   const changePasswordVisibility = () => {
@@ -19,7 +17,6 @@ export function StyledPasswordInputWrapper({
   };
   const passwortText = (
     <StyledFormikInput
-      value={values.password}
       name="password"
       type="text"
       placeholder="Password"

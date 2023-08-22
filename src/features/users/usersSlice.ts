@@ -1,38 +1,20 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
+import { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { UsersState } from './usersReducerTypes';
-import { RootState } from '../../store/store';
+import { UserStatusTypes, UsersState } from './usersReducerTypes';
+
 import { getAuthToken } from '../../api/auth';
 import { getAuthEmailToken } from '../../api/authByEmail';
+
 import { registrationCustomer } from '../../api/registration';
 import { loginMeCustomer } from '../../api/login';
+import { LoginData } from '../../api/authTypes';
 
 const initialState: UsersState = {
-  user: {},
+  user: null,
   status: null,
   message: null,
-  value: 0,
 };
-
-export const usersSlice = createSlice({
-  name: 'users',
-  initialState,
-  reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-  },
-});
-
-export const { increment, decrement } = usersSlice.actions;
-
-export const selectValue = (state: RootState) => state.users.value;
-
-export default usersSlice.reducer;
 
 export const fetchAuthToken = createAsyncThunk(
   'users/fetchAuthToken',
@@ -45,10 +27,21 @@ export const fetchAuthToken = createAsyncThunk(
 
 export const fetchAuthEmailToken = createAsyncThunk(
   'users/fetchAuthEmailToken',
-  async () => {
-    const response = await getAuthEmailToken();
-    // eslint-disable-next-line no-console
-    console.log(response);
+  async (loginData: LoginData, thunkAPI) => {
+    try {
+      return await getAuthEmailToken(loginData);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
+    return '';
   }
 );
 
@@ -61,11 +54,55 @@ export const fetchRegisterCustomer = createAsyncThunk(
   }
 );
 
-export const fetchLoginCustomer = createAsyncThunk(
-  'users/fetchLoginCustomer',
-  async () => {
-    const response = await loginMeCustomer();
-    // eslint-disable-next-line no-console
-    console.log(response);
+export const fetchLoginMeCustomer = createAsyncThunk(
+  'users/fetchLoginMeCustomer',
+  async (loginData: LoginData, thunkAPI) => {
+    try {
+      return await loginMeCustomer(loginData);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
+    return '';
   }
 );
+
+export const usersSlice = createSlice({
+  name: 'users',
+  initialState,
+  reducers: {
+    reset: (state) => {
+      state.user = null;
+      state.status = null;
+      state.message = null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+
+      .addCase(fetchLoginMeCustomer.pending, (state) => {
+        state.status = UserStatusTypes.LOADING;
+      })
+      .addCase(fetchLoginMeCustomer.fulfilled, (state, action) => {
+        state.status = UserStatusTypes.SUCCESS;
+        state.user = action.payload;
+      })
+      .addCase(fetchLoginMeCustomer.rejected, (state, action) => {
+        state.status = UserStatusTypes.ERROR;
+        state.message = action.payload;
+        state.user = null;
+      });
+  },
+});
+
+export const { reset } = usersSlice.actions;
+
+export default usersSlice.reducer;
+

@@ -1,5 +1,5 @@
 import { Formik, Form, Field } from 'formik';
-import { StyledBtn, StyledCheckBtn } from '../../components/StyledBtn';
+
 import {
   decrement,
   fetchAuthEmailToken,
@@ -9,18 +9,13 @@ import {
   increment,
 } from '../../features/users/usersSlice';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { StyledBtn, StyledCheckBtn } from '../../components/styledBtn';
 import WelcomeWrapper from './style';
 import validationEmail from './validation';
 
 export default function Welcome() {
-  const count = useAppSelector((state) => state.users.value);
   const dispatch = useAppDispatch();
-  const handleDecrement = () => {
-    dispatch(decrement());
-  };
-  const handleIncrement = () => {
-    dispatch(increment());
-  };
+
   const handleToken = () => {
     dispatch(fetchAuthToken());
   };
@@ -37,10 +32,8 @@ export default function Welcome() {
   return (
     <WelcomeWrapper>
       <h1>Hello world</h1>
-      <StyledBtn onClick={handleIncrement}>Open</StyledBtn>
-      <StyledBtn $primary onClick={handleDecrement}>
-        Close
-      </StyledBtn>
+      <StyledBtn>Open</StyledBtn>
+      <StyledBtn $primary>Close</StyledBtn>
       <StyledBtn type="submit" onClick={handleToken}>
         Get Token
       </StyledBtn>
@@ -53,8 +46,9 @@ export default function Welcome() {
       <StyledBtn type="submit" onClick={handleLogin}>
         login
       </StyledBtn>
+      <StyledBtn type="submit">Get Email Token</StyledBtn>
+
       <StyledCheckBtn>Get Customers</StyledCheckBtn>
-      <p>{count}</p>
 
       <Formik
         initialValues={{

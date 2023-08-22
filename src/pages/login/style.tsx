@@ -5,9 +5,10 @@ import styled from 'styled-components';
 const StyledLoginForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  margin: 75px 0 75px 35px;
   width: 40%;
   position: relative;
+  flex-wrap: wrap;
+  gap: 20px;
 `;
 
 const LoginLink = styled(Link)`
