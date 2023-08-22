@@ -20,7 +20,7 @@ export const StyledSecondHeaderRow = styled.div`
   display: flex;
   vertical-align: bottom;
   width: 100%;
-  height: 82px;
+  margin-top: 30px;
 `;
 
 export const StyledControls = styled.div`

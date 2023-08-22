@@ -1,8 +1,8 @@
 export default function LazzoneIconSvg() {
   return (
     <svg
-      width="215"
-      height="30"
+      width="200"
+      height="25"
       viewBox="0 0 215 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
