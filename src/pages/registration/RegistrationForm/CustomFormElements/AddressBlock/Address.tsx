@@ -1,15 +1,14 @@
-import { FormikErrors, FormikTouched } from 'formik';
 import { StyledFormikInput } from '../../../../../components/StyledInput';
 import { FormGroup } from '../../../../../components/formInputs/commonStyle';
 import { CustomFormikSelect } from '../../../../../components/StyledSelect';
 import StyledErrorMessage from '../../../../../components/errorMessage/styledErrorMessage';
 import { COUNTRIES_DATA } from '../constants';
-import { AddressFields, RegistrationFormFields } from '../../formFields';
 import { makeCountryOptions } from './CountryOptions';
 import { getTextErrorMsg } from '../../validators/getTextErrorMsg';
 import { cancelValidate } from '../../validators/cancelValidate';
 import { getRequiredErrorMsg } from '../../validators/getRequiredErrorMsg';
 import { getPostalCodeValidator } from '../../validators/getPostalCodeErrorMsg';
+import { type IAddress } from './type';
 
 export function Address({
   errors,
@@ -17,14 +16,12 @@ export function Address({
   values,
   billing,
   isSame,
-}: {
-  errors: FormikErrors<AddressFields>;
-  touched: FormikTouched<AddressFields>;
-  values: RegistrationFormFields;
-  billing?: boolean;
-  isSame?: boolean;
-}) {
+}: IAddress) {
   const countryOptions = makeCountryOptions(COUNTRIES_DATA);
+
+  const getPostalCodeErrorMsg = getPostalCodeValidator(
+    billing ? values.billingCountry : values.shippingCountry
+  );
 
   return (
     <FormGroup>
@@ -48,13 +45,7 @@ export function Address({
         name={`${billing ? 'billing' : 'shipping'}PostalCode`}
         placeholder="Postal code"
         disabled={isSame}
-        validate={
-          isSame
-            ? cancelValidate
-            : getPostalCodeValidator(
-                billing ? values.billingCountry : values.shippingCountry
-              )
-        }
+        validate={isSame ? cancelValidate : getPostalCodeErrorMsg}
       />
       {billing
         ? errors.billingPostalCode &&

@@ -39,7 +39,7 @@ const StyledFormPasswordInputIcon = styled.div<{ $visible?: boolean }>`
   height: 25px;
   cursor: pointer;
   background-image: ${({ $visible }) =>
-    $visible ? passwordInvisibleUrl : passwordVisibleUrl};
+    $visible ? passwordVisibleUrl : passwordInvisibleUrl};
   background-repeat: no-repeat;
   background-position: center;
 `;
