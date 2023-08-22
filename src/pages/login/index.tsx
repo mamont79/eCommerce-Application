@@ -8,13 +8,6 @@ import StyledErrorMessage from '../../components/errorMessage/styledErrorMessage
 import { StyledFormikInput } from '../../components/styledInput';
 import getEmailErrorMsg from '../../components/formInputs/validation/getEmailErrorMsg';
 import getPasswordErrorMsg from '../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
-import { StyledBtn } from '../../components/styledBtn';
-import { StyledPageName } from '../../components/StyledPageName';
-
-import { FormGroup } from '../registration/RegistrationForm/style';
-
-import { StyledPageContentWrapper } from '../registration/style';
-import { StyledBtn } from '../../components/styledBtn';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { UserStatusTypes } from '../../features/users/usersReducerTypes';
 import {
@@ -22,6 +15,10 @@ import {
   fetchLoginMeCustomer,
 } from '../../features/users/usersSlice';
 import { LoginData } from '../../api/authTypes';
+import { StyledPageName } from '../../components/StyledPageName';
+import { FormGroup } from '../../components/formInputs/commonStyle';
+import { StyledBtn } from '../../components/styledBtn';
+import { StyledPageContentWrapper } from '../registration/style';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -112,7 +109,6 @@ export default function Login() {
               </LoginLink>
             </FormGroup>
           </StyledLoginForm>
-
         </StyledPageContentWrapper>
       )}
     </Formik>

@@ -2,10 +2,8 @@
 import { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { UserStatusTypes, UsersState } from './usersReducerTypes';
-
 import { getAuthToken } from '../../api/auth';
 import { getAuthEmailToken } from '../../api/authByEmail';
-
 import { registrationCustomer } from '../../api/registration';
 import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
@@ -105,4 +103,3 @@ export const usersSlice = createSlice({
 export const { reset } = usersSlice.actions;
 
 export default usersSlice.reducer;
-
