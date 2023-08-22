@@ -3,9 +3,10 @@ import { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { UserStatusTypes, UsersState } from './usersReducerTypes';
 
-// import { RootState } from '../../store/store';
 import { getAuthToken } from '../../api/auth';
 import { getAuthEmailToken } from '../../api/authByEmail';
+
+import { registrationCustomer } from '../../api/registration';
 import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
 
@@ -41,6 +42,15 @@ export const fetchAuthEmailToken = createAsyncThunk(
       }
     }
     return '';
+  }
+);
+
+export const fetchRegisterCustomer = createAsyncThunk(
+  'users/fetchRegisterCustomer',
+  async () => {
+    const response = await registrationCustomer();
+    // eslint-disable-next-line no-console
+    console.log(response);
   }
 );
 
@@ -94,6 +104,5 @@ export const usersSlice = createSlice({
 
 export const { reset } = usersSlice.actions;
 
-// export const selectValue = (state: RootState) => state.users;
-
 export default usersSlice.reducer;
+

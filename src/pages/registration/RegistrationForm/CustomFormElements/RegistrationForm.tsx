@@ -8,8 +8,11 @@ import StyledErrorMessage from '../../../../components/errorMessage/styledErrorM
 import { StyledPasswordInputWrapper } from '../../../../components/formInputs/StyledPasswordInputWrapper';
 import getPasswordErrorMsg from '../../../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
 import { StyledFormikInput } from '../../../../components/StyledInput';
+
+import { StyledBtn } from '../../../../components/styledBtn';
+
 import getEmailErrorMsg from '../../../../components/formInputs/validation/getEmailErrorMsg';
-import { StyledBtn } from '../../../../components/StyledBtn';
+
 import {
   FormGroup,
   StyledFormikForm,

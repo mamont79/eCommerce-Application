@@ -1,18 +1,32 @@
 import { Formik, Form, Field } from 'formik';
+
+import {
+  decrement,
+  fetchAuthEmailToken,
+  fetchAuthToken,
+  fetchLoginCustomer,
+  fetchRegisterCustomer,
+  increment,
+} from '../../features/users/usersSlice';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { StyledBtn, StyledCheckBtn } from '../../components/styledBtn';
-import { fetchAuthToken } from '../../features/users/usersSlice';
-import { useAppDispatch } from '../../store/hooks';
 import WelcomeWrapper from './style';
 import validationEmail from './validation';
-import { getTokenCookie } from '../../api/cookieToken';
-
-getTokenCookie('access_token');
 
 export default function Welcome() {
   const dispatch = useAppDispatch();
 
   const handleToken = () => {
     dispatch(fetchAuthToken());
+  };
+  const handleEmailToken = () => {
+    dispatch(fetchAuthEmailToken());
+  };
+  const handleLogin = () => {
+    dispatch(fetchLoginCustomer());
+  };
+  const handleRegistration = () => {
+    dispatch(fetchRegisterCustomer());
   };
 
   return (
@@ -23,7 +37,17 @@ export default function Welcome() {
       <StyledBtn type="submit" onClick={handleToken}>
         Get Token
       </StyledBtn>
+      <StyledBtn type="submit" onClick={handleEmailToken}>
+        Get Email Token
+      </StyledBtn>
+      <StyledBtn type="submit" onClick={handleRegistration}>
+        Register
+      </StyledBtn>
+      <StyledBtn type="submit" onClick={handleLogin}>
+        login
+      </StyledBtn>
       <StyledBtn type="submit">Get Email Token</StyledBtn>
+
       <StyledCheckBtn>Get Customers</StyledCheckBtn>
 
       <Formik

@@ -1,18 +1,20 @@
-
-import { LoginData } from './authTypes';
 import { getTokenCookie } from './cookieToken';
 import { axiosInstance } from './index';
 
-export const loginMeCustomer = async (loginData: LoginData) => {
+export const registrationCustomer = async () => {
   const authToken = getTokenCookie('access_token');
+
   const response = await axiosInstance.post(
-    `/me/login`,
+    '/me/signup',
     {
-      email: loginData.username,
-      password: loginData.password,
+      email: 'billy-cl@rambler.ru',
+      firstName: 'Bill',
+      lastName: 'Clinton',
+      password: 'Bill!Clinton99',
     },
     {
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${authToken}`,
       },
     }
