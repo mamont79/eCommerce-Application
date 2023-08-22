@@ -1,8 +1,16 @@
 /* eslint-disable no-useless-escape */
 
-export const saveTokenToCookie = (token: string, expiresIn: number) => {
+export const saveTokenToCookie = (
+  token: string,
+  expiresIn: number,
+  name: string
+) => {
   const deadTokenDate = new Date(Date.now() + expiresIn * 1000).toUTCString();
-  document.cookie = `access_token=${token}; expires=${deadTokenDate}`;
+  document.cookie = `${name}=${token}; expires=${deadTokenDate}`;
+};
+
+export const deleteMailToken = (name: string) => {
+  document.cookie = `${name}=; max-age=-1`;
 };
 
 export const getTokenCookie = (name: string) => {

@@ -7,7 +7,7 @@ export const registrationCustomer = async () => {
   const response = await axiosInstance.post(
     '/me/signup',
     {
-      email: 'billy-cl@rambler.ru',
+      email: 'billy-cl4@rambler.ru',
       firstName: 'Bill',
       lastName: 'Clinton',
       password: 'Bill!Clinton99',
@@ -19,6 +19,5 @@ export const registrationCustomer = async () => {
       },
     }
   );
-
   return response.data;
 };
