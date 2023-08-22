@@ -7,7 +7,10 @@ import getEmailErrorMsg from '../../components/formInputs/validation/getEmailErr
 import getPasswordErrorMsg from '../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
 import { StyledBtn } from '../../components/styledBtn';
 import { StyledPageName } from '../../components/StyledPageName';
-import { FormGroup, StyledForm } from '../registration/RegistrationForm/style';
+import {
+  FormGroup,
+  StyledFormikForm,
+} from '../../components/formInputs/commonStyle';
 import { StyledPageContentWrapper } from '../registration/style';
 
 export default function Login() {
@@ -25,7 +28,7 @@ export default function Login() {
       {({ errors, touched, values }) => (
         <StyledPageContentWrapper>
           <StyledPageName>Glad to see you!</StyledPageName>
-          <StyledForm>
+          <StyledFormikForm>
             <FormGroup>
               <StyledFormikInput
                 name="email"
@@ -56,7 +59,7 @@ export default function Login() {
                 Don&apos;t have an account yet? Sign up
               </LoginLink>
             </FormGroup>
-          </StyledForm>
+          </StyledFormikForm>
         </StyledPageContentWrapper>
       )}
     </Formik>

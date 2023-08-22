@@ -1,5 +1,10 @@
 import { Field } from 'formik';
 import styled from 'styled-components';
+import passwordInvisible from '../../assets/password-invisible.svg';
+import passwordVisible from '../../assets/password-visible.svg';
+
+const passwordInvisibleUrl = `url("${passwordInvisible}")`;
+const passwordVisibleUrl = `url("${passwordVisible}")`;
 
 const StyledFormikInput = styled(Field)`
   background: none;
@@ -26,17 +31,17 @@ const StyledFormPasswordInputWrapper = styled.div`
 const StyledFormPasswordInputIcon = styled.div<{ $visible?: boolean }>`
   content: '';
   position: absolute;
-  top: ${({ $visible }) => ($visible ? '14px' : '25px')};
+  top: 0;
   bottom: 0;
   right: 10px;
   margin: auto 0;
   width: 25px;
   height: 25px;
   cursor: pointer;
-  background: ${({ $visible }) =>
-    $visible
-      ? "url('/src/assets/password-visible.svg') no-repeat"
-      : "url('/src/assets/password-invisible.svg') no-repeat"};
+  background-image: ${({ $visible }) =>
+    $visible ? passwordInvisibleUrl : passwordVisibleUrl};
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 export {

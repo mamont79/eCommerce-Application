@@ -1,3 +1,4 @@
+
 import { getTokenCookie } from './cookieToken';
 import { axiosInstance } from './index';
 
@@ -17,4 +18,5 @@ export const loginMeCustomer = async (loginData: LoginData) => {
   );
 
   return response.data;
+
 };

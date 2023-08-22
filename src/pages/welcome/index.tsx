@@ -1,5 +1,5 @@
 import { Formik, Form, Field } from 'formik';
-import { StyledBtn, StyledCheckBtn } from '../../components/styledBtn';
+import { StyledBtn, StyledCheckBtn } from '../../components/StyledBtn';
 import {
   decrement,
   fetchAuthEmailToken,

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const StyledBtn = styled.button<{ $primary?: boolean }>`
   box-sizing: border-box;
-  background: ${({ $primary: primary }) => (primary ? '#fc8600' : '#ffffff')};
-  color: ${({ $primary: primary }) => (primary ? '#ffffff' : '#fc8600')};
+  background: ${({ $primary }) => ($primary ? '#fc8600' : '#ffffff')};
+  color: ${({ $primary }) => ($primary ? '#ffffff' : '#fc8600')};
   font-size: 1em;
   padding: 0.25em 1em;
   border: solid #fc8600;
@@ -12,8 +12,8 @@ const StyledBtn = styled.button<{ $primary?: boolean }>`
   transition: all 1s;
 
   &:hover {
-    background: ${({ $primary: primary }) => (primary ? '#fc8600' : '#ffffff')};
-    color: ${({ $primary: primary }) => (primary ? '#ffffff' : '#fc8600')};
+    background: ${({ $primary }) => ($primary ? '#fc8600' : '#ffffff')};
+    color: ${({ $primary }) => ($primary ? '#ffffff' : '#fc8600')};
   }
 `;
 
