@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StyledBtn } from '../styledBtn';
 
 export const SearchWrapper = styled.div`
   display: flex;
@@ -10,11 +11,10 @@ export const SearchWrapper = styled.div`
 export const SearchInput = styled.input`
   margin-top: -5px;
   width: calc(100% - 50px);
-  height: 42px;
   color: #cf844e;
   font-family: Arial;
   font-size: 16px;
-  padding-left: 20px;
+  padding: 10px 20px;
   background: none;
   border-radius: 7px;
   border: 1px solid #c4c4c4;
@@ -30,9 +30,8 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const SearchButton = styled.button`
+export const SearchButton = styled(StyledBtn)`
   width: 140px;
-  height: 45px;
   background: #ffa555;
   margin-top: -5px;
   margin-left: -10px;

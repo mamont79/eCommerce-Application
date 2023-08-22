@@ -4,7 +4,7 @@ export default function UserSearchInput() {
   return (
     <SearchWrapper>
       <SearchInput type="text" placeholder="Search" />
-      <SearchButton>Search</SearchButton>
+      <SearchButton $primary>Search</SearchButton>
     </SearchWrapper>
   );
 }
