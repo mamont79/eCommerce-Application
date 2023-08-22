@@ -1,19 +1,63 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { Formik } from 'formik';
-import { LoginLink } from './style';
+import { LoginLink, StyledLoginForm } from './style';
 import { StyledPasswordInputWrapper } from '../../components/formInputs/StyledPasswordInputWrapper';
 import StyledErrorMessage from '../../components/errorMessage/styledErrorMessage';
-import { StyledFormikInput } from '../../components/StyledInput';
+import { StyledFormikInput } from '../../components/styledInput';
 import getEmailErrorMsg from '../../components/formInputs/validation/getEmailErrorMsg';
 import getPasswordErrorMsg from '../../components/formInputs/validation/passwordValidator/getPasswordErrorMsg';
 import { StyledPageName } from '../../components/StyledPageName';
-import { StyledBtn } from '../../components/StyledBtn';
-import {
-  FormGroup,
-  StyledFormikForm,
-} from '../../components/formInputs/commonStyle';
+import { FormGroup } from '../registration/RegistrationForm/style';
 import { StyledPageContentWrapper } from '../registration/style';
+import { StyledBtn } from '../../components/styledBtn';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { UserStatusTypes } from '../../features/users/usersReducerTypes';
+import {
+  fetchAuthEmailToken,
+  fetchLoginMeCustomer,
+} from '../../features/users/usersSlice';
+import { LoginData } from '../../api/authTypes';
 
 export default function Login() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const { user, status, message } = useAppSelector((state) => state.users);
+
+  useEffect(() => {
+    if (status === UserStatusTypes.ERROR) {
+      toast.error(message, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
+
+    if (status === UserStatusTypes.SUCCESS || user) {
+      toast.success(
+        `Welcome ${user.customer.firstName} ${user.customer.lastName}`,
+        {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        }
+      );
+      navigate('/');
+    }
+  }, [user, message, status, navigate, dispatch]);
+
   return (
     <Formik
       initialValues={{
@@ -21,25 +65,30 @@ export default function Login() {
         password: '',
       }}
       onSubmit={(values) => {
-        // eslint-disable-next-line no-console
-        console.log(values);
+        const userData: LoginData = {
+          username: values.email,
+          password: values.password,
+        };
+
+        dispatch(fetchLoginMeCustomer(userData));
+        dispatch(fetchAuthEmailToken(userData));
       }}
     >
-      {({ errors, touched, values }) => (
+      {({ errors, touched }) => (
         <StyledPageContentWrapper>
           <StyledPageName>Glad to see you!</StyledPageName>
-          <StyledFormikForm>
+
+          <StyledLoginForm>
             <FormGroup>
               <StyledFormikInput
                 name="email"
-                type="email"
                 placeholder="email"
                 validate={getEmailErrorMsg}
               />
               {errors.email && touched.email && (
                 <StyledErrorMessage>{errors.email}</StyledErrorMessage>
               )}
-              <StyledPasswordInputWrapper values={values}>
+              <StyledPasswordInputWrapper>
                 <StyledFormikInput
                   name="password"
                   type="password"
@@ -59,7 +108,8 @@ export default function Login() {
                 Don&apos;t have an account yet? Sign up
               </LoginLink>
             </FormGroup>
-          </StyledFormikForm>
+          </StyledLoginForm>
+
         </StyledPageContentWrapper>
       )}
     </Formik>
