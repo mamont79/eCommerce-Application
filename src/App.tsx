@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Route } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,19 +12,8 @@ import {
   StyledPageWrapper,
 } from './components/routerWrapper/style';
 import Logout from './pages/logout';
-import { useAppDispatch } from './store/hooks';
-import { fetchAuthToken } from './features/users/usersSlice';
-import { getTokenCookie } from './api/cookieToken';
 
 export default function App() {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    const tokenFromCookie = getTokenCookie('access_token');
-    if (!tokenFromCookie) {
-      dispatch(fetchAuthToken);
-    }
-  }, [dispatch]);
-
   return (
     <StyledPageWrapper>
       <NavBar />
