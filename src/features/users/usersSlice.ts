@@ -7,11 +7,13 @@ import { getAuthEmailToken } from '../../api/authByEmail';
 import { registrationCustomer } from '../../api/registration';
 import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
+import { deleteMailToken } from '../../api/cookieToken';
 
 const initialState: UsersState = {
   user: null,
   status: null,
   message: null,
+  isAuth: false,
 };
 
 export const fetchAuthToken = createAsyncThunk(
@@ -20,6 +22,7 @@ export const fetchAuthToken = createAsyncThunk(
     const response = await getAuthToken();
     // eslint-disable-next-line no-console
     console.log(response);
+    return response;
   }
 );
 
@@ -80,6 +83,8 @@ export const usersSlice = createSlice({
       state.user = null;
       state.status = null;
       state.message = null;
+      state.isAuth = false;
+      deleteMailToken('mail_token');
     },
   },
   extraReducers: (builder) => {

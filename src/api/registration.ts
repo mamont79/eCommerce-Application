@@ -19,6 +19,5 @@ export const registrationCustomer = async () => {
       },
     }
   );
-
   return response.data;
 };
