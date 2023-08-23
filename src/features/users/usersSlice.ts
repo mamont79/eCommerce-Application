@@ -65,6 +65,22 @@ export const fetchRegisterCustomer = createAsyncThunk(
       }
     }
     return response;
+  async (newUserData: INewUserData, thunkAPI) => {
+    let response = null;
+    try {
+      response = await registrationCustomer(newUserData);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
+    return response;
   }
 );
 
@@ -111,6 +127,18 @@ export const usersSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(fetchLoginMeCustomer.rejected, (state, action) => {
+        state.status = UserStatusTypes.ERROR;
+        state.message = action.payload;
+        state.user = null;
+      })
+      .addCase(fetchRegisterCustomer.pending, (state) => {
+        state.status = UserStatusTypes.LOADING;
+      })
+      .addCase(fetchRegisterCustomer.fulfilled, (state, action) => {
+        state.status = UserStatusTypes.SUCCESS;
+        state.user = action.payload;
+      })
+      .addCase(fetchRegisterCustomer.rejected, (state, action) => {
         state.status = UserStatusTypes.ERROR;
         state.message = action.payload;
         state.user = null;
