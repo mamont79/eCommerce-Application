@@ -1,25 +1,15 @@
 import { useState, useEffect } from 'react';
-import { FormikErrors, FormikTouched } from 'formik';
 import { Address } from './Address';
 import { StyledBLockHeading } from '../../style';
-import { AddressFields, RegistrationFormFields } from '../../formFields';
 import { FormGroup } from '../../../../../components/formInputs/commonStyle';
+import { IRegistrationPageAddressBlockProps } from './type';
 
 export function RegistrationPageAddressBlock({
   errors,
   touched,
   setFieldValue,
   values,
-}: {
-  errors: FormikErrors<AddressFields>;
-  touched: FormikTouched<AddressFields>;
-  setFieldValue: (
-    field: string,
-    value: string | boolean,
-    shouldValidate?: boolean
-  ) => Promise<void | FormikErrors<RegistrationFormFields>>;
-  values: RegistrationFormFields;
-}) {
+}: IRegistrationPageAddressBlockProps) {
   const [isBillingSameAsShipping, setBillingSameAsShipping] =
     useState<boolean>(true);
 
@@ -46,7 +36,12 @@ export function RegistrationPageAddressBlock({
   return (
     <FormGroup>
       <StyledBLockHeading>Shipping address</StyledBLockHeading>
-      <Address errors={errors} touched={touched} values={values} />
+      <Address
+        errors={errors}
+        touched={touched}
+        values={values}
+        setFieldValue={setFieldValue}
+      />
 
       <label htmlFor="billingSameAsShipping">
         <input
@@ -63,6 +58,7 @@ export function RegistrationPageAddressBlock({
         errors={errors}
         touched={touched}
         values={values}
+        setFieldValue={setFieldValue}
         billing
         isSame={isBillingSameAsShipping}
       />

@@ -1,5 +1,5 @@
 import { Field } from 'formik';
-import { IValidator } from '../../pages/registration/RegistrationForm/validators/types';
+import { IStyledSelect } from './type';
 import { SelectStyles } from './style';
 
 export function CustomFormikSelect({
@@ -8,13 +8,7 @@ export function CustomFormikSelect({
   options,
   getValidationMsg,
   disabled,
-}: {
-  disabled?: boolean;
-  defaultOption: string;
-  name: string;
-  options: JSX.Element[];
-  getValidationMsg?: IValidator;
-}) {
+}: IStyledSelect) {
   return (
     <Field
       disabled={disabled}

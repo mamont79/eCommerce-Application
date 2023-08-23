@@ -1,32 +1,26 @@
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import getPasswordErrorMsg from './validation/passwordValidator/getPasswordErrorMsg';
 import {
   StyledFormPasswordInputIcon,
   StyledFormPasswordInputWrapper,
   StyledFormikInput,
-} from '../styledInput';
+} from '../StyledInput';
 
-export function StyledPasswordInputWrapper({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export function StyledPasswordInputWrapper() {
   const [isVisible, setVisibile] = useState<boolean>(false);
+
   const changePasswordVisibility = () => {
     setVisibile(!isVisible);
   };
-  const passwortText = (
-    <StyledFormikInput
-      name="password"
-      type="text"
-      placeholder="Password"
-      validate={getPasswordErrorMsg}
-    />
-  );
 
   return (
     <StyledFormPasswordInputWrapper>
-      {isVisible ? passwortText : children}
+      <StyledFormikInput
+        name="password"
+        type={isVisible ? 'text' : 'password'}
+        placeholder="Password"
+        validate={getPasswordErrorMsg}
+      />
       <StyledFormPasswordInputIcon
         $visible={isVisible}
         onClick={changePasswordVisibility}
