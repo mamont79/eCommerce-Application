@@ -14,6 +14,7 @@ const shippingAddressFields: ShippingAddressFields = {
   shippingPostalCode: '',
   shippingCity: '',
   shippingStreet: '',
+  isDefaultShippingAddress: false,
 };
 
 const billingAddressFields: BillingAddressFields = {
@@ -21,6 +22,7 @@ const billingAddressFields: BillingAddressFields = {
   billingPostalCode: '',
   billingCity: '',
   billingStreet: '',
+  isDefaultBillingAddress: false,
 };
 
 export const registrationFormFields = {
@@ -35,11 +37,13 @@ export type ShippingAddressFields = {
   shippingPostalCode: string;
   shippingCity: string;
   shippingStreet: string;
+  isDefaultShippingAddress: boolean;
 };
 export type BillingAddressFields = {
   billingCountry: keyof CountriesData | '';
   billingPostalCode: string;
   billingCity: string;
   billingStreet: string;
+  isDefaultBillingAddress: boolean;
 };
 export type AddressFields = ShippingAddressFields & BillingAddressFields;

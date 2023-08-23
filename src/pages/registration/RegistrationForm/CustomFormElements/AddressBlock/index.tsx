@@ -36,7 +36,12 @@ export function RegistrationPageAddressBlock({
   return (
     <FormGroup>
       <StyledBLockHeading>Shipping address</StyledBLockHeading>
-      <Address errors={errors} touched={touched} values={values} />
+      <Address
+        errors={errors}
+        touched={touched}
+        values={values}
+        setFieldValue={setFieldValue}
+      />
 
       <label htmlFor="billingSameAsShipping">
         <input
@@ -53,6 +58,7 @@ export function RegistrationPageAddressBlock({
         errors={errors}
         touched={touched}
         values={values}
+        setFieldValue={setFieldValue}
         billing
         isSame={isBillingSameAsShipping}
       />
