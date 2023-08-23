@@ -1,5 +1,5 @@
 import { INewUserData } from '../pages/registration/RegistrationForm/CustomFormElements/requestTypes';
-import { getTokenCookie } from './cookieToken';
+import { getAuthToken } from './auth';
 import { axiosInstance } from './index';
 
 export const registrationCustomer = async ({
@@ -8,7 +8,7 @@ export const registrationCustomer = async ({
   lastName,
   password,
 }: INewUserData) => {
-  const authToken = getTokenCookie('access_token');
+  const authToken = await getAuthToken();
   const response = await axiosInstance.post(
     '/me/signup',
     {

@@ -1,10 +1,9 @@
-
+import { getAuthToken } from './auth';
 import { LoginData } from './authTypes';
-import { getTokenCookie } from './cookieToken';
 import { axiosInstance } from './index';
 
 export const loginMeCustomer = async (loginData: LoginData) => {
-  const authToken = getTokenCookie('access_token');
+  const authToken = await getAuthToken();
   const response = await axiosInstance.post(
     `/me/login`,
     {
