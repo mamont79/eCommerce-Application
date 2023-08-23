@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { StyledPageName } from '../../components/StyledPageTitle';
-import { RegistrationForm } from './RegistrationForm/CustomFormElements/RegistrationForm';
+import { RegistrationForm } from './RegistrationForm';
 import { StyledPageContentWrapper, StyledPageHeadingWrapper } from './style';
 
 export default function Registration() {

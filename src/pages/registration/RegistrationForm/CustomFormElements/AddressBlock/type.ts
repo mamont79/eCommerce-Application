@@ -19,6 +19,11 @@ export type IAddress = {
   errors: FormikErrors<AddressFields>;
   touched: FormikTouched<AddressFields>;
   values: RegistrationFormFields;
+  setFieldValue: (
+    field: string,
+    value: string | boolean,
+    shouldValidate?: boolean
+  ) => Promise<void | FormikErrors<RegistrationFormFields>>;
   billing?: boolean;
   isSame?: boolean;
 };
