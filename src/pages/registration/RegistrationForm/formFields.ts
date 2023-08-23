@@ -2,7 +2,7 @@ import { CountriesData } from './CustomFormElements/constants';
 
 const registrationFormPersonalDataFields = {
   firstName: '',
-  secondName: '',
+  lastName: '',
   birthDate: '',
   email: '',
   password: '',

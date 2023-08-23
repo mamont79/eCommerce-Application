@@ -7,6 +7,7 @@ import { getAuthEmailToken } from '../../api/authByEmail';
 import { registrationCustomer } from '../../api/registration';
 import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
+import { INewUserData } from '../../pages/registration/RegistrationForm/CustomFormElements/requestTypes';
 
 const initialState: UsersState = {
   user: null,
@@ -45,10 +46,22 @@ export const fetchAuthEmailToken = createAsyncThunk(
 
 export const fetchRegisterCustomer = createAsyncThunk(
   'users/fetchRegisterCustomer',
-  async () => {
-    const response = await registrationCustomer();
-    // eslint-disable-next-line no-console
-    console.log(response);
+  async (newUserData: INewUserData, thunkAPI) => {
+    let response = null;
+    try {
+      response = await registrationCustomer(newUserData);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
+    return response;
   }
 );
 
@@ -93,6 +106,18 @@ export const usersSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(fetchLoginMeCustomer.rejected, (state, action) => {
+        state.status = UserStatusTypes.ERROR;
+        state.message = action.payload;
+        state.user = null;
+      })
+      .addCase(fetchRegisterCustomer.pending, (state) => {
+        state.status = UserStatusTypes.LOADING;
+      })
+      .addCase(fetchRegisterCustomer.fulfilled, (state, action) => {
+        state.status = UserStatusTypes.SUCCESS;
+        state.user = action.payload;
+      })
+      .addCase(fetchRegisterCustomer.rejected, (state, action) => {
         state.status = UserStatusTypes.ERROR;
         state.message = action.payload;
         state.user = null;

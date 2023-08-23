@@ -1,16 +1,21 @@
+import { INewUserData } from '../pages/registration/RegistrationForm/CustomFormElements/requestTypes';
 import { getTokenCookie } from './cookieToken';
 import { axiosInstance } from './index';
 
-export const registrationCustomer = async () => {
+export const registrationCustomer = async ({
+  email,
+  firstName,
+  lastName,
+  password,
+}: INewUserData) => {
   const authToken = getTokenCookie('access_token');
-
   const response = await axiosInstance.post(
     '/me/signup',
     {
-      email: 'billy-cl@rambler.ru',
-      firstName: 'Bill',
-      lastName: 'Clinton',
-      password: 'Bill!Clinton99',
+      email,
+      firstName,
+      lastName,
+      password,
     },
     {
       headers: {
