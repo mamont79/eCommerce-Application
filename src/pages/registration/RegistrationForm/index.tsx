@@ -15,7 +15,7 @@ import {
   FormGroup,
   StyledFormikForm,
 } from '../../../components/formInputs/commonStyle';
-import { RegistrationPageAddressBlock } from './CustomFormElements/AddressBlock/RegistrationPageAddressBlock';
+import { RegistrationPageAddressBlock } from './CustomFormElements/AddressBlock';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { UserStatusTypes } from '../../../features/users/usersReducerTypes';
 import { INewUserData } from './CustomFormElements/requestTypes';
