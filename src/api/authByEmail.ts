@@ -1,4 +1,3 @@
-// import axios from "axios"
 import {
   CTP_CLIENT_ID,
   CTP_CLIENT_SECRET,
@@ -10,8 +9,7 @@ import { authInstance } from './index';
 
 export const getAuthEmailToken = async (loginData: LoginData) => {
   const mailToken = getTokenCookie('mail_token');
-  // eslint-disable-next-line no-console
-  console.log(mailToken);
+
   if (!mailToken) {
     const response = await authInstance.post(
       `${CTP_PROJECT_KEY}/customers/token`,

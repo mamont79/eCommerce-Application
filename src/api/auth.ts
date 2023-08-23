@@ -1,4 +1,3 @@
-// import axios from "axios"
 import { CTP_CLIENT_ID, CTP_CLIENT_SECRET } from '../constants/commerceApi';
 import { getTokenCookie, saveTokenToCookie } from './cookieToken';
 import { authInstance } from './index';
