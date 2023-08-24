@@ -1,10 +1,9 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect } from 'react';
 import { Address } from './Address';
 import { StyledBLockHeading } from '../../style';
 import { FormGroup } from '../../../../../components/formInputs/commonStyle';
 import { IRegistrationPageAddressBlockProps } from './type';
-import { StyledFormikInput } from '../../../../../components/StyledInput';
+import { RegistrationPageCheckbox } from '../RegistrationPageCheckbox';
 
 export function RegistrationPageAddressBlock({
   errors,
@@ -38,10 +37,10 @@ export function RegistrationPageAddressBlock({
         setFieldValue={setFieldValue}
       />
 
-      <label>
-        <StyledFormikInput type="checkbox" name="billingSameAsShipping" />
-        Billing address coincide with shipping address
-      </label>
+      <RegistrationPageCheckbox
+        name="billingSameAsShipping"
+        label="Billing address coincide with shipping address"
+      />
 
       <StyledBLockHeading>Billing address</StyledBLockHeading>
       <Address
