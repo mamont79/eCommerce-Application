@@ -2,15 +2,12 @@ import styled from 'styled-components';
 import { StyledBtn } from '../styledBtn';
 
 export const SearchWrapper = styled.div`
+  min-width: 280px;
   display: flex;
   flex-wrap: nowrap;
-  width: calc(100% - 500px);
-  max-width: 45%;
 `;
 
 export const SearchInput = styled.input`
-  margin-top: -5px;
-  width: calc(100% - 50px);
   color: #cf844e;
   font-family: Arial;
   font-size: 16px;
@@ -20,6 +17,9 @@ export const SearchInput = styled.input`
   border: 1px solid #c4c4c4;
   outline: 0;
   outline-offset: 0;
+  border-right: none;
+  border-top-right-radius: unset;
+  border-bottom-right-radius: unset;
 
   &:invalid {
     border: solid 2px #e00000;
@@ -31,12 +31,11 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchButton = styled(StyledBtn)`
-  width: 140px;
   background: #ffa555;
-  margin-top: -5px;
-  margin-left: -10px;
   border-radius: 7px;
   border: none;
+  border-top-left-radius: unset;
+  border-bottom-left-radius: unset;
   transition: all 0.5s;
   cursor: pointer;
 
