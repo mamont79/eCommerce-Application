@@ -18,8 +18,10 @@ import {
 import { RegistrationPageAddressBlock } from './CustomFormElements/AddressBlock';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { UserStatusTypes } from '../../../features/users/usersReducerTypes';
-import { INewUserData } from './CustomFormElements/requestTypes';
 import { fetchRegisterCustomer } from '../../../features/users/usersSlice';
+import { getPersonalData } from './getPersonalData';
+import { getAddressData } from './getAddressData';
+import { UserCreateRequestData } from './CustomFormElements/type';
 
 export function RegistrationForm() {
   const navigate = useNavigate();
@@ -63,7 +65,12 @@ export function RegistrationForm() {
     <Formik
       initialValues={registrationFormFields}
       onSubmit={(values: RegistrationFormFields) => {
-        const newUserData: INewUserData = values;
+        const personalData = getPersonalData(values);
+        const addressData = getAddressData(values);
+        const newUserData: UserCreateRequestData = {
+          ...personalData,
+          ...addressData,
+        };
         dispatch(fetchRegisterCustomer(newUserData));
       }}
     >

@@ -1,3 +1,5 @@
+import { CountriesData } from './constants';
+
 export type IRegistrationPageCheckboxProps = {
   label: string | JSX.Element;
   name: string;
@@ -5,3 +7,28 @@ export type IRegistrationPageCheckboxProps = {
   checked?: boolean;
   handleClick?: () => void | null;
 };
+
+export type CustomerAddress = {
+  country: keyof CountriesData;
+  city: string;
+  postalCode: string;
+  streetName: string;
+};
+
+export type NewCustomerPersonalData = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+};
+
+export type NewCustomerAddressData = {
+  addresses: CustomerAddress[];
+  shippingAddress: number;
+  billingAddress: number;
+  defaultShippingAddress: number | null;
+  defaultBillingAddress: number | null;
+};
+
+export type UserCreateRequestData = NewCustomerPersonalData &
+  NewCustomerAddressData;

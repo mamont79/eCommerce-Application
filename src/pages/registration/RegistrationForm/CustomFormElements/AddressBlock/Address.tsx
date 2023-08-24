@@ -16,9 +16,9 @@ export function Address({
   touched,
   values,
   billing,
-  isSame,
   setFieldValue,
 }: IAddress) {
+  const isSame = billing && values.billingSameAsShipping;
   const countryOptions = makeCountryOptions(COUNTRIES_DATA);
 
   const getPostalCodeErrorMsg = getPostalCodeValidator(
@@ -113,5 +113,4 @@ export function Address({
 
 Address.defaultProps = {
   billing: false,
-  isSame: false,
 };

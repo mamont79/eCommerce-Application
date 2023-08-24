@@ -29,9 +29,12 @@ export const registrationFormFields = {
   ...registrationFormPersonalDataFields,
   ...shippingAddressFields,
   ...billingAddressFields,
+  billingSameAsShipping: true,
 };
 
-export type RegistrationFormFields = typeof registrationFormFields;
+export type RegistrationFormFields = typeof registrationFormFields & {
+  billingSameAsShipping: boolean;
+};
 export type ShippingAddressFields = {
   shippingCountry: keyof CountriesData | '';
   shippingPostalCode: string;

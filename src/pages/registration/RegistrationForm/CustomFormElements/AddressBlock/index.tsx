@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useEffect } from 'react';
 import { Address } from './Address';
 import { StyledBLockHeading } from '../../style';
 import { FormGroup } from '../../../../../components/formInputs/commonStyle';
 import { IRegistrationPageAddressBlockProps } from './type';
+import { StyledFormikInput } from '../../../../../components/StyledInput';
 
 export function RegistrationPageAddressBlock({
   errors,
@@ -10,28 +12,21 @@ export function RegistrationPageAddressBlock({
   setFieldValue,
   values,
 }: IRegistrationPageAddressBlockProps) {
-  const [isBillingSameAsShipping, setBillingSameAsShipping] =
-    useState<boolean>(true);
-
   useEffect(() => {
-    if (isBillingSameAsShipping) {
+    if (values.billingSameAsShipping) {
       setFieldValue('billingCountry', values.shippingCountry, false);
       setFieldValue('billingPostalCode', values.shippingPostalCode, false);
       setFieldValue('billingCity', values.shippingCity, false);
       setFieldValue('billingStreet', values.shippingStreet, false);
     }
   }, [
-    isBillingSameAsShipping,
+    values.billingSameAsShipping,
     values.shippingCountry,
     values.shippingPostalCode,
     values.shippingCity,
     values.shippingStreet,
     setFieldValue,
   ]);
-
-  function toggleBillingSameAsShipping() {
-    setBillingSameAsShipping(!isBillingSameAsShipping);
-  }
 
   return (
     <FormGroup>
@@ -43,14 +38,9 @@ export function RegistrationPageAddressBlock({
         setFieldValue={setFieldValue}
       />
 
-      <label htmlFor="billingSameAsShipping">
-        <input
-          id="billingSameAsShipping"
-          type="checkbox"
-          checked={isBillingSameAsShipping}
-          onChange={toggleBillingSameAsShipping}
-        />
-        Billing same as shipping address
+      <label>
+        <StyledFormikInput type="checkbox" name="billingSameAsShipping" />
+        Billing address coincide with shipping address
       </label>
 
       <StyledBLockHeading>Billing address</StyledBLockHeading>
@@ -60,7 +50,6 @@ export function RegistrationPageAddressBlock({
         values={values}
         setFieldValue={setFieldValue}
         billing
-        isSame={isBillingSameAsShipping}
       />
     </FormGroup>
   );
