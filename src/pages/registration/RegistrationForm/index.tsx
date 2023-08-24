@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { RegistrationFormFields, registrationFormFields } from './formFields';
 import { getBirthDateErrorMsg } from './validators/getBirthDateErrorMsg';
 import { getTextErrorMsg } from './validators/getTextErrorMsg';
-import { RegistrationPageCheckbox } from './CustomFormElements/CustomFormikCheckbox';
+import { RegistrationPageCheckbox } from './CustomFormElements/RegistrationPageCheckbox';
 import StyledErrorMessage from '../../../components/errorMessage/styledErrorMessage';
 import { StyledPasswordInputWrapper } from '../../../components/formInputs/StyledPasswordInputWrapper';
 import { StyledFormikInput } from '../../../components/StyledInput';
