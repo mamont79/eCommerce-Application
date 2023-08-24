@@ -9,29 +9,15 @@ import { cancelValidate } from '../../validators/cancelValidate';
 import { getRequiredErrorMsg } from '../../validators/getRequiredErrorMsg';
 import { getPostalCodeValidator } from '../../validators/getPostalCodeErrorMsg';
 import { type IAddress } from './type';
-import { RegistrationPageCheckbox } from '../CustomFormikCheckbox';
+import { RegistrationPageCheckbox } from '../RegistrationPageCheckbox';
 
-export function Address({
-  errors,
-  touched,
-  values,
-  billing,
-  isSame,
-  setFieldValue,
-}: IAddress) {
+export function Address({ errors, touched, values, billing }: IAddress) {
+  const isSame = billing && values.billingSameAsShipping;
   const countryOptions = makeCountryOptions(COUNTRIES_DATA);
 
   const getPostalCodeErrorMsg = getPostalCodeValidator(
     billing ? values.billingCountry : values.shippingCountry
   );
-
-  const toggleSetDefaultAddress = () => {
-    const fieldName = `isDefault${billing ? 'Billing' : 'Shipping'}Address`;
-    const previousValue = billing
-      ? values.isDefaultBillingAddress
-      : values.isDefaultShippingAddress;
-    setFieldValue(fieldName, !previousValue, false);
-  };
 
   return (
     <FormGroup>
@@ -98,14 +84,7 @@ export function Address({
           )}
       <RegistrationPageCheckbox
         label={`Set as default ${billing ? 'Billing' : 'Shipping'} address`}
-        checked={
-          billing
-            ? values.isDefaultBillingAddress
-            : values.isDefaultShippingAddress
-        }
-        name={`isDefault${billing ? 'Billing' : 'Shipping'}BillingAddress`}
-        disabled={isSame}
-        handleClick={toggleSetDefaultAddress}
+        name={`isDefault${billing ? 'Billing' : 'Shipping'}Address`}
       />
     </FormGroup>
   );
@@ -113,5 +92,4 @@ export function Address({
 
 Address.defaultProps = {
   billing: false,
-  isSame: false,
 };

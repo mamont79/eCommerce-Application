@@ -3,33 +3,31 @@ import styled from 'styled-components';
 export const StyledWraperHeader = styled.header`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 165px;
   background: #ffffff;
 `;
 
 export const StyledFirstHeaderRow = styled.div`
   display: flex;
-  vertical-align: middle;
-  width: 100%;
-  height: 83px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
   background: #ffe978;
 `;
 
 export const StyledSecondHeaderRow = styled.div`
   display: flex;
-  vertical-align: bottom;
-  width: 100%;
-  margin-top: 30px;
+  padding: 1.5rem 2rem;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
-export const StyledControls = styled.div`
+export const StyledContainerForUserControlsLinks = styled.div`
   display: flex;
-  column-gap: 30px;
-  vertical-align: bottom;
-  width: calc(100% - 80px);
-  height: 35px;
-  margin: auto auto 7px 36px;
+  flex-wrap: wrap;
+  gap: 1rem;
 `;
 
 export const StyledTextLink = styled.p`

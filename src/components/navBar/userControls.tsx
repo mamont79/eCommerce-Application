@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import {
-  StyledControls,
+  StyledContainerForUserControlsLinks,
   StyledSecondHeaderRow,
   StyledTextLink,
 } from './header';
@@ -10,11 +10,13 @@ import UserSearchInput from './userSearchInput';
 export default function UserControls() {
   return (
     <StyledSecondHeaderRow>
-      <StyledControls>
-        <Link to="/">
-          <LazzoneIconSvg />
-        </Link>
-        <UserSearchInput />
+      <Link to="/">
+        <LazzoneIconSvg />
+      </Link>
+
+      <UserSearchInput />
+
+      <StyledContainerForUserControlsLinks>
         <Link to="/top">
           <StyledTextLink>TOP</StyledTextLink>
         </Link>
@@ -24,7 +26,7 @@ export default function UserControls() {
         <Link to="/recommendation">
           <StyledTextLink>Best offer</StyledTextLink>
         </Link>
-      </StyledControls>
+      </StyledContainerForUserControlsLinks>
     </StyledSecondHeaderRow>
   );
 }
