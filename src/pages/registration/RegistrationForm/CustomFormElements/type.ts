@@ -18,6 +18,7 @@ export type NewCustomerPersonalData = {
   firstName: string;
   lastName: string;
   password: string;
+  dateOfBirth: string;
 };
 
 export type NewCustomerAddressData = {
