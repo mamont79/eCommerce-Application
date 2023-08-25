@@ -11,6 +11,7 @@ import { UserStatusTypes } from '../../features/users/usersReducerTypes';
 import {
   fetchAuthEmailToken,
   fetchLoginMeCustomer,
+  resetStatus,
 } from '../../features/users/usersSlice';
 import { LoginData } from '../../api/authTypes';
 import { StyledPageName } from '../../components/StyledPageTitle';
@@ -26,7 +27,9 @@ export default function Login() {
   const { user, status, message } = useAppSelector((state) => state.users);
 
   useEffect(() => {
-    if (status === UserStatusTypes.ERROR) {
+    if (user && status === null) {
+      navigate('/');
+    } else if (status === UserStatusTypes.ERROR) {
       toast.error(message, {
         position: 'top-right',
         autoClose: 5000,
@@ -37,9 +40,7 @@ export default function Login() {
         progress: undefined,
         theme: 'light',
       });
-    }
-
-    if (status === UserStatusTypes.SUCCESS || user) {
+    } else if (status === UserStatusTypes.SUCCESS) {
       toast.success(
         `Welcome ${user.customer.firstName} ${user.customer.lastName}`,
         {
@@ -53,6 +54,7 @@ export default function Login() {
           theme: 'light',
         }
       );
+      dispatch(resetStatus());
       navigate('/');
     }
   }, [user, message, status, navigate, dispatch]);
