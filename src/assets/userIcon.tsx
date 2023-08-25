@@ -1,4 +1,6 @@
-export default function UserIconSvg({ color = '#FFA555' }: { color: string }) {
+import { UserIconParams } from './type';
+
+export default function UserIconSvg({ color = '#FFA555' }: UserIconParams) {
   return (
     <svg
       width="25"

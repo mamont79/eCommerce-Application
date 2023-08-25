@@ -5,7 +5,7 @@ import {
   CTP_PROJECT_KEY,
 } from '../constants/commerceApi';
 
-export const axiosInstance = axios.create({
+export const publicInstance = axios.create({
   baseURL: `${CTP_API_URL}/${CTP_PROJECT_KEY}`,
   timeout: 1000,
   headers: { 'Content-Type': 'application/json' },
