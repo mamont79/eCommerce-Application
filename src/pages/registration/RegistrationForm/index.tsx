@@ -19,15 +19,18 @@ import { RegistrationPageAddressBlock } from './CustomFormElements/AddressBlock'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { UserStatusTypes } from '../../../features/users/usersReducerTypes';
 import { fetchRegisterCustomer } from '../../../features/users/usersSlice';
-import { getPersonalData } from './getPersonalData';
-import { getAddressData } from './getAddressData';
-import { UserCreateRequestData } from './CustomFormElements/type';
+import { prepareNewUserDataForSubmit } from './prepareNewUserDataForSubmit';
 
 export function RegistrationForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const { user, status, message } = useAppSelector((state) => state.users);
+
+  const handleSubmit = (values: RegistrationFormFields) => {
+    const newCustomerData = prepareNewUserDataForSubmit(values);
+    dispatch(fetchRegisterCustomer(newCustomerData));
+  };
 
   useEffect(() => {
     if (status === UserStatusTypes.ERROR) {
@@ -62,18 +65,7 @@ export function RegistrationForm() {
   }, [user, message, status, navigate]);
 
   return (
-    <Formik
-      initialValues={registrationFormFields}
-      onSubmit={(values: RegistrationFormFields) => {
-        const personalData = getPersonalData(values);
-        const addressData = getAddressData(values);
-        const newUserData: UserCreateRequestData = {
-          ...personalData,
-          ...addressData,
-        };
-        dispatch(fetchRegisterCustomer(newUserData));
-      }}
-    >
+    <Formik initialValues={registrationFormFields} onSubmit={handleSubmit}>
       {({ errors, touched, setFieldValue, values }) => (
         <StyledFormikForm>
           <FormGroup>

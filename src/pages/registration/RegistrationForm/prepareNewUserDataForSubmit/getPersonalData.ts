@@ -1,4 +1,4 @@
-import { RegistrationFormFields } from './formFields';
+import { RegistrationFormFields } from '../formFields';
 
 export function getPersonalData(values: RegistrationFormFields) {
   const { firstName, lastName, password, email } = values;

@@ -1,5 +1,5 @@
-import { NewCustomerAddressData } from './CustomFormElements/type';
-import { RegistrationFormFields } from './formFields';
+import { NewCustomerAddressData } from '../CustomFormElements/type';
+import { RegistrationFormFields } from '../formFields';
 import { getAddresses } from './getAddresses';
 
 export function getAddressData(
