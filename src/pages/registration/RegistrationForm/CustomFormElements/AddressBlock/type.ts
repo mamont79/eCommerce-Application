@@ -25,5 +25,4 @@ export type IAddress = {
     shouldValidate?: boolean
   ) => Promise<void | FormikErrors<RegistrationFormFields>>;
   billing?: boolean;
-  isSame?: boolean;
 };

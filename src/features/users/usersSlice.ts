@@ -8,7 +8,7 @@ import { registrationCustomer } from '../../api/registration';
 import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
 import { deleteMailToken } from '../../api/cookieToken';
-import { INewUserData } from '../../pages/registration/RegistrationForm/CustomFormElements/requestTypes';
+import { UserCreateRequestData } from '../../pages/registration/RegistrationForm/CustomFormElements/type';
 
 const initialState: UsersState = {
   user: null,
@@ -49,10 +49,10 @@ export const fetchAuthEmailToken = createAsyncThunk(
 
 export const fetchRegisterCustomer = createAsyncThunk(
   'users/fetchRegisterCustomer',
-  async (newUserData: INewUserData, thunkAPI) => {
+  async (newCustomerData: UserCreateRequestData, thunkAPI) => {
     let response = null;
     try {
-      response = await registrationCustomer(newUserData);
+      response = await registrationCustomer(newCustomerData);
     } catch (error) {
       if (error instanceof AxiosError) {
         const message =
