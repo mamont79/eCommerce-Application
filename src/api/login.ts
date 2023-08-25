@@ -1,10 +1,10 @@
 import { getAuthToken } from './auth';
 import { LoginData } from './authTypes';
-import { axiosInstance } from './index';
+import { publicInstance } from './index';
 
 export const loginMeCustomer = async (loginData: LoginData) => {
   const authToken = await getAuthToken();
-  const response = await axiosInstance.post(
+  const response = await publicInstance.post(
     `/me/login`,
     {
       email: loginData.username,

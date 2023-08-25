@@ -8,7 +8,7 @@ import { registrationCustomer } from '../../api/registration';
 import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
 import { deleteMailToken } from '../../api/cookieToken';
-import { INewUserData } from '../../pages/registration/RegistrationForm/CustomFormElements/requestTypes';
+import { UserCreateRequestData } from '../../pages/registration/RegistrationForm/CustomFormElements/type';
 
 const initialState: UsersState = {
   user: null,
@@ -49,10 +49,10 @@ export const fetchAuthEmailToken = createAsyncThunk(
 
 export const fetchRegisterCustomer = createAsyncThunk(
   'users/fetchRegisterCustomer',
-  async (newUserData: INewUserData, thunkAPI) => {
+  async (newCustomerData: UserCreateRequestData, thunkAPI) => {
     let response = null;
     try {
-      response = await registrationCustomer(newUserData);
+      response = await registrationCustomer(newCustomerData);
     } catch (error) {
       if (error instanceof AxiosError) {
         const message =
@@ -99,6 +99,10 @@ export const usersSlice = createSlice({
       state.isAuth = false;
       deleteMailToken('mail_token');
     },
+
+    resetStatus: (state) => {
+      state.status = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -110,9 +114,9 @@ export const usersSlice = createSlice({
         state.status = UserStatusTypes.SUCCESS;
         state.user = action.payload;
       })
-      .addCase(fetchLoginMeCustomer.rejected, (state, action) => {
+      .addCase(fetchLoginMeCustomer.rejected, (state) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = action.payload;
+        // state.message = action.payload;
         state.user = null;
       })
       .addCase(fetchRegisterCustomer.pending, (state) => {
@@ -130,6 +134,5 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { reset } = usersSlice.actions;
-
+export const { reset, resetStatus } = usersSlice.actions;
 export default usersSlice.reducer;

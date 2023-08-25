@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { RegistrationFormFields, registrationFormFields } from './formFields';
 import { getBirthDateErrorMsg } from './validators/getBirthDateErrorMsg';
 import { getTextErrorMsg } from './validators/getTextErrorMsg';
-import { RegistrationPageCheckbox } from './CustomFormElements/CustomFormikCheckbox';
+import { RegistrationPageCheckbox } from './CustomFormElements/RegistrationPageCheckbox';
 import StyledErrorMessage from '../../../components/errorMessage/styledErrorMessage';
 import { StyledPasswordInputWrapper } from '../../../components/formInputs/StyledPasswordInputWrapper';
 import { StyledFormikInput } from '../../../components/StyledInput';
@@ -18,8 +18,12 @@ import {
 import { RegistrationPageAddressBlock } from './CustomFormElements/AddressBlock';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { UserStatusTypes } from '../../../features/users/usersReducerTypes';
-import { INewUserData } from './CustomFormElements/requestTypes';
-import { fetchRegisterCustomer } from '../../../features/users/usersSlice';
+import {
+  fetchRegisterCustomer,
+  resetStatus,
+} from '../../../features/users/usersSlice';
+import { prepareNewUserDataForSubmit } from './prepareNewUserDataForSubmit';
+import { toastOptions } from './toastConfig';
 
 export function RegistrationForm() {
   const navigate = useNavigate();
@@ -27,46 +31,28 @@ export function RegistrationForm() {
 
   const { user, status, message } = useAppSelector((state) => state.users);
 
-  useEffect(() => {
-    if (status === UserStatusTypes.ERROR) {
-      toast.error(message, {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-    }
+  const handleSubmit = (values: RegistrationFormFields) => {
+    const newCustomerData = prepareNewUserDataForSubmit(values);
+    dispatch(fetchRegisterCustomer(newCustomerData));
+  };
 
-    if (status === UserStatusTypes.SUCCESS || user) {
+  useEffect(() => {
+    if (user && status === null) {
+      navigate('/');
+    } else if (status === UserStatusTypes.ERROR) {
+      toast.error(message, toastOptions);
+    } else if (status === UserStatusTypes.SUCCESS) {
       toast.success(
         `Welcome ${user.customer.firstName} ${user.customer.lastName}`,
-        {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        }
+        toastOptions
       );
+      dispatch(resetStatus());
       navigate('/');
     }
-  }, [user, message, status, navigate]);
+  }, [user, message, status, navigate, dispatch]);
 
   return (
-    <Formik
-      initialValues={registrationFormFields}
-      onSubmit={(values: RegistrationFormFields) => {
-        const newUserData: INewUserData = values;
-        dispatch(fetchRegisterCustomer(newUserData));
-      }}
-    >
+    <Formik initialValues={registrationFormFields} onSubmit={handleSubmit}>
       {({ errors, touched, setFieldValue, values }) => (
         <StyledFormikForm>
           <FormGroup>
