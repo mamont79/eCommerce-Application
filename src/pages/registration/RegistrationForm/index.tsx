@@ -23,6 +23,7 @@ import {
   resetStatus,
 } from '../../../features/users/usersSlice';
 import { prepareNewUserDataForSubmit } from './prepareNewUserDataForSubmit';
+import { toastOptions } from './toastConfig';
 
 export function RegistrationForm() {
   const navigate = useNavigate();
@@ -39,29 +40,11 @@ export function RegistrationForm() {
     if (user && status === null) {
       navigate('/');
     } else if (status === UserStatusTypes.ERROR) {
-      toast.error(message, {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      toast.error(message, toastOptions);
     } else if (status === UserStatusTypes.SUCCESS) {
       toast.success(
         `Welcome ${user.customer.firstName} ${user.customer.lastName}`,
-        {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        }
+        toastOptions
       );
       dispatch(resetStatus());
       navigate('/');
