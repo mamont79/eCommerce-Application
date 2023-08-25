@@ -10,12 +10,10 @@ import { authInstance } from './index';
 export const getAuthEmailToken = async (loginData: LoginData) => {
   const mailToken = getTokenCookie('mail_token');
 
-  const check = import.meta.env.VITE_REACT_APP_CTP_PROJECT_KEY;
-  // eslint-disable-next-line no-console
-  console.log(check);
+  // const getEnvVariable = import.meta.env.VITE_REACT_APP_CTP_PROJECT_KEY;
 
   if (!mailToken) {
-    const response = await authInstance.post(
+    const { data } = await authInstance.post(
       `${CTP_PROJECT_KEY}/customers/token`,
       {},
       {
@@ -30,12 +28,8 @@ export const getAuthEmailToken = async (loginData: LoginData) => {
         },
       }
     );
-    saveTokenToCookie(
-      response.data.access_token,
-      response.data.expires_in,
-      'mail_token'
-    );
-    return response.data;
+    saveTokenToCookie(data.access_token, data.expires_in, 'mail_token');
+    return data;
   }
   return mailToken;
 };

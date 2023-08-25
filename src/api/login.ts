@@ -4,7 +4,7 @@ import { publicInstance } from './index';
 
 export const loginMeCustomer = async (loginData: LoginData) => {
   const authToken = await getAuthToken();
-  const response = await publicInstance.post(
+  const { data } = await publicInstance.post(
     `/me/login`,
     {
       email: loginData.username,
@@ -17,5 +17,5 @@ export const loginMeCustomer = async (loginData: LoginData) => {
     }
   );
 
-  return response.data;
+  return data;
 };
