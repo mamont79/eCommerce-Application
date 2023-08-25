@@ -3,16 +3,19 @@ import {
   CTP_CLIENT_SECRET,
   CTP_PROJECT_KEY,
 } from '../constants/commerceApi';
-import { getAuthToken } from './auth';
 import { LoginData } from './authTypes';
-import { saveTokenToCookie } from './cookieToken';
+import { getTokenCookie, saveTokenToCookie } from './cookieToken';
 import { authInstance } from './index';
 
 export const getAuthEmailToken = async (loginData: LoginData) => {
-  const authToken = getAuthToken();
+  const mailToken = getTokenCookie('mail_token');
 
-  if (!authToken) {
-    const { data } = await authInstance.post(
+  const check = import.meta.env.VITE_REACT_APP_CTP_PROJECT_KEY;
+  // eslint-disable-next-line no-console
+  console.log(check);
+
+  if (!mailToken) {
+    const response = await authInstance.post(
       `${CTP_PROJECT_KEY}/customers/token`,
       {},
       {
@@ -27,8 +30,12 @@ export const getAuthEmailToken = async (loginData: LoginData) => {
         },
       }
     );
-    saveTokenToCookie(data.access_token, data.expires_in, 'mail_token');
-    return data;
+    saveTokenToCookie(
+      response.data.access_token,
+      response.data.expires_in,
+      'mail_token'
+    );
+    return response.data;
   }
-  return authToken;
+  return mailToken;
 };

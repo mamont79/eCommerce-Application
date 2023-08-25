@@ -7,7 +7,6 @@ interface ImportMetaEnv {
   readonly VITE_REACT_APP_CTP_AUTH_URL: string;
   readonly VITE_REACT_APP_CTP_API_URL: string;
   readonly VITE_REACT_APP_CTP_SCOPES: string;
-  readonly VITE_REACT_APP_COMMENTED_REQUIRED_VALUE: unknown;
 }
 
 interface ImportMeta {
