@@ -6,7 +6,7 @@ export const getAuthToken = async () => {
   const accessToken = getTokenCookie('access_token');
 
   if (!accessToken) {
-    const response = await authInstance.post(
+    const { data } = await authInstance.post(
       `/token?grant_type=client_credentials`,
       {},
       {
@@ -16,12 +16,8 @@ export const getAuthToken = async () => {
         },
       }
     );
-    saveTokenToCookie(
-      response.data.access_token,
-      response.data.expires_in,
-      'access_token'
-    );
-    return response.data.access_token;
+    saveTokenToCookie(data.access_token, data.expires_in, 'access_token');
+    return data.access_token;
   }
   return accessToken;
 };
