@@ -15,9 +15,21 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@commercetools/importapi-sdk": "^4.6.2",
+    "@commercetools/platform-sdk": "^5.0.0",
+    "@commercetools/sdk-client-v2": "^2.2.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/react-redux": "^7.1.25",
     "@types/styled-components": "^5.1.26",
+    "axios": "^1.4.0",
+    "formik": "^2.4.3",
+    "node-fetch": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.14.2",
+    "react-toastify": "^9.1.3",
+    "redux": "^4.2.1",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {
@@ -41,6 +53,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "husky": "^8.0.0",
     "jsdom": "^22.1.0",
+    "lint-staged": "^13.2.3",
     "prettier": "3.0.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
