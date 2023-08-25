@@ -18,7 +18,10 @@ import {
 import { RegistrationPageAddressBlock } from './CustomFormElements/AddressBlock';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { UserStatusTypes } from '../../../features/users/usersReducerTypes';
-import { fetchRegisterCustomer } from '../../../features/users/usersSlice';
+import {
+  fetchRegisterCustomer,
+  resetStatus,
+} from '../../../features/users/usersSlice';
 import { prepareNewUserDataForSubmit } from './prepareNewUserDataForSubmit';
 
 export function RegistrationForm() {
@@ -33,7 +36,9 @@ export function RegistrationForm() {
   };
 
   useEffect(() => {
-    if (status === UserStatusTypes.ERROR) {
+    if (user && status === null) {
+      navigate('/');
+    } else if (status === UserStatusTypes.ERROR) {
       toast.error(message, {
         position: 'top-right',
         autoClose: 5000,
@@ -44,9 +49,7 @@ export function RegistrationForm() {
         progress: undefined,
         theme: 'light',
       });
-    }
-
-    if (status === UserStatusTypes.SUCCESS || user) {
+    } else if (status === UserStatusTypes.SUCCESS) {
       toast.success(
         `Welcome ${user.customer.firstName} ${user.customer.lastName}`,
         {
@@ -60,9 +63,10 @@ export function RegistrationForm() {
           theme: 'light',
         }
       );
+      dispatch(resetStatus());
       navigate('/');
     }
-  }, [user, message, status, navigate]);
+  }, [user, message, status, navigate, dispatch]);
 
   return (
     <Formik initialValues={registrationFormFields} onSubmit={handleSubmit}>
