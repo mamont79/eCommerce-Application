@@ -99,6 +99,10 @@ export const usersSlice = createSlice({
       state.isAuth = false;
       deleteMailToken('mail_token');
     },
+
+    resetStatus: (state) => {
+      state.status = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -110,9 +114,9 @@ export const usersSlice = createSlice({
         state.status = UserStatusTypes.SUCCESS;
         state.user = action.payload;
       })
-      .addCase(fetchLoginMeCustomer.rejected, (state, action) => {
+      .addCase(fetchLoginMeCustomer.rejected, (state) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = action.payload;
+        // state.message = action.payload;
         state.user = null;
       })
       .addCase(fetchRegisterCustomer.pending, (state) => {
@@ -130,6 +134,5 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { reset } = usersSlice.actions;
-
+export const { reset, resetStatus } = usersSlice.actions;
 export default usersSlice.reducer;
