@@ -9,6 +9,7 @@ import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
 import { deleteMailToken } from '../../api/cookieToken';
 import { UserCreateRequestData } from '../../pages/registration/RegistrationForm/CustomFormElements/type';
+import { catalogProducts } from '../../api/catalog';
 
 const initialState: UsersState = {
   user: null,
@@ -21,11 +22,16 @@ export const fetchAuthToken = createAsyncThunk(
   'users/fetchAuthToken',
   async () => {
     const response = await getAuthToken();
-    // eslint-disable-next-line no-console
-    console.log(response);
     return response;
   }
 );
+
+export const fetchCatalog = createAsyncThunk('products', async () => {
+  const { data } = await catalogProducts();
+  // eslint-disable-next-line no-console
+  console.log(data);
+  return data.results;
+});
 
 export const fetchAuthEmailToken = createAsyncThunk(
   'users/fetchAuthEmailToken',

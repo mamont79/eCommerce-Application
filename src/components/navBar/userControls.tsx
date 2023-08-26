@@ -23,8 +23,8 @@ export default function UserControls() {
         <Link to="/sales">
           <StyledTextLink>Sales</StyledTextLink>
         </Link>
-        <Link to="/recommendation">
-          <StyledTextLink>Best offer</StyledTextLink>
+        <Link to="/catalog">
+          <StyledTextLink>Catalog</StyledTextLink>
         </Link>
       </StyledContainerForUserControlsLinks>
     </StyledSecondHeaderRow>
