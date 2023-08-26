@@ -15,6 +15,7 @@ import Logout from './pages/logout';
 import { CustomerProfile } from './pages/customerProfile';
 import Catalog from './pages/catalog';
 
+
 export default function App() {
   return (
     <StyledPageWrapper>
