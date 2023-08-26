@@ -12,7 +12,11 @@ import {
   StyledPageWrapper,
 } from './components/routerWrapper/style';
 import Logout from './pages/logout';
+<<<<<<< HEAD
 import Catalog from './pages/catalog';
+=======
+import { CustomerProfile } from './pages/customerProfile';
+>>>>>>> release/catalog-product-profile
 
 export default function App() {
   return (
@@ -22,6 +26,7 @@ export default function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/profile" element={<CustomerProfile />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="*" element={<NotFound />} />

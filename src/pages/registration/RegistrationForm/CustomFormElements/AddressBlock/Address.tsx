@@ -1,4 +1,4 @@
-import { StyledFormikInput } from '../../../../../components/StyledInput';
+import { StyledFormikInput } from '../../../../../components/styledInput';
 import { FormGroup } from '../../../../../components/formInputs/commonStyle';
 import { CustomFormikSelect } from '../../../../../components/StyledSelect';
 import StyledErrorMessage from '../../../../../components/errorMessage/styledErrorMessage';

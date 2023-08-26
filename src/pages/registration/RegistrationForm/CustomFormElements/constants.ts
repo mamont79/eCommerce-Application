@@ -13,6 +13,6 @@ export const COUNTRIES_DATA = {
   AU: { name: 'Australia', postalCodePattern: /^[0-9]{4}$/, example: '1234' },
 };
 
-export type CountriesData = typeof COUNTRIES_DATA;
+export type ICountriesData = typeof COUNTRIES_DATA;
 
-export type SingleCountryData = typeof COUNTRIES_DATA.AU;
+export type ISingleCountryData = typeof COUNTRIES_DATA.AU;
