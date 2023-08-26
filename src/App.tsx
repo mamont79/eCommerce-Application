@@ -12,6 +12,7 @@ import {
   StyledPageWrapper,
 } from './components/routerWrapper/style';
 import Logout from './pages/logout';
+import { CustomerProfile } from './pages/customerProfile';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/profile" element={<CustomerProfile />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />} />
       </StyledRoutes>
