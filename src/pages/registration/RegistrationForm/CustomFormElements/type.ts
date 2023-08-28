@@ -1,4 +1,4 @@
-import { CountriesData } from './constants';
+import { ICountriesData } from './constants';
 
 export type IRegistrationPageCheckboxProps = {
   label: string | JSX.Element;
@@ -7,7 +7,7 @@ export type IRegistrationPageCheckboxProps = {
 };
 
 export type CustomerAddress = {
-  country: keyof CountriesData;
+  country: keyof ICountriesData;
   city: string;
   postalCode: string;
   streetName: string;

@@ -4,7 +4,7 @@ import BasketSvg from '../../assets/basketIcon';
 import DoorSvg from '../../assets/doorIcon';
 import { StyledGreeting, StyledNavigation } from './style';
 import { useAppSelector } from '../../store/hooks';
-import { RegistrationLinkBtn } from './RegistrationLinkBtn';
+import { CustomerProfileLink } from './CustomerProfileLink';
 
 export default function NavigationLinks() {
   const { user } = useAppSelector((state) => state.users);
@@ -18,7 +18,7 @@ export default function NavigationLinks() {
         <Link to="/">
           <BasketSvg color="#FFA555" />
         </Link>
-        <RegistrationLinkBtn isVisible={user === null} />
+        <CustomerProfileLink isVisible={user !== null} />
         <Link to={loginLogout}>
           <DoorSvg color="#FFA555" />
         </Link>
