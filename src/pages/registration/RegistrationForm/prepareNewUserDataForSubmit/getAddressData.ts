@@ -6,19 +6,19 @@ export function getAddressData(
   values: RegistrationFormFields
 ): NewCustomerAddressData {
   const addresses = getAddresses(values);
-  const shippingAddress = 0;
-  const billingAddress = addresses.length === 2 ? 1 : 0;
+  const shippingAddresses = [0];
+  const billingAddresses = [addresses.length - 1];
   const defaultShippingAddress = values.isDefaultShippingAddress
-    ? shippingAddress
+    ? shippingAddresses[0]
     : null;
   const defaultBillingAddress = values.isDefaultBillingAddress
-    ? billingAddress
+    ? billingAddresses[0]
     : null;
   return {
     addresses,
-    billingAddress,
+    billingAddresses,
     defaultBillingAddress,
     defaultShippingAddress,
-    shippingAddress,
+    shippingAddresses,
   };
 }

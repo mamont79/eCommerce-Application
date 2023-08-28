@@ -23,8 +23,8 @@ export type NewCustomerPersonalData = {
 
 export type NewCustomerAddressData = {
   addresses: CustomerAddress[];
-  shippingAddress: number;
-  billingAddress: number;
+  shippingAddresses: number[];
+  billingAddresses: number[];
   defaultShippingAddress: number | null;
   defaultBillingAddress: number | null;
 };
