@@ -1,8 +1,8 @@
-import { FormGroup } from '../../components/formInputs/commonStyle';
-import { ICustomerData } from '../types/userProfileDataType';
-import { CustomerDataField } from './CustomerDataField';
+import { FormGroup } from '../../../components/formInputs/commonStyle';
+import { CustomerDataField } from '../CustomerDataField';
+import { ICustomer } from '../type';
 
-export function PersonalDataBlock({ customer }: { customer: ICustomerData }) {
+export function PersonalDataBlock({ customer }: ICustomer) {
   const { firstName, lastName, dateOfBirth } = customer;
   return (
     <FormGroup>

@@ -17,8 +17,8 @@ export type ICustomerData = {
   addresses: ICustomerAddress[];
   defaultShippingAddressId: string;
   defaultBillingAddressId: string;
-  shippingAddressIds: [string];
-  billingAddressIds: [string];
+  shippingAddressIds: string[];
+  billingAddressIds: string[];
   isEmailVerified: boolean;
   authenticationMode: string;
 };

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { StyledContentWrapper } from './StyledContentWrapper';
+import { StyledContentWrapper } from './style';
 import { useAppSelector } from '../../store/hooks';
 import { PersonalDataBlock } from './PersonalDataBlock';
 import { CustomerAddressesList } from './CustomerAddressesList';
