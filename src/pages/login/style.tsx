@@ -13,6 +13,7 @@ const StyledLoginForm = styled(Form)`
 
 const LoginLink = styled(Link)`
   margin: 20px 0 0 0;
+  text-decoration: underline;
 `;
 
 const LoginInputWrapper = styled.div`
