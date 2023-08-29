@@ -5,6 +5,7 @@ export const StyledAddressListWrapper = styled.ul`
   flex-direction: column;
   gap: 1rem;
 
+  margin: 0;
   padding: 0;
 
   list-style: none;
