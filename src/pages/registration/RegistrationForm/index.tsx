@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import { RegistrationFormFields, registrationFormFields } from './formFields';
@@ -107,7 +107,6 @@ export function RegistrationForm() {
           />
 
           <FormGroup>
-            <Link to="/login">Already have an account? Login!</Link>
             <StyledBtn $primary type="submit">
               Submit
             </StyledBtn>
