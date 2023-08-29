@@ -6,6 +6,6 @@ export const StyledCenteredContentContainer = styled.div`
   align-items: center;
   gap: 1rem;
   justify-content: space-between;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 `;
