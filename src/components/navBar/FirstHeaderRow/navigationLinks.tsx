@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
+
+import BasketSvg from '../../../assets/basketIcon';
+import DoorSvg from '../../../assets/doorIcon';
+import { useAppSelector } from '../../../store/hooks';
+import { CustomerProfileLink } from './CustomerProfileLink';
+import LazzoneIconSvg from '../../../assets/lazzoneIcon';
 import {
   StyledFirstHeaderRow,
   StyledMenuLinkContainer,
   StyledMenuLinkLabel,
-} from './header';
-import BasketSvg from '../../assets/basketIcon';
-import DoorSvg from '../../assets/doorIcon';
-import { useAppSelector } from '../../store/hooks';
-import { CustomerProfileLink } from './CustomerProfileLink';
-import LazzoneIconSvg from '../../assets/lazzoneIcon';
-import { StyledNavigation } from './style';
-import { StyledCenteredContentContainer } from '../contentContainer/contentContainer';
+  StyledNavigation,
+} from '../style';
+import { StyledCenteredContentContainer } from '../../contentContainer/contentContainer';
 
 export default function NavigationLinks() {
   const { user } = useAppSelector((state) => state.users);

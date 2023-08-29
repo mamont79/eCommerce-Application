@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
-import UserIconSvg from '../../assets/userIcon';
-import { StyledMenuLinkContainer, StyledMenuLinkLabel } from './header';
+import UserIconSvg from '../../../assets/userIcon';
+import { StyledMenuLinkContainer, StyledMenuLinkLabel } from '../style';
 
-export function CustomerProfileLink({ isVisible }: { isVisible: boolean }) {
+interface ProfileProps {
+  isVisible: boolean;
+}
+
+export function CustomerProfileLink({ isVisible }: ProfileProps) {
   if (!isVisible) return null;
   return (
     <Link to="/profile">

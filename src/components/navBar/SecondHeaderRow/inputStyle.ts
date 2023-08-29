@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledBtn } from '../styledBtn';
+import { StyledBtn } from '../../styledBtn';
 
 export const SearchWrapper = styled.div`
   min-width: 260px;
