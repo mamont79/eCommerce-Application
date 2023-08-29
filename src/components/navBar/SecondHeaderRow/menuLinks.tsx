@@ -2,7 +2,7 @@ import BurgerMenuSvg from '../../../assets/burgerMenu';
 import {
   StyledBurgerMenu,
   StyledBurgerDropdownContent,
-  StyledBurgerMenuLinks,
+  StyledBurgerMenuLink,
   StyledContainerForUserControlsLinks,
   StyledTextLink,
 } from '../style';
@@ -22,9 +22,9 @@ function BurgerMenu() {
       <BurgerMenuSvg color="#FFA555" />
       <StyledBurgerDropdownContent>
         {MENU_LINK_DATA.map(({ path, value }) => (
-          <StyledBurgerMenuLinks key={value} to={path}>
+          <StyledBurgerMenuLink key={value} to={path}>
             {value}
-          </StyledBurgerMenuLinks>
+          </StyledBurgerMenuLink>
         ))}
       </StyledBurgerDropdownContent>
     </StyledBurgerMenu>

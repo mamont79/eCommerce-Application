@@ -64,7 +64,7 @@ export const StyledBurgerMenu = styled.div`
   }
 `;
 
-export const StyledBurgerMenuLinks = styled(Link)`
+export const StyledBurgerMenuLink = styled(Link)`
   display: block;
   padding: 12px 20px;
   &:hover {
