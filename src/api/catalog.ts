@@ -9,6 +9,6 @@ export const catalogProducts = async () => {
     },
   });
   // eslint-disable-next-line no-console
-  console.log(data);
-  return data;
+  console.log(data.results);
+  return data.results;
 };
