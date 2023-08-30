@@ -15,7 +15,7 @@ export type IRegistrationPageAddressBlockProps = {
   values: RegistrationFormFields;
 };
 
-export type IAddress = {
+export type IAddressProps = {
   errors: FormikErrors<AddressFields>;
   touched: FormikTouched<AddressFields>;
   values: RegistrationFormFields;

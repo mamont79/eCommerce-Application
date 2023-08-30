@@ -1,4 +1,4 @@
-import { ICountriesData } from './CustomFormElements/constants';
+import { ICountriesData } from '../../../types/countryTypes';
 
 const registrationFormPersonalDataFields = {
   firstName: '',

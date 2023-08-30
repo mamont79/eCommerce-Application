@@ -1,9 +1,9 @@
-import { UserCreateRequestData } from '../pages/registration/RegistrationForm/CustomFormElements/type';
+import { ICustomerDraft } from '../types/customerTypes';
 import { getAuthToken } from './auth';
 import { publicInstance } from './index';
 
 export const registrationCustomer = async (
-  newUserRequestData: UserCreateRequestData
+  newUserRequestData: ICustomerDraft
 ) => {
   const authToken = await getAuthToken();
   const response = await publicInstance.post('/me/signup', newUserRequestData, {

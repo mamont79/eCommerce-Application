@@ -8,8 +8,7 @@ import { registrationCustomer } from '../../api/registration';
 import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
 import { deleteMailToken } from '../../api/cookieToken';
-import { UserCreateRequestData } from '../../pages/registration/RegistrationForm/CustomFormElements/type';
-// import { catalogProducts } from '../../api/catalog';
+import { ICustomerDraft } from '../../types/customerTypes';
 
 const initialState: UsersState = {
   user: null,
@@ -48,7 +47,7 @@ export const fetchAuthEmailToken = createAsyncThunk(
 
 export const fetchRegisterCustomer = createAsyncThunk(
   'users/fetchRegisterCustomer',
-  async (newCustomerData: UserCreateRequestData, thunkAPI) => {
+  async (newCustomerData: ICustomerDraft, thunkAPI) => {
     let response = null;
     try {
       response = await registrationCustomer(newCustomerData);
