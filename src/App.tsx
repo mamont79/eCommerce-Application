@@ -1,20 +1,18 @@
-import { ToastContainer } from 'react-toastify';
 import { Route } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
-import Welcome from './pages/welcome';
+import { ToastContainer } from 'react-toastify';
+import Footer from './components/footer';
+import NavBar from './components/navBar';
+import {
+  StyledPageWrapper,
+  StyledRoutes,
+} from './components/routerWrapper/style';
+import Catalog from './pages/catalog';
+import { CustomerProfile } from './pages/customerProfile';
 import Login from './pages/login';
+import Logout from './pages/logout';
 import NotFound from './pages/notFound';
 import Registration from './pages/registration';
-import NavBar from './components/navBar';
-import Footer from './components/footer';
-import {
-  StyledRoutes,
-  StyledPageWrapper,
-} from './components/routerWrapper/style';
-import Logout from './pages/logout';
-import { CustomerProfile } from './pages/customerProfile';
-import Catalog from './pages/catalog';
-
+import Welcome from './pages/welcome';
 
 export default function App() {
   return (
