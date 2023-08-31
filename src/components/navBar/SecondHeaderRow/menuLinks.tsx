@@ -13,7 +13,7 @@ const MENU_LINK_DATA = [
   { path: '/kids', value: 'Kids' },
   { path: '/top', value: 'TOP' },
   { path: '/sales', value: 'Sales' },
-  { path: '/recommendation', value: 'Best offer' },
+  { path: '/catalog', value: 'Catalog' },
 ];
 
 function BurgerMenu() {
