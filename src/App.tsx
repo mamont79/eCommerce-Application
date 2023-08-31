@@ -12,8 +12,10 @@ import {
   StyledPageWrapper,
 } from './components/routerWrapper/style';
 import Logout from './pages/logout';
-import { CustomerProfile } from './pages/customerProfile';
+
 import Catalog from './pages/catalog';
+
+import { CustomerProfile } from './pages/customerProfile';
 
 export default function App() {
   return (
