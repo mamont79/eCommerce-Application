@@ -8,6 +8,7 @@ import Card from '../../components/card/card';
 import { Product } from '../../components/card/types';
 import { StyledCardsWrapper } from '../welcome/style';
 
+
 export default function Catalog() {
   const dispatch = useAppDispatch();
   const { productsData } = useAppSelector((state) => state.products);
@@ -15,6 +16,7 @@ export default function Catalog() {
   useEffect(() => {
     dispatch(fetchCatalog());
   }, []);
+  
   const cardsData = transformationProductData(productsData);
   return (
     <StyledCardsWrapper>
@@ -22,5 +24,6 @@ export default function Catalog() {
         <Card product={product} key={product.id} />
       ))}
     </StyledCardsWrapper>
+
   );
 }
