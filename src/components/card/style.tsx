@@ -28,7 +28,7 @@ const StyledCardInfo = styled.div`
 
 const StyledCardImg = styled.img`
   border-radius: 7px;
-  height: 260px;
+  height: 250px;
   width: 250px;
 `;
 

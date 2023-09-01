@@ -8,7 +8,5 @@ export const catalogProducts = async () => {
       Authorization: `Bearer ${authToken}`,
     },
   });
-  // eslint-disable-next-line no-console
-  console.log(data.results);
   return data.results;
 };

@@ -11,29 +11,27 @@ import {
   StyledCardSale,
   StyledCardTitle,
 } from './style';
-import { CardData } from './types';
+import { Product } from './types';
 
-export default function Card(props: CardData) {
-  const { img, title, discription, price, discountPrice, currency } = props;
+export default function Card({ product }: { product: Product }) {
+  const {
+    id,
+    img,
+    title,
+    discription,
+    price,
+    discountPrice,
+    discount,
+    currency,
+  } = product;
   const cost = discountPrice || price;
-  const discontCost = discountPrice ? `${price / 100} ${currency}` : '';
-  const sale = discountPrice
-    ? `${Math.round((1 - discountPrice / price) * 100)}`
-    : '';
-
-  // const [cost, discontCost, sale] = discountPrice
-  //   ? [
-  //       discountPrice,
-  //       `${price / 100} ${currency}`,
-  //       `${Math.round((1 - discountPrice / price) * 100)}`,
-  //     ]
-  //   : [price, '', ''];
+  const fullPrice = discountPrice ? `${price} ${currency}` : '';
 
   return (
     <StyledCard>
-      <StyledCardLink to="/product">
+      <StyledCardLink to="/product" id={id}>
         <StyledCardSale $discount={!!discountPrice}>
-          <p>{sale}%</p>
+          <p>{discount}%</p>
         </StyledCardSale>
         <StyledCardImg src={img} />
       </StyledCardLink>
@@ -44,9 +42,9 @@ export default function Card(props: CardData) {
           <StyledCardDiscription>{discription}</StyledCardDiscription>
           <StyledCardPriceContainer>
             <StyledCardPrice>
-              {cost / 100} {currency}
+              {cost} {currency}
             </StyledCardPrice>
-            <StyledCardDiscountPrice>{discontCost}</StyledCardDiscountPrice>
+            <StyledCardDiscountPrice>{fullPrice}</StyledCardDiscountPrice>
           </StyledCardPriceContainer>
         </StyledCardLink>
 

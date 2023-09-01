@@ -5,6 +5,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { catalogProducts } from '../../api/catalog';
 import { ProductState } from './productsType';
 
+const initialState: ProductState = {
+  productsData: [],
+};
+
 export const fetchCatalog = createAsyncThunk(
   'products/fetchCatalog',
   async (_payload, { dispatch }) => {
@@ -12,10 +16,6 @@ export const fetchCatalog = createAsyncThunk(
     dispatch(setProductsData(data));
   }
 );
-
-const initialState: ProductState = {
-  productsData: [],
-};
 
 export const productsSlice = createSlice({
   name: 'products',

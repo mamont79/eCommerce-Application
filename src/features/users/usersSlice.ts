@@ -9,7 +9,6 @@ import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
 import { deleteMailToken } from '../../api/cookieToken';
 import { UserCreateRequestData } from '../../pages/registration/RegistrationForm/CustomFormElements/type';
-// import { catalogProducts } from '../../api/catalog';
 
 const initialState: UsersState = {
   user: null,
