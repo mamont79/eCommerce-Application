@@ -18,7 +18,7 @@ export default function Card({ product }: { product: Product }) {
     id,
     img,
     title,
-    discription,
+    description,
     price,
     discountPrice,
     discount,
@@ -39,7 +39,7 @@ export default function Card({ product }: { product: Product }) {
       <StyledCardInfo>
         <StyledCardLink to="/product">
           <StyledCardTitle>{title}</StyledCardTitle>
-          <StyledCardDiscription>{discription}</StyledCardDiscription>
+          <StyledCardDiscription>{description}</StyledCardDiscription>
           <StyledCardPriceContainer>
             <StyledCardPrice>
               {cost} {currency}

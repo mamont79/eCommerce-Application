@@ -1,3 +1,5 @@
+import { Product } from '../../components/card/types';
+
 type PriceType = {
   value: {
     currencyCode: string;
@@ -22,7 +24,7 @@ type ImagesType = {
   url: string;
 };
 
-export type ProductType = {
+export interface ProductType {
   id: string;
   masterData: {
     current: {
@@ -41,8 +43,9 @@ export type ProductType = {
     published: boolean;
   };
   key: string;
-};
+}
 
 export type ProductState = {
   productsData: Array<ProductType>;
+  cardData: Array<Product>;
 };
