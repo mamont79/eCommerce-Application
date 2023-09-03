@@ -4,23 +4,21 @@ import { ProductType } from '../productsType';
 export default function preparProducts(
   productsData: Array<ProductType>
 ): Product[] {
-  const cardDataArr = productsData.map((product) => {
-    const [id] = [product.id];
-    const img = product.masterData.current.masterVariant.images[0].url;
-    const title = product.masterData.current.name['en-US'];
-    const description = product.masterData.current.description['en-US'];
+  const cardDataArr = productsData.map(({ id, masterData }) => {
+    const img = masterData.current.masterVariant.images[0].url;
+    const title = masterData.current.name['en-US'];
+    const description = masterData.current.description['en-US'];
     const price =
-      product.masterData.current.masterVariant.prices[0].value.centAmount / 100;
-    const discountPrice = !product.masterData.current.masterVariant.prices[0]
-      .discounted
+      masterData.current.masterVariant.prices[0].value.centAmount / 100;
+    const discountPrice = !masterData.current.masterVariant.prices[0].discounted
       ? null
-      : product.masterData.current.masterVariant.prices[0].discounted.value
-          .centAmount / 100;
+      : masterData.current.masterVariant.prices[0].discounted.value.centAmount /
+        100;
     const discount = discountPrice
       ? Math.round((1 - discountPrice / price) * 100)
       : 0;
     const currency =
-      product.masterData.current.masterVariant.prices[0].value.currencyCode;
+      masterData.current.masterVariant.prices[0].value.currencyCode;
     return {
       id,
       img,
