@@ -1,27 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect } from 'react';
-import ProductItem from './productItem';
 import { fetchCatalog } from '../../features/products/productsSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import Card from '../../components/card/card';
+import { Product } from '../../components/card/types';
+import { StyledCardsWrapper } from '../welcome/style';
 
 export default function Catalog() {
   const dispatch = useAppDispatch();
-  const { productsData } = useAppSelector((state) => state.products);
+  const cardsData = useAppSelector((state) => state.products.cardData);
 
   useEffect(() => {
     dispatch(fetchCatalog());
   }, []);
 
   return (
-    <div>
-      {productsData.map((product) => (
-        <ProductItem
-          id={product.id}
-          masterData={product.masterData}
-          key={product.id}
-        />
+    <StyledCardsWrapper>
+      {cardsData.map((product: Product) => (
+        <Card product={product} key={product.id} />
       ))}
-    </div>
+    </StyledCardsWrapper>
   );
 }
