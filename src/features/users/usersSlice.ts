@@ -9,6 +9,8 @@ import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
 import { deleteMailToken } from '../../api/cookieToken';
 import { ICustomerDraft } from '../../types/customerTypes';
+import { updateCustomer } from '../../api/updateCustomer';
+import { IDataForUpdate } from '../../pages/customerProfile/type';
 
 const initialState: UsersState = {
   user: null,
@@ -42,6 +44,27 @@ export const fetchAuthEmailToken = createAsyncThunk(
       }
     }
     return '';
+  }
+);
+
+export const fetchUpdateCustomerData = createAsyncThunk(
+  'users/fetchUpdateCustomer',
+  async (customerUpdateData: IDataForUpdate, thunkAPI) => {
+    let response = null;
+    try {
+      response = await updateCustomer(customerUpdateData);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
+    return response;
   }
 );
 
@@ -112,9 +135,9 @@ export const usersSlice = createSlice({
         state.status = UserStatusTypes.SUCCESS;
         state.user = action.payload;
       })
-      .addCase(fetchLoginMeCustomer.rejected, (state) => {
+      .addCase(fetchLoginMeCustomer.rejected, (state, action) => {
         state.status = UserStatusTypes.ERROR;
-        // state.message = action.payload;
+        state.message = action.payload;
         state.user = null;
       })
       .addCase(fetchRegisterCustomer.pending, (state) => {
@@ -125,6 +148,18 @@ export const usersSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(fetchRegisterCustomer.rejected, (state, action) => {
+        state.status = UserStatusTypes.ERROR;
+        state.message = action.payload;
+        state.user = null;
+      })
+      .addCase(fetchUpdateCustomerData.pending, (state) => {
+        state.status = UserStatusTypes.LOADING;
+      })
+      .addCase(fetchUpdateCustomerData.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.status = UserStatusTypes.SUCCESS;
+      })
+      .addCase(fetchUpdateCustomerData.rejected, (state, action) => {
         state.status = UserStatusTypes.ERROR;
         state.message = action.payload;
         state.user = null;

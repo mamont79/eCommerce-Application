@@ -38,6 +38,6 @@ export type ICustomer = {
   addresses: IAddress[];
   shippingAddressIds: string[];
   billingAddressIds: string[];
-  defaultShippingAddressId: string;
-  defaultBillingAddressId: string;
+  defaultShippingAddressId?: string;
+  defaultBillingAddressId?: string;
 };

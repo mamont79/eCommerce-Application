@@ -1,3 +1,6 @@
-import { ICustomerData } from '../types/userProfileDataType';
+import { MyCustomerUpdateAction } from '@commercetools/platform-sdk';
 
-export type ICustomer = { customer: ICustomerData };
+export type IDataForUpdate = {
+  version: number;
+  actions: MyCustomerUpdateAction[];
+};

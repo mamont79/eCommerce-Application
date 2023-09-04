@@ -1,21 +1,15 @@
-import { FormGroup } from '../../../components/formInputs/commonStyle';
-import { CustomerDataField } from '../CustomerDataField';
-import { ICustomer } from '../type';
-import { StyledCustomerEditBtn } from './style';
+import { EmailField } from './fields/EmailField';
+import { FirstNameField } from './fields/FirstNameField';
+import { LastNameField } from './fields/LastNameField';
+import { StyledFieldsBlockWrapper } from './style';
+import { type ICommonPersonalDataBlockProps } from './types';
 
-export function PersonalDataBlock({
-  customer,
-  startEdit,
-}: ICustomer & { startEdit: () => void }) {
-  const { firstName, lastName, dateOfBirth } = customer;
+export function PersonalDataBlock({ customer }: ICommonPersonalDataBlockProps) {
   return (
-    <FormGroup>
-      <CustomerDataField label="First name" value={firstName} />
-      <CustomerDataField label="Last name" value={lastName} />
-      <CustomerDataField label="Date of birth" value={dateOfBirth} />
-      <StyledCustomerEditBtn type="button" onClick={startEdit}>
-        Edit personal data
-      </StyledCustomerEditBtn>
-    </FormGroup>
+    <StyledFieldsBlockWrapper>
+      <FirstNameField customer={customer} />
+      <LastNameField customer={customer} />
+      <EmailField customer={customer} />
+    </StyledFieldsBlockWrapper>
   );
 }

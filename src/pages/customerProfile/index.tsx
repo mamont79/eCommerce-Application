@@ -1,42 +1,56 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { StyledContentWrapper } from './style';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { ICustomer } from '../../types/customerTypes';
 import { PersonalDataBlock } from './PersonalDataBlock';
-import { CustomerAddressesList } from './CustomerAddressesList';
-import { CustomerEditModal } from './CustomerEditModal';
-import { toggleBodyScrolling } from '../../components/BodyBlinder/toggleBodyScrolling';
+import { StyledBtn } from '../../components/styledBtn';
+import { actions } from './listOfChangeActions';
+import { AddressBlock } from './AddressBlock';
+import {
+  fetchUpdateCustomerData,
+  resetStatus,
+} from '../../features/users/usersSlice';
+import { UserStatusTypes } from '../../features/users/usersReducerTypes';
+import { toastOptions } from '../registration/RegistrationForm/toastConfig';
+import { IDataForUpdate } from './type';
 
 export function CustomerProfile() {
   const navigate = useNavigate();
-  const { user } = useAppSelector((state) => state.users);
+  const dispatch = useAppDispatch();
+  const { user, status, message } = useAppSelector((state) => state.users);
+  const updateCustomerOnServer = () => {
+    const { version } = user.customer;
+    const dataForUpdate: IDataForUpdate = {
+      version,
+      actions,
+    };
+
+    dispatch(fetchUpdateCustomerData(dataForUpdate));
+  };
 
   useEffect(() => {
     if (!user) {
       navigate('/');
+    } else if (status === UserStatusTypes.ERROR) {
+      toast.error(message, toastOptions);
+    } else if (status === UserStatusTypes.SUCCESS) {
+      toast.success(`Updated succsessfully!`, toastOptions);
+      dispatch(resetStatus());
     }
-  }, [user, navigate]);
-
-  const [isEdited, setIsEdited] = useState<boolean>(false);
-  const startEdit = () => {
-    toggleBodyScrolling(isEdited);
-    setIsEdited(true);
-  };
-  const cancelEdit = () => {
-    toggleBodyScrolling(isEdited);
-    setIsEdited(false);
-  };
+  }, [user, navigate, status, dispatch, message]);
 
   let profileContent = null;
-  if (user)
+  if (user) {
+    const { customer }: { customer: ICustomer } = user;
     profileContent = (
       <StyledContentWrapper>
-        <PersonalDataBlock startEdit={startEdit} customer={user.customer} />
-        <CustomerAddressesList customer={user.customer} />
-        {isEdited && (
-          <CustomerEditModal cancelEdit={cancelEdit} customerOldData={user} />
-        )}
+        <PersonalDataBlock customer={customer} />
+        <AddressBlock customer={customer} />
+        <StyledBtn onClick={updateCustomerOnServer}>Save changes</StyledBtn>
       </StyledContentWrapper>
     );
+  }
   return profileContent;
 }
