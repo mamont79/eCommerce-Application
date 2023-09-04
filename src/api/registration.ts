@@ -1,5 +1,6 @@
 import { ICustomerDraft } from '../types/customerTypes';
 import { getAuthToken } from './auth';
+import { getAuthEmailToken } from './authByEmail';
 import { publicInstance } from './index';
 
 export const registrationCustomer = async (
@@ -12,5 +13,7 @@ export const registrationCustomer = async (
       Authorization: `Bearer ${authToken}`,
     },
   });
+  const { email, password } = newUserRequestData;
+  getAuthEmailToken({ password, username: email });
   return response.data;
 };
