@@ -20,7 +20,7 @@ type AttributesType = {
   };
 };
 
-type ImagesType = {
+export type ImagesType = {
   url: string;
 };
 
@@ -48,4 +48,8 @@ export interface ProductType {
 export type ProductState = {
   productsData: Array<ProductType>;
   cardData: Array<Product>;
+};
+
+export type CurrentProductState = {
+  currentProductData: Array<ProductType>;
 };
