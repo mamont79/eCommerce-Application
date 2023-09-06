@@ -3,10 +3,10 @@ import { toggleBodyScrolling } from '../../../../components/BodyBlinder/toggleBo
 import { StyledBtn } from '../../../../components/styledBtn';
 import { getTextErrorMsg } from '../../../registration/RegistrationForm/validators/getTextErrorMsg';
 import { makePersonalDataChangeAction } from '../../customerProfileData/makePersonalDataChangeAction';
-import { actions } from '../../listOfChangeActions';
 import { CustomerEditModal } from '../../CustomerEditModal';
 import { StyledFieldContentWrapper } from './style';
 import { type ICommonPersonalDataBlockProps } from '../types';
+import { customerChangeActions } from '../../listOfChangeActions';
 
 export function FirstNameField({ customer }: ICommonPersonalDataBlockProps) {
   const [isShownModal, setIsShownModal] = useState<boolean>(false);
@@ -26,7 +26,7 @@ export function FirstNameField({ customer }: ICommonPersonalDataBlockProps) {
       'firstName',
       currentFirstName
     );
-    actions.push(changeAction);
+    customerChangeActions.addCustomerChangeAction(changeAction);
     hideModal();
   };
   return (

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { makePersonalDataChangeAction } from '../../customerProfileData/makePersonalDataChangeAction';
-import { actions } from '../../listOfChangeActions';
 import { toggleBodyScrolling } from '../../../../components/BodyBlinder/toggleBodyScrolling';
 import { CustomerEditModal } from '../../CustomerEditModal';
 import { StyledBtn } from '../../../../components/styledBtn';
 import getEmailErrorMsg from '../../../../components/formInputs/validation/getEmailErrorMsg';
 import { StyledFieldContentWrapper } from './style';
 import { ICommonPersonalDataBlockProps } from '../types';
+import { customerChangeActions } from '../../listOfChangeActions';
 
 export function EmailField({ customer }: ICommonPersonalDataBlockProps) {
   const [isShownModal, setIsShownModal] = useState<boolean>(false);
@@ -23,7 +23,7 @@ export function EmailField({ customer }: ICommonPersonalDataBlockProps) {
 
   const saveNewEmail = () => {
     const changeAction = makePersonalDataChangeAction('email', currentEmail);
-    actions.push(changeAction);
+    customerChangeActions.addCustomerChangeAction(changeAction);
     hideModal();
   };
   return (

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { AddressItem } from './AddressItem/AddressItem';
-import { actions } from '../listOfChangeActions';
 import { makeAddressChangeAction } from './makeAddressChangeAction';
 import { toggleBodyScrolling } from '../../../components/BodyBlinder/toggleBodyScrolling';
 import { AddressEditModal } from './AddressEditModal';
@@ -12,6 +11,7 @@ import { StyledAddressList } from './style';
 import { IAddress, ICustomer } from '../../../types/customerTypes';
 import { ActionType } from '../customerProfileData/types';
 import { ICustomerEditFormFields, type IOperationsWithAddress } from './type';
+import { customerChangeActions } from '../listOfChangeActions';
 
 export function AddressBlock({ customer }: { customer: ICustomer }) {
   const [editedAddress, setEditedAddress] = useState<IAddress | null>(null);
@@ -64,7 +64,7 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
       const newAction = makeAddressChangeAction(ActionType.REMOVE_ADDRESS, {
         id,
       });
-      actions.push(newAction);
+      customerChangeActions.addCustomerChangeAction(newAction);
       setCurrentAddressData(newAddressesState);
     },
     changeAddress({

@@ -5,7 +5,6 @@ import { StyledContentWrapper } from './style';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { PersonalDataBlock } from './PersonalDataBlock';
 import { StyledBtn } from '../../components/styledBtn';
-import { actions } from './listOfChangeActions';
 import { AddressBlock } from './AddressBlock';
 import {
   fetchUpdateCustomerData,
@@ -14,6 +13,7 @@ import {
 import { UserStatusTypes } from '../../features/users/usersReducerTypes';
 import { toastOptions } from '../registration/RegistrationForm/toastConfig';
 import { IDataForUpdate } from './type';
+import { customerChangeActions } from './listOfChangeActions';
 
 export function CustomerProfile() {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export function CustomerProfile() {
     const { version } = user;
     const dataForUpdate: IDataForUpdate = {
       version,
-      actions,
+      actions: customerChangeActions.actions,
     };
 
     dispatch(fetchUpdateCustomerData(dataForUpdate));
@@ -40,6 +40,8 @@ export function CustomerProfile() {
       dispatch(resetStatus());
     }
   }, [user, navigate, status, dispatch, message]);
+
+  customerChangeActions.clearActions();
 
   let profileContent = null;
   if (user) {

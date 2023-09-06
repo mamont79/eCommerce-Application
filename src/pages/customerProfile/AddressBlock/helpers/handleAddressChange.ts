@@ -1,6 +1,6 @@
 import { IAddress } from '../../../../types/customerTypes';
-import { actions } from '../../listOfChangeActions';
 import { ActionType } from '../../customerProfileData/types';
+import { customerChangeActions } from '../../listOfChangeActions';
 import { makeAddressChangeAction } from '../makeAddressChangeAction';
 
 export function handleAddressChange({
@@ -20,7 +20,7 @@ export function handleAddressChange({
     ActionType.CHANGE_ADDRESS,
     updatedAddress
   );
-  actions.push(action);
+  customerChangeActions.addCustomerChangeAction(action);
 
   return newAddresses;
 }

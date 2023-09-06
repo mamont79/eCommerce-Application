@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { makePersonalDataChangeAction } from '../../customerProfileData/makePersonalDataChangeAction';
-import { actions } from '../../listOfChangeActions';
+import { customerChangeActions } from '../../listOfChangeActions';
 import { toggleBodyScrolling } from '../../../../components/BodyBlinder/toggleBodyScrolling';
 import { CustomerEditModal } from '../../CustomerEditModal';
 import { getTextErrorMsg } from '../../../registration/RegistrationForm/validators/getTextErrorMsg';
@@ -26,7 +26,7 @@ export function LastNameField({ customer }: ICommonPersonalDataBlockProps) {
       'lastName',
       currentLastName
     );
-    actions.push(changeAction);
+    customerChangeActions.addCustomerChangeAction(changeAction);
     hideModal();
   };
   return (

@@ -1,4 +1,4 @@
-import { actions } from '../../listOfChangeActions';
+import { customerChangeActions } from '../../listOfChangeActions';
 import { makeAddressChangeAction } from '../makeAddressChangeAction';
 
 export function handleDefaultAddressIdChange({
@@ -18,7 +18,7 @@ export function handleDefaultAddressIdChange({
   if (isDefault && defaultId !== id) {
     const actionType = `setDefault${billing ? 'Billing' : 'Shipping'}Address`;
     const newAction = makeAddressChangeAction(actionType, { id });
-    actions.push(newAction);
+    customerChangeActions.addCustomerChangeAction(newAction);
     newDefaultId = id;
   }
 

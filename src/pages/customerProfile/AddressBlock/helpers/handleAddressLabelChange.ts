@@ -1,4 +1,4 @@
-import { actions } from '../../listOfChangeActions';
+import { customerChangeActions } from '../../listOfChangeActions';
 import { makeAddressChangeAction } from '../makeAddressChangeAction';
 
 export function handleAddressLabelChange({
@@ -25,7 +25,7 @@ export function handleAddressLabelChange({
   if (status !== 'quo') {
     const actionType = `${status}${billing ? 'Billing' : 'Shipping'}AddressId`;
     const newAction = makeAddressChangeAction(actionType, { id });
-    actions.push(newAction);
+    customerChangeActions.addCustomerChangeAction(newAction);
   }
   return newAddressIds;
 }

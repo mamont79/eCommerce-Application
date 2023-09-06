@@ -1,3 +1,17 @@
 import { IChangeCustomerDataAction } from './customerProfileData/types';
 
-export const actions: IChangeCustomerDataAction[] = [];
+type ICustomerChangeActions = {
+  actions: IChangeCustomerDataAction[];
+  addCustomerChangeAction: (newAction: IChangeCustomerDataAction) => void;
+  clearActions: () => void;
+};
+
+export const customerChangeActions: ICustomerChangeActions = {
+  actions: [],
+  addCustomerChangeAction(newAction: IChangeCustomerDataAction) {
+    this.actions.push(newAction);
+  },
+  clearActions() {
+    this.actions.length = 0;
+  },
+};

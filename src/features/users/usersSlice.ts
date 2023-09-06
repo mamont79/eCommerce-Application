@@ -160,13 +160,10 @@ export const usersSlice = createSlice({
       .addCase(fetchUpdateCustomerData.pending, (state) => {
         state.status = UserStatusTypes.LOADING;
       })
-      .addCase(
-        fetchUpdateCustomerData.fulfilled,
-        (state, { payload: { customer } }) => {
-          state.status = UserStatusTypes.SUCCESS;
-          state.user = state.user ? { ...state.user, ...customer } : customer;
-        }
-      )
+      .addCase(fetchUpdateCustomerData.fulfilled, (state, { payload }) => {
+        state.status = UserStatusTypes.SUCCESS;
+        state.user = state.user ? { ...state.user, ...payload } : payload;
+      })
       .addCase(fetchUpdateCustomerData.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
         state.message = payload;
