@@ -4,15 +4,11 @@ export const StyledProductPageWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 100%;
-  min-width: 400px;
-  margin: 20px auto;
+  max-width: 1200px;
+  margin: 20px 10px;
 `;
 
-export const StyledImagesWrapper = styled.div`
-  width: 40%;
-  min-width: 400px;
-`;
+export const StyledImagesWrapper = styled.div``;
 
 export const StyledProductImage = styled.img`
   width: 100%;
@@ -31,7 +27,10 @@ export const StyledMiniImg = styled.img`
 
 export const StyledProductInfoWrapper = styled.div`
   width: 50%;
-  min-width: 400px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const StyledProductTitle = styled.h2`
