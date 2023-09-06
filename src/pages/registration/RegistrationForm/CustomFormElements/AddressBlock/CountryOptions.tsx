@@ -1,4 +1,7 @@
-import { type ICountriesData, type ISingleCountryData } from '../constants';
+import {
+  ICountriesData,
+  ISingleCountryData,
+} from '../../../../../types/countryTypes';
 
 export function makeCountryOptions(countries: ICountriesData) {
   return Object.entries(countries).map((country) => makeOption(country));

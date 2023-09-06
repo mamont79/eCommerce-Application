@@ -8,8 +8,10 @@ import { registrationCustomer } from '../../api/registration';
 import { loginMeCustomer } from '../../api/login';
 import { LoginData } from '../../api/authTypes';
 import { deleteMailToken } from '../../api/cookieToken';
-import { UserCreateRequestData } from '../../pages/registration/RegistrationForm/CustomFormElements/type';
-// import { catalogProducts } from '../../api/catalog';
+import { ICustomerDraft } from '../../types/customerTypes';
+import { updateCustomer } from '../../api/updateCustomer';
+import { IDataForUpdate } from '../../pages/customerProfile/type';
+import { getCustomer } from '../../api/getCustomer';
 
 const initialState: UsersState = {
   user: null,
@@ -46,9 +48,51 @@ export const fetchAuthEmailToken = createAsyncThunk(
   }
 );
 
+export const fetchMeCustomer = createAsyncThunk(
+  'users/fetchMeCustomer',
+  async () => {
+    let response = null;
+    try {
+      response = await getCustomer();
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        // const message =
+        //   (error.response &&
+        //     error.response.data &&
+        //     error.response.data.message) ||
+        //   error.message ||
+        //   error.toString();
+        // return thunkAPI.rejectWithValue(message);
+      }
+    }
+    return response;
+  }
+);
+
+export const fetchUpdateCustomerData = createAsyncThunk(
+  'users/fetchUpdateCustomer',
+  async (customerUpdateData: IDataForUpdate, thunkAPI) => {
+    let response = null;
+    try {
+      response = await updateCustomer(customerUpdateData);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
+    return response;
+  }
+);
+
 export const fetchRegisterCustomer = createAsyncThunk(
   'users/fetchRegisterCustomer',
-  async (newCustomerData: UserCreateRequestData, thunkAPI) => {
+  async (newCustomerData: ICustomerDraft, thunkAPI) => {
     let response = null;
     try {
       response = await registrationCustomer(newCustomerData);
@@ -105,29 +149,58 @@ export const usersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-
+      .addCase(fetchMeCustomer.pending, (state) => {
+        state.status = UserStatusTypes.LOADING;
+      })
+      .addCase(fetchMeCustomer.fulfilled, (state, { payload: customer }) => {
+        state.status = UserStatusTypes.SUCCESS;
+        state.user = state.user ? { ...state.user, ...customer } : customer;
+      })
+      .addCase(fetchMeCustomer.rejected, (state, { payload }) => {
+        state.status = UserStatusTypes.ERROR;
+        state.message = payload;
+        state.user = null;
+      })
       .addCase(fetchLoginMeCustomer.pending, (state) => {
         state.status = UserStatusTypes.LOADING;
       })
-      .addCase(fetchLoginMeCustomer.fulfilled, (state, action) => {
-        state.status = UserStatusTypes.SUCCESS;
-        state.user = action.payload;
-      })
-      .addCase(fetchLoginMeCustomer.rejected, (state) => {
+      .addCase(
+        fetchLoginMeCustomer.fulfilled,
+        (state, { payload: { customer } }) => {
+          state.status = UserStatusTypes.SUCCESS;
+          state.user = state.user ? { ...state.user, ...customer } : customer;
+        }
+      )
+      .addCase(fetchLoginMeCustomer.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
-        // state.message = action.payload;
+        state.message = payload;
         state.user = null;
       })
       .addCase(fetchRegisterCustomer.pending, (state) => {
         state.status = UserStatusTypes.LOADING;
       })
-      .addCase(fetchRegisterCustomer.fulfilled, (state, action) => {
-        state.status = UserStatusTypes.SUCCESS;
-        state.user = action.payload;
-      })
-      .addCase(fetchRegisterCustomer.rejected, (state, action) => {
+      .addCase(
+        fetchRegisterCustomer.fulfilled,
+        (state, { payload: { customer } }) => {
+          state.status = UserStatusTypes.SUCCESS;
+          state.user = state.user ? { ...state.user, ...customer } : customer;
+        }
+      )
+      .addCase(fetchRegisterCustomer.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = action.payload;
+        state.message = payload;
+        state.user = null;
+      })
+      .addCase(fetchUpdateCustomerData.pending, (state) => {
+        state.status = UserStatusTypes.LOADING;
+      })
+      .addCase(fetchUpdateCustomerData.fulfilled, (state, { payload }) => {
+        state.status = UserStatusTypes.SUCCESS;
+        state.user = state.user ? { ...state.user, ...payload } : payload;
+      })
+      .addCase(fetchUpdateCustomerData.rejected, (state, { payload }) => {
+        state.status = UserStatusTypes.ERROR;
+        state.message = payload;
         state.user = null;
       });
   },

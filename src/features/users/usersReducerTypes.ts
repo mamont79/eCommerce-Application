@@ -1,3 +1,5 @@
+import { ICustomer } from '../../types/customerTypes';
+
 export enum UserStatusTypes {
   ERROR = 'ERROR',
   LOADING = 'LOADING',
@@ -7,8 +9,7 @@ export enum UserStatusTypes {
 export type User = { userName?: string; email?: string; phone?: string };
 
 export interface UsersState {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  user: any;
+  user: ICustomer | null;
   status: UserStatusTypes | null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   message: any | null;

@@ -8,7 +8,7 @@ import {
 export const publicInstance = axios.create({
   baseURL: `${CTP_API_URL}/${CTP_PROJECT_KEY}`,
   timeout: 5000,
-  headers: { 'Content-Type': 'application/json' },
+  // headers: { 'Content-Type': 'application/json' },
 });
 
 export const authInstance = axios.create({
