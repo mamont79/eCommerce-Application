@@ -127,41 +127,49 @@ export const usersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-
       .addCase(fetchLoginMeCustomer.pending, (state) => {
         state.status = UserStatusTypes.LOADING;
       })
-      .addCase(fetchLoginMeCustomer.fulfilled, (state, action) => {
-        state.status = UserStatusTypes.SUCCESS;
-        state.user = action.payload;
-      })
-      .addCase(fetchLoginMeCustomer.rejected, (state, action) => {
+      .addCase(
+        fetchLoginMeCustomer.fulfilled,
+        (state, { payload: { customer } }) => {
+          state.status = UserStatusTypes.SUCCESS;
+          state.user = state.user ? { ...state.user, ...customer } : customer;
+        }
+      )
+      .addCase(fetchLoginMeCustomer.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = action.payload;
+        state.message = payload;
         state.user = null;
       })
       .addCase(fetchRegisterCustomer.pending, (state) => {
         state.status = UserStatusTypes.LOADING;
       })
-      .addCase(fetchRegisterCustomer.fulfilled, (state, action) => {
-        state.status = UserStatusTypes.SUCCESS;
-        state.user = action.payload;
-      })
-      .addCase(fetchRegisterCustomer.rejected, (state, action) => {
+      .addCase(
+        fetchRegisterCustomer.fulfilled,
+        (state, { payload: { customer } }) => {
+          state.status = UserStatusTypes.SUCCESS;
+          state.user = state.user ? { ...state.user, ...customer } : customer;
+        }
+      )
+      .addCase(fetchRegisterCustomer.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = action.payload;
+        state.message = payload;
         state.user = null;
       })
       .addCase(fetchUpdateCustomerData.pending, (state) => {
         state.status = UserStatusTypes.LOADING;
       })
-      .addCase(fetchUpdateCustomerData.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.status = UserStatusTypes.SUCCESS;
-      })
-      .addCase(fetchUpdateCustomerData.rejected, (state, action) => {
+      .addCase(
+        fetchUpdateCustomerData.fulfilled,
+        (state, { payload: { customer } }) => {
+          state.status = UserStatusTypes.SUCCESS;
+          state.user = state.user ? { ...state.user, ...customer } : customer;
+        }
+      )
+      .addCase(fetchUpdateCustomerData.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = action.payload;
+        state.message = payload;
         state.user = null;
       });
   },

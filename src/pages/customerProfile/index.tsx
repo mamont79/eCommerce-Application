@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { StyledContentWrapper } from './style';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { ICustomer } from '../../types/customerTypes';
 import { PersonalDataBlock } from './PersonalDataBlock';
 import { StyledBtn } from '../../components/styledBtn';
 import { actions } from './listOfChangeActions';
@@ -21,7 +20,8 @@ export function CustomerProfile() {
   const dispatch = useAppDispatch();
   const { user, status, message } = useAppSelector((state) => state.users);
   const updateCustomerOnServer = () => {
-    const { version } = user.customer;
+    if (!user) return;
+    const { version } = user;
     const dataForUpdate: IDataForUpdate = {
       version,
       actions,
@@ -43,14 +43,14 @@ export function CustomerProfile() {
 
   let profileContent = null;
   if (user) {
-    const { customer }: { customer: ICustomer } = user;
     profileContent = (
       <StyledContentWrapper>
-        <PersonalDataBlock customer={customer} />
-        <AddressBlock customer={customer} />
+        <PersonalDataBlock customer={user} />
+        <AddressBlock customer={user} />
         <StyledBtn onClick={updateCustomerOnServer}>Save changes</StyledBtn>
       </StyledContentWrapper>
     );
   }
+
   return profileContent;
 }

@@ -40,20 +40,17 @@ export default function Login() {
         progress: undefined,
         theme: 'light',
       });
-    } else if (status === UserStatusTypes.SUCCESS) {
-      toast.success(
-        `Welcome ${user.customer.firstName} ${user.customer.lastName}`,
-        {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        }
-      );
+    } else if (user && status === UserStatusTypes.SUCCESS) {
+      toast.success(`Welcome ${user.firstName} ${user.lastName}`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
       dispatch(resetStatus());
       navigate('/');
     }
