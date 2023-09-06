@@ -1,6 +1,7 @@
 import { ICustomerDraft } from '../types/customerTypes';
 import { getAuthToken } from './auth';
 import { getAuthEmailToken } from './authByEmail';
+import { deleteMailToken } from './cookieToken';
 import { publicInstance } from './index';
 
 export const registrationCustomer = async (
@@ -14,6 +15,7 @@ export const registrationCustomer = async (
     },
   });
   const { email, password } = newUserRequestData;
+  deleteMailToken('mail_token');
   getAuthEmailToken({ password, username: email });
   return response.data;
 };
