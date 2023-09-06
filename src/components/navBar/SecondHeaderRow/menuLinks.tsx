@@ -8,9 +8,9 @@ import {
 } from '../style';
 
 const MENU_LINK_DATA = [
-  { path: '/woman', value: 'Woman' },
-  { path: '/man', value: 'Man' },
-  { path: '/kids', value: 'Kids' },
+  { path: '/catalog', value: 'Woman' },
+  { path: '/catalog', value: 'Man' },
+  { path: '/catalog', value: 'Kids' },
   { path: '/top', value: 'TOP' },
   { path: '/sales', value: 'Sales' },
   { path: '/catalog', value: 'Catalog' },

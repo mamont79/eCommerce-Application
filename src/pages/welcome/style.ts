@@ -18,8 +18,9 @@ const StyledLinksWrapper = styled.div`
 
 const StyledCardsWrapper = styled.div`
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
 `;
 
 export {
