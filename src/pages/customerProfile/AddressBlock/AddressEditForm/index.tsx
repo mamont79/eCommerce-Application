@@ -43,8 +43,8 @@ export function AddressEditForm({
             <StreetNameFormikInput errors={errors} touched={touched} />
           </FormGroup>
           <FormGroup>
-            <AddressEditCheckboxGroup />
-            <AddressEditCheckboxGroup isBilling />
+            <AddressEditCheckboxGroup values={values} />
+            <AddressEditCheckboxGroup values={values} isBilling />
           </FormGroup>
         </StyledFormikCustomerDataEditForm>
       )}

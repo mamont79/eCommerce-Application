@@ -99,14 +99,14 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
       });
       const newDefaultBillingAddressId = handleDefaultAddressIdChange({
         billing: true,
-        labeledIds: billingAddressIds,
+        labeledIds: newBillingAddressIds,
         defaultId: defaultBillingAddressId,
         id,
         isDefault: isDefaultBilling,
       });
       const newDefaultShippingAddressId = handleDefaultAddressIdChange({
         defaultId: defaultShippingAddressId,
-        labeledIds: shippingAddressIds,
+        labeledIds: newShippingAddressIds,
         id,
         isDefault: isDefaultShipping,
       });

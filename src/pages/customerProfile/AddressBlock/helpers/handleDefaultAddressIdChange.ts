@@ -14,12 +14,11 @@ export function handleDefaultAddressIdChange({
   id: string;
   isDefault: boolean;
 }) {
-  let newDefaultId = isDefault ? defaultId : undefined;
-  if (isDefault && defaultId !== id) {
+  const newDefaultId = isDefault ? id : defaultId;
+  if (isDefault && defaultId !== newDefaultId) {
     const actionType = `setDefault${billing ? 'Billing' : 'Shipping'}Address`;
     const newAction = makeAddressChangeAction(actionType, { id });
     customerChangeActions.addCustomerChangeAction(newAction);
-    newDefaultId = id;
   }
 
   return labeledIds.includes(id) ? newDefaultId : undefined;
