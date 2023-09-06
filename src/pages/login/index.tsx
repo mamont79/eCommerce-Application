@@ -19,6 +19,7 @@ import { FormGroup } from '../../components/formInputs/commonStyle';
 import { StyledBtn } from '../../components/styledBtn';
 import { StyledPageContentWrapper } from '../registration/style';
 import { StyledFormikInput } from '../../components/styledInput';
+import { deleteMailToken } from '../../api/cookieToken';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ export default function Login() {
           username: values.email,
           password: values.password,
         };
-
+        deleteMailToken('mail_token');
         dispatch(fetchLoginMeCustomer(userData));
         dispatch(fetchAuthEmailToken(userData));
       }}
