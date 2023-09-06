@@ -41,11 +41,8 @@ export function RegistrationForm() {
       navigate('/');
     } else if (status === UserStatusTypes.ERROR) {
       toast.error(message, toastOptions);
-    } else if (status === UserStatusTypes.SUCCESS) {
-      toast.success(
-        `Welcome ${user.customer.firstName} ${user.customer.lastName}`,
-        toastOptions
-      );
+    } else if (user && status === UserStatusTypes.SUCCESS) {
+      toast.success(`Welcome ${user.firstName} ${user.lastName}`, toastOptions);
       dispatch(resetStatus());
       navigate('/');
     }
