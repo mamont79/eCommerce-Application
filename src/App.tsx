@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { useAppDispatch } from './store/hooks';
 import Footer from './components/footer';
 import NavBar from './components/navBar';
 import {
@@ -13,8 +15,18 @@ import Logout from './pages/logout';
 import NotFound from './pages/notFound';
 import Registration from './pages/registration';
 import Welcome from './pages/welcome';
+import { fetchMeCustomer } from './features/users/usersSlice';
+import { getTokenCookie } from './api/cookieToken';
 
 export default function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const mailToken = getTokenCookie('mail_token');
+    if (mailToken) dispatch(fetchMeCustomer());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <StyledPageWrapper>
       <NavBar />

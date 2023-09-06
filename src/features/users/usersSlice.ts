@@ -11,6 +11,7 @@ import { deleteMailToken } from '../../api/cookieToken';
 import { ICustomerDraft } from '../../types/customerTypes';
 import { updateCustomer } from '../../api/updateCustomer';
 import { IDataForUpdate } from '../../pages/customerProfile/type';
+import { getCustomer } from '../../api/getCustomer';
 
 const initialState: UsersState = {
   user: null,
@@ -44,6 +45,27 @@ export const fetchAuthEmailToken = createAsyncThunk(
       }
     }
     return '';
+  }
+);
+
+export const fetchMeCustomer = createAsyncThunk(
+  'users/fetchMeCustomer',
+  async () => {
+    let response = null;
+    try {
+      response = await getCustomer();
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        // const message =
+        //   (error.response &&
+        //     error.response.data &&
+        //     error.response.data.message) ||
+        //   error.message ||
+        //   error.toString();
+        // return thunkAPI.rejectWithValue(message);
+      }
+    }
+    return response;
   }
 );
 
@@ -127,6 +149,18 @@ export const usersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchMeCustomer.pending, (state) => {
+        state.status = UserStatusTypes.LOADING;
+      })
+      .addCase(fetchMeCustomer.fulfilled, (state, { payload: customer }) => {
+        state.status = UserStatusTypes.SUCCESS;
+        state.user = state.user ? { ...state.user, ...customer } : customer;
+      })
+      .addCase(fetchMeCustomer.rejected, (state, { payload }) => {
+        state.status = UserStatusTypes.ERROR;
+        state.message = payload;
+        state.user = null;
+      })
       .addCase(fetchLoginMeCustomer.pending, (state) => {
         state.status = UserStatusTypes.LOADING;
       })
