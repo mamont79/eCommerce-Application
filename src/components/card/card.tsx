@@ -26,10 +26,11 @@ export default function Card({ product }: { product: Product }) {
   } = product;
   const cost = discountPrice || price;
   const fullPrice = discountPrice ? `${price} ${currency}` : '';
+  const productUrl = `/catalog/${title.toLowerCase().split(' ').join('-')}`;
 
   return (
     <StyledCard>
-      <StyledCardLink to="/product" id={id}>
+      <StyledCardLink to={productUrl} id={id}>
         <StyledCardSale $discount={!!discountPrice}>
           <p>{discount}%</p>
         </StyledCardSale>
@@ -37,7 +38,7 @@ export default function Card({ product }: { product: Product }) {
       </StyledCardLink>
 
       <StyledCardInfo>
-        <StyledCardLink to="/product">
+        <StyledCardLink to={productUrl}>
           <StyledCardTitle>{title}</StyledCardTitle>
           <StyledCardDiscription>{description}</StyledCardDiscription>
           <StyledCardPriceContainer>
