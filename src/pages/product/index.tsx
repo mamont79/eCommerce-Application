@@ -9,16 +9,14 @@ import {
   StyledImagesWrapper,
   StyledPriceInfo,
   StyledProductDescription,
-  StyledProductImage,
   StyledProductInfoWrapper,
   StyledProductPageWrapper,
   StyledProductTitle,
   StyledPreviousPrice,
   StyledButtonWrapper,
-  StyledMiniImages,
-  // StyledMiniImg,
 } from './style';
 import { StyledCardBtn } from '../../components/card/style';
+import Slider from '../../components/slider';
 
 export default function Product() {
   const dispatch = useAppDispatch();
@@ -27,7 +25,6 @@ export default function Product() {
   const productName = useParams();
   const productKey = productName.productkey;
 
-  const mainImageUrl = data?.masterData.current.masterVariant.images[0].url;
   const currentName = data?.masterData.current.name['en-US'];
   const currentDescription = data?.masterData.current.description['en-US'];
   const discontPrice =
@@ -37,7 +34,7 @@ export default function Product() {
     data?.masterData.current.masterVariant.prices[0].value.centAmount;
   const currency =
     data?.masterData.current.masterVariant.prices[0].value.currencyCode;
-  // const allImages = data!.masterData.current.masterVariant.images;
+  const allImages = data?.masterData.current.masterVariant.images || [];
 
   const cost = discontPrice || fullPrice;
   const previousCost = discontPrice ? `${fullPrice! / 100} ${currency}` : '';
@@ -49,13 +46,7 @@ export default function Product() {
   return (
     <StyledProductPageWrapper>
       <StyledImagesWrapper>
-        <StyledProductImage src={mainImageUrl} />
-        <StyledMiniImages>
-          Swall images would be here
-          {/* {allImages.map((elem) => {
-          <StyledMiniImg src={elem.url} />
-        })} */}
-        </StyledMiniImages>
+        <Slider allImages={allImages} />
       </StyledImagesWrapper>
       <StyledProductInfoWrapper>
         <StyledProductTitle>{currentName}</StyledProductTitle>
