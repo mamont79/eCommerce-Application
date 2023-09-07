@@ -7,7 +7,11 @@ import { handleAddressChange } from './helpers/handleAddressChange';
 import { handleAddressLabelChange } from './helpers/handleAddressLabelChange';
 import { handleDefaultAddressIdChange } from './helpers/handleDefaultAddressIdChange';
 import { getInitialAddressData } from './getInitialAddressData';
-import { StyledAddressList } from './style';
+import {
+  StyledAddAddressBtn,
+  StyledAddressBlockWrapper,
+  StyledAddressList,
+} from './style';
 import { IAddress, ICustomer } from '../../../types/customerTypes';
 import { ActionType } from '../customerProfileData/types';
 import { ICustomerEditFormFields, type IOperationsWithAddress } from './type';
@@ -137,8 +141,9 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
     })
   );
   return (
-    <div>
+    <StyledAddressBlockWrapper>
       <StyledAddressList>{addressItems}</StyledAddressList>
+      <StyledAddAddressBtn>Add address</StyledAddAddressBtn>
       {Boolean(editedAddress) && (
         <AddressEditModal
           oldAddress={editedAddress!}
@@ -150,6 +155,6 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
           isDefaultShipping={defaultShippingAddressId === editedAddress!.id}
         />
       )}
-    </div>
+    </StyledAddressBlockWrapper>
   );
 }
