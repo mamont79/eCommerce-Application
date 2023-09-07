@@ -31,7 +31,7 @@ export default function NavigationLinks() {
               <StyledMenuLinkLabel>Cart</StyledMenuLinkLabel>
             </StyledMenuLinkContainer>
           </Link>
-          <CustomerProfileLink isVisible={user} />
+          <CustomerProfileLink isVisible={Boolean(user)} />
           <Link to={route}>
             <StyledMenuLinkContainer>
               <DoorSvg color="#FFA555" />

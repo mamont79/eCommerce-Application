@@ -4,7 +4,7 @@ import {
   StyledFormPasswordInputIcon,
   StyledFormPasswordInputWrapper,
   StyledFormikInput,
-} from '../styledInput';
+} from '../StyledInput';
 
 export function StyledPasswordInputWrapper() {
   const [isVisible, setVisibile] = useState<boolean>(false);

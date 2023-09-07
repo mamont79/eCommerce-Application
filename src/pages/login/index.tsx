@@ -18,7 +18,7 @@ import { StyledPageName } from '../../components/StyledPageTitle';
 import { FormGroup } from '../../components/formInputs/commonStyle';
 import { StyledBtn } from '../../components/styledBtn';
 import { StyledPageContentWrapper } from '../registration/style';
-import { StyledFormikInput } from '../../components/styledInput';
+import { StyledFormikInput } from '../../components/StyledInput';
 import { deleteMailToken } from '../../api/cookieToken';
 
 export default function Login() {
