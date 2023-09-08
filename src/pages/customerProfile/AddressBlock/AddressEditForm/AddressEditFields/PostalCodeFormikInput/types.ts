@@ -1,6 +1,6 @@
-import { IAddress } from '../../../../../../types/customerTypes';
+import { IAddressEditFormFields } from '../../../type';
 import { ICommonFormikInputProps } from '../types';
 
 export type IPostalCodeInputProps = ICommonFormikInputProps & {
-  values: IAddress;
+  values: IAddressEditFormFields;
 };

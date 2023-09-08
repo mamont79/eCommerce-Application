@@ -3,13 +3,15 @@ import { ActionType } from '../../customerProfileData/types';
 import { customerChangeActions } from '../../listOfChangeActions';
 import { makeAddressChangeAction } from '../makeAddressChangeAction';
 
+type IHandleAddressChange = {
+  addresses: IAddress[];
+  updatedAddress: IAddress;
+};
+
 export function handleAddressChange({
   addresses,
   updatedAddress,
-}: {
-  addresses: IAddress[];
-  updatedAddress: IAddress;
-}) {
+}: IHandleAddressChange) {
   const newAddresses = [...addresses];
   const indexOfOldAddress = newAddresses.findIndex(
     ({ id: currentId }) => currentId === updatedAddress.id

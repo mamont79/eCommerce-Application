@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { makePersonalDataChangeAction } from '../../customerProfileData/makePersonalDataChangeAction';
-import { toggleBodyScrolling } from '../../../../components/BodyBlinder/toggleBodyScrolling';
-import { CustomerEditModal } from '../../CustomerEditModal';
+import { isBodyScroll } from '../../../../components/BodyBlinder/toggleBodyScrolling';
+import { CustomerEditModal } from '../CustomerEditModal';
 import { StyledBtn } from '../../../../components/styledBtn';
 import getEmailErrorMsg from '../../../../components/formInputs/validation/getEmailErrorMsg';
 import { StyledFieldContentWrapper } from './style';
@@ -11,11 +11,11 @@ import { customerChangeActions } from '../../listOfChangeActions';
 export function EmailField({ customer }: ICommonPersonalDataBlockProps) {
   const [isShownModal, setIsShownModal] = useState<boolean>(false);
   const showModal = () => {
-    toggleBodyScrolling(isShownModal);
+    isBodyScroll(isShownModal);
     setIsShownModal(true);
   };
   const hideModal = () => {
-    toggleBodyScrolling(isShownModal);
+    isBodyScroll(isShownModal);
     setIsShownModal(false);
   };
 

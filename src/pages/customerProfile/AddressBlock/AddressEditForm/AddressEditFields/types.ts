@@ -1,7 +1,7 @@
 import { FormikErrors, FormikTouched } from 'formik';
-import { IAddress } from '../../../../../types/customerTypes';
+import { IAddressEditFormFields } from '../../type';
 
 export type ICommonFormikInputProps = {
-  errors: FormikErrors<IAddress>;
-  touched: FormikTouched<IAddress>;
+  errors: FormikErrors<IAddressEditFormFields>;
+  touched: FormikTouched<IAddressEditFormFields>;
 };

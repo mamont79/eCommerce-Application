@@ -46,12 +46,24 @@ export type IChangeCustomerDataAction =
       addressId: string;
     }
   | {
+      action: ActionType.SET_DEFAULT_SHIPPING_ADDRESS;
+      addressKey: string;
+    }
+  | {
       action: ActionType.SET_DEFAULT_BILLING_ADDRESS;
       addressId: string;
     }
   | {
+      action: ActionType.SET_DEFAULT_BILLING_ADDRESS;
+      addressKey: string;
+    }
+  | {
       action: ActionType.ADD_SHIPPING_ADDRESS_ID;
       addressId: string;
+    }
+  | {
+      action: ActionType.ADD_SHIPPING_ADDRESS_ID;
+      addressKey: string;
     }
   | {
       action: ActionType.REMOVE_SHIPPING_ADDRESS_ID;
@@ -60,6 +72,10 @@ export type IChangeCustomerDataAction =
   | {
       action: ActionType.ADD_BILLING_ADDRESS_ID;
       addressId: string;
+    }
+  | {
+      action: ActionType.ADD_BILLING_ADDRESS_ID;
+      addressKey: string;
     }
   | {
       action: ActionType.REMOVE_BILLING_ADDRESS_ID;

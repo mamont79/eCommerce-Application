@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { makePersonalDataChangeAction } from '../../customerProfileData/makePersonalDataChangeAction';
 import { customerChangeActions } from '../../listOfChangeActions';
-import { toggleBodyScrolling } from '../../../../components/BodyBlinder/toggleBodyScrolling';
-import { CustomerEditModal } from '../../CustomerEditModal';
+import { isBodyScroll } from '../../../../components/BodyBlinder/toggleBodyScrolling';
+import { CustomerEditModal } from '../CustomerEditModal';
 import { getTextErrorMsg } from '../../../registration/RegistrationForm/validators/getTextErrorMsg';
 import { StyledBtn } from '../../../../components/styledBtn';
 import { StyledFieldContentWrapper } from './style';
@@ -11,11 +11,11 @@ import { type ICommonPersonalDataBlockProps } from '../types';
 export function LastNameField({ customer }: ICommonPersonalDataBlockProps) {
   const [isShownModal, setIsShownModal] = useState<boolean>(false);
   const showModal = () => {
-    toggleBodyScrolling(isShownModal);
+    isBodyScroll(isShownModal);
     setIsShownModal(true);
   };
   const hideModal = () => {
-    toggleBodyScrolling(isShownModal);
+    isBodyScroll(isShownModal);
     setIsShownModal(false);
   };
 

@@ -5,6 +5,7 @@ export type IDraftAddress = {
   postalCode: string;
   city: string;
   streetName: string;
+  key?: string;
 };
 
 export type IAddress = {

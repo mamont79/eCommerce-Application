@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
-import { BodyBlinder } from '../../../components/BodyBlinder';
-import { StyledBtn } from '../../../components/styledBtn';
-import StyledErrorMessage from '../../../components/errorMessage/styledErrorMessage';
+import { BodyBlinder } from '../../../../components/BodyBlinder';
+import { StyledBtn } from '../../../../components/styledBtn';
+import StyledErrorMessage from '../../../../components/errorMessage/styledErrorMessage';
 import { StyledEditedContentWrapper } from './style';
 import { type ICustomerEditModatProps } from './types';
 

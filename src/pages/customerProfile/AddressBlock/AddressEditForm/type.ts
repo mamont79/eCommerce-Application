@@ -1,9 +1,12 @@
 import { IAddress } from '../../../../types/customerTypes';
-import { IOperationsWithAddress } from '../type';
+import {
+  ICustomerNewAddressInitialData,
+  IOperationsWithAddress,
+} from '../type';
 
 export type IAddressEditFormProps = {
-  id: string;
-  oldAddress: IAddress;
+  formId: string;
+  oldAddress: IAddress | ICustomerNewAddressInitialData;
   isBilling?: boolean;
   isShipping?: boolean;
   isDefaultBilling?: boolean;

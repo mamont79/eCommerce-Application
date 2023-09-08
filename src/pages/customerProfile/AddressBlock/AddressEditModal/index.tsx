@@ -1,26 +1,39 @@
 import { BodyBlinder } from '../../../../components/BodyBlinder';
 import { StyledBtn } from '../../../../components/styledBtn';
 import { AddressEditForm } from '../AddressEditForm';
-import { StyledEditedContentWrapper } from '../../CustomerEditModal/style';
-import { StyeldModalBtnsWrapper } from './style';
+import { StyeldModalBtnsWrapper, StyledEditedContentWrapper } from './style';
 import { IAddressEditModalProps } from './types';
 
 export function AddressEditModal({
   oldAddress,
   cancelEdit,
   operationsWithAddress,
-  isBilling,
-  isShipping,
-  isDefaultBilling,
-  isDefaultShipping,
+  billingAddressIds,
+  shippingAddressIds,
+  defaultBillingAddressId,
+  defaultShippingAddressId,
 }: IAddressEditModalProps) {
   const formName = 'addressEditForm';
+
+  const isNewAddress = !('id' in oldAddress);
+  const isBilling = isNewAddress
+    ? false
+    : billingAddressIds.includes(oldAddress.id);
+  const isShipping = isNewAddress
+    ? false
+    : shippingAddressIds.includes(oldAddress.id);
+  const isDefaultBilling = isNewAddress
+    ? false
+    : defaultBillingAddressId === oldAddress.id;
+  const isDefaultShipping = isNewAddress
+    ? false
+    : defaultShippingAddressId === oldAddress.id;
 
   return (
     <BodyBlinder>
       <StyledEditedContentWrapper>
         <AddressEditForm
-          id={formName}
+          formId={formName}
           operationsWithAddress={operationsWithAddress}
           oldAddress={oldAddress}
           isBilling={isBilling}

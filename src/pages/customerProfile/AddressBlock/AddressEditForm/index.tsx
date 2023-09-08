@@ -7,10 +7,10 @@ import { FormGroup } from '../../../../components/formInputs/commonStyle';
 import { AddressEditCheckboxGroup } from './AddressEditFields/AddressEditCheckboxGroup';
 import { StyledFormikCustomerDataEditForm } from './style';
 import { type IAddressEditFormProps } from './type';
-import { type ICustomerEditFormFields } from '../type';
+import { type IAddressEditFormFields } from '../type';
 
 export function AddressEditForm({
-  id,
+  formId,
   oldAddress,
   operationsWithAddress,
   isBilling,
@@ -18,22 +18,26 @@ export function AddressEditForm({
   isDefaultBilling,
   isDefaultShipping,
 }: IAddressEditFormProps) {
-  const initialValues: ICustomerEditFormFields = {
+  const initialValues: IAddressEditFormFields = {
     ...oldAddress,
     shippingAddress: Boolean(isShipping),
     billingAddress: Boolean(isBilling),
     defaultShipping: Boolean(isDefaultShipping),
     defaultBilling: Boolean(isDefaultBilling),
   };
+
+  let handleSubmit = null;
+  if ('id' in initialValues) handleSubmit = operationsWithAddress.changeAddress;
+  else {
+    handleSubmit = operationsWithAddress.addNewAddress;
+  }
+
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={operationsWithAddress.changeAddress}
-    >
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ errors, touched, values }) => (
-        <StyledFormikCustomerDataEditForm id={id}>
+        <StyledFormikCustomerDataEditForm id={formId}>
           <FormGroup>
-            <CountryFormikSelect />
+            <CountryFormikSelect errors={errors} touched={touched} />
             <PostalCodeFormikInput
               errors={errors}
               touched={touched}

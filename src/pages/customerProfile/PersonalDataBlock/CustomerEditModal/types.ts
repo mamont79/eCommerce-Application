@@ -1,4 +1,4 @@
-import { IValidator } from '../../registration/RegistrationForm/validators/types';
+import { IValidator } from '../../../registration/RegistrationForm/validators/types';
 
 export type ICustomerEditModatProps = {
   cancelEdit: () => void;
