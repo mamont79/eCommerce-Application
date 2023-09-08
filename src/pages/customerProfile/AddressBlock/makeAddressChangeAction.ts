@@ -6,8 +6,17 @@ import {
 
 export function makeAddressChangeAction(
   actionType: string,
-  payload: IAddress | IDraftAddress | { id: string } | { key: string }
+  payload?: IAddress | IDraftAddress | { id: string } | { key: string }
 ): IChangeCustomerDataAction {
+  if (!payload) {
+    if (actionType === ActionType.SET_DEFAULT_BILLING_ADDRESS)
+      return {
+        action: actionType,
+      };
+    return { action: actionType } as {
+      action: ActionType.SET_DEFAULT_SHIPPING_ADDRESS;
+    };
+  }
   switch (actionType) {
     case ActionType.ADD_ADDRESS:
       if (!isDraftAddressGuard(payload))
@@ -83,7 +92,9 @@ export function makeAddressChangeAction(
           addressKey: payload.key,
         };
       }
-      throw new Error('No "id" or "key" was provided');
+      return {
+        action: ActionType.SET_DEFAULT_BILLING_ADDRESS,
+      };
     case ActionType.SET_DEFAULT_SHIPPING_ADDRESS:
       if ('id' in payload) {
         return {
@@ -97,7 +108,7 @@ export function makeAddressChangeAction(
           addressKey: payload.key,
         };
       }
-      throw new Error('No "id" or "key" was provided');
+      throw new Error('no "id" or "key" was provided');
     default:
       throw new Error('Trying to change unknown field');
   }

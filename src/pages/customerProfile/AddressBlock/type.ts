@@ -1,5 +1,5 @@
 import { COUNTRIES_DATA } from '../../../constants/countries';
-import { IDraftAddress } from '../../../types/customerTypes';
+import { IAddress, IDraftAddress } from '../../../types/customerTypes';
 
 export type IAddressEditFormFields = {
   id?: string;
@@ -23,3 +23,5 @@ export type IOperationsWithAddress = {
   changeAddress: (updatedFields: IAddressEditFormFields) => void;
   addNewAddress: (newAddressData: IAddressEditFormFields) => void;
 };
+
+export type IEditedAddress = IAddress | ICustomerNewAddressInitialData | null;

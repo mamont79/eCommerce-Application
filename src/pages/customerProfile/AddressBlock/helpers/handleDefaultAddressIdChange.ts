@@ -16,12 +16,21 @@ export function handleDefaultAddressIdChange({
   id,
   isDefault,
 }: IHandleDefaultAddressIdChange) {
-  const newDefaultId = isDefault ? id : defaultId;
-  if (isDefault && defaultId !== newDefaultId) {
+  if (defaultId && !labeledIds.includes(defaultId)) {
+    const actionType = `setDefault${billing ? 'Billing' : 'Shipping'}Address`;
+    const newAction = makeAddressChangeAction(actionType);
+    customerChangeActions.addCustomerChangeAction(newAction);
+
+    return undefined;
+  }
+
+  if (isDefault && id !== defaultId) {
     const actionType = `setDefault${billing ? 'Billing' : 'Shipping'}Address`;
     const newAction = makeAddressChangeAction(actionType, { id });
     customerChangeActions.addCustomerChangeAction(newAction);
+
+    return id;
   }
 
-  return labeledIds.includes(id) ? newDefaultId : undefined;
+  return defaultId;
 }

@@ -22,15 +22,14 @@ import {
   type ICustomerNewAddressInitialData,
   type IOperationsWithAddress,
   IAddressEditFormFields,
+  IEditedAddress,
 } from './type';
 import { customerChangeActions } from '../listOfChangeActions';
 import { handleAddressAdd } from './helpers/handleAddressAdd';
 import { handleDefaultAddressKeyAdd } from './helpers/handleDefaultAddressKeyAdd';
 
 export function AddressBlock({ customer }: { customer: ICustomer }) {
-  const [editedAddress, setEditedAddress] = useState<
-    IAddress | ICustomerNewAddressInitialData | null
-  >(null);
+  const [editedAddress, setEditedAddress] = useState<IEditedAddress>(null);
 
   const modalControlls = {
     showModal(address: IAddress | ICustomerNewAddressInitialData) {
@@ -59,23 +58,19 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
   const operationsWithAddress: IOperationsWithAddress = {
     removeAddress(id: string) {
       const newAddressesState = {
-        addresses: currentAddressesData.addresses.filter(
-          ({ id: addId }) => addId !== id
-        ),
-        billingAddressIds: currentAddressesData.billingAddressIds.filter(
+        addresses: addresses.filter(({ id: addId }) => addId !== id),
+        billingAddressIds: billingAddressIds.filter(
           (billingId) => billingId !== id
         ),
-        shippingAddressIds: currentAddressesData.shippingAddressIds.filter(
+        shippingAddressIds: shippingAddressIds.filter(
           (shippingId) => shippingId !== id
         ),
         defaultBillingAddressId:
-          currentAddressesData.defaultBillingAddressId === id
-            ? undefined
-            : currentAddressesData.defaultBillingAddressId,
+          defaultBillingAddressId === id ? undefined : defaultBillingAddressId,
         defaultShippingAddressId:
-          currentAddressesData.defaultShippingAddressId === id
+          defaultShippingAddressId === id
             ? undefined
-            : currentAddressesData.defaultShippingAddressId,
+            : defaultShippingAddressId,
       };
       const newAction = makeAddressChangeAction(ActionType.REMOVE_ADDRESS, {
         id,

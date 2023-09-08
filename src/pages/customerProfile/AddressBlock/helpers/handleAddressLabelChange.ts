@@ -9,9 +9,16 @@ type IHandleAddressLabelChangeProps = {
   key?: string;
 };
 
+type IHandleChangeLabeledAddressProps = {
+  billing?: boolean;
+  newAddressIds: string[];
+  isLabeled: boolean;
+  id: string;
+};
+
 type IHandleAddNewLabeledAddressProps = {
   billing?: boolean;
-  addressIds: string[];
+  newAddressIds: string[];
   isLabeled: boolean;
   key: string;
 };
@@ -23,18 +30,40 @@ export function handleAddressLabelChange({
   id,
   key,
 }: IHandleAddressLabelChangeProps) {
-  let newAddressIds = [...addressIds];
-  if (!id) {
-    if (!key) throw new Error('No address identifier was found');
-    return handleAddNewLabeledAddress({ billing, addressIds, isLabeled, key });
+  const newAddressIds = [...addressIds];
+  if (id) {
+    return handleChangeLabeledAddress({
+      billing,
+      newAddressIds,
+      isLabeled,
+      id,
+    });
   }
-  let status: 'quo' | 'add' | 'remove' = 'quo';
-  if (!addressIds.includes(id) && isLabeled) {
+
+  if (key) {
+    return handleAddNewLabeledAddress({
+      billing,
+      newAddressIds,
+      isLabeled,
+      key,
+    });
+  }
+  throw new Error('No address identifier was found');
+}
+
+function handleChangeLabeledAddress({
+  newAddressIds,
+  id,
+  isLabeled,
+  billing,
+}: IHandleChangeLabeledAddressProps) {
+  let status = 'quo';
+  if (!newAddressIds.includes(id) && isLabeled) {
     status = 'add';
     newAddressIds.push(id);
-  } else if (addressIds.includes(id) && !isLabeled) {
+  } else if (newAddressIds.includes(id) && !isLabeled) {
     status = 'remove';
-    newAddressIds = newAddressIds.filter((currentId) => currentId !== id);
+    return newAddressIds.filter((currentId) => currentId !== id);
   }
 
   if (status !== 'quo') {
@@ -48,11 +77,10 @@ export function handleAddressLabelChange({
 
 function handleAddNewLabeledAddress({
   billing,
-  addressIds,
+  newAddressIds,
   isLabeled,
   key,
 }: IHandleAddNewLabeledAddressProps) {
-  const newAddressIds = [...addressIds];
   if (isLabeled) {
     newAddressIds.push(key);
 

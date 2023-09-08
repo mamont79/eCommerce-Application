@@ -50,12 +50,18 @@ export type IChangeCustomerDataAction =
       addressKey: string;
     }
   | {
+      action: ActionType.SET_DEFAULT_SHIPPING_ADDRESS;
+    }
+  | {
       action: ActionType.SET_DEFAULT_BILLING_ADDRESS;
       addressId: string;
     }
   | {
       action: ActionType.SET_DEFAULT_BILLING_ADDRESS;
       addressKey: string;
+    }
+  | {
+      action: ActionType.SET_DEFAULT_BILLING_ADDRESS;
     }
   | {
       action: ActionType.ADD_SHIPPING_ADDRESS_ID;

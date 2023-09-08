@@ -26,11 +26,8 @@ export function AddressEditForm({
     defaultBilling: Boolean(isDefaultBilling),
   };
 
-  let handleSubmit = null;
-  if ('id' in initialValues) handleSubmit = operationsWithAddress.changeAddress;
-  else {
-    handleSubmit = operationsWithAddress.addNewAddress;
-  }
+  const { changeAddress, addNewAddress } = operationsWithAddress;
+  const handleSubmit = 'id' in initialValues ? changeAddress : addNewAddress;
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>

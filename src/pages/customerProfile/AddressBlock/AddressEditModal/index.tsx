@@ -16,18 +16,13 @@ export function AddressEditModal({
   const formName = 'addressEditForm';
 
   const isNewAddress = !('id' in oldAddress);
-  const isBilling = isNewAddress
-    ? false
-    : billingAddressIds.includes(oldAddress.id);
-  const isShipping = isNewAddress
-    ? false
-    : shippingAddressIds.includes(oldAddress.id);
-  const isDefaultBilling = isNewAddress
-    ? false
-    : defaultBillingAddressId === oldAddress.id;
-  const isDefaultShipping = isNewAddress
-    ? false
-    : defaultShippingAddressId === oldAddress.id;
+  const isBilling = !isNewAddress && billingAddressIds.includes(oldAddress.id);
+  const isShipping =
+    !isNewAddress && shippingAddressIds.includes(oldAddress.id);
+  const isDefaultBilling =
+    !isNewAddress && defaultBillingAddressId === oldAddress.id;
+  const isDefaultShipping =
+    !isNewAddress && defaultShippingAddressId === oldAddress.id;
 
   return (
     <BodyBlinder>
