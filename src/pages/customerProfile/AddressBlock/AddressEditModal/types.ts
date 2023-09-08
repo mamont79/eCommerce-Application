@@ -1,12 +1,15 @@
 import { IAddress } from '../../../../types/customerTypes';
-import { IOperationsWithAddress } from '../type';
+import {
+  ICustomerNewAddressInitialData,
+  IOperationsWithAddress,
+} from '../type';
 
 export type IAddressEditModalProps = {
-  oldAddress: IAddress;
-  isBilling?: boolean;
-  isShipping?: boolean;
-  isDefaultBilling?: boolean;
-  isDefaultShipping?: boolean;
+  oldAddress: IAddress | ICustomerNewAddressInitialData;
+  billingAddressIds: string[];
+  shippingAddressIds: string[];
+  defaultBillingAddressId?: string;
+  defaultShippingAddressId?: string;
   cancelEdit: () => void;
   operationsWithAddress: IOperationsWithAddress;
 };

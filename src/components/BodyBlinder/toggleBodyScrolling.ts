@@ -1,4 +1,4 @@
-export function toggleBodyScrolling(isOn: boolean) {
+export function isBodyScroll(isOn: boolean) {
   togglePaddingToAllBodyChildren(!isOn);
   document.body.style.overflow = isOn ? '' : 'hidden';
 }

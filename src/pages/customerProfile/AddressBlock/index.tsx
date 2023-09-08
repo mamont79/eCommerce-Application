@@ -1,36 +1,51 @@
 import { useState } from 'react';
 import { AddressItem } from './AddressItem/AddressItem';
 import { makeAddressChangeAction } from './makeAddressChangeAction';
-import { toggleBodyScrolling } from '../../../components/BodyBlinder/toggleBodyScrolling';
+import { isBodyScroll } from '../../../components/BodyBlinder/toggleBodyScrolling';
 import { AddressEditModal } from './AddressEditModal';
 import { handleAddressChange } from './helpers/handleAddressChange';
 import { handleAddressLabelChange } from './helpers/handleAddressLabelChange';
 import { handleDefaultAddressIdChange } from './helpers/handleDefaultAddressIdChange';
-import { getInitialAddressData } from './getInitialAddressData';
-import { StyledAddressList } from './style';
-import { IAddress, ICustomer } from '../../../types/customerTypes';
+import { getInitialAddressesData } from './getInitialAddressData';
+import {
+  StyledAddAddressBtn,
+  StyledAddressBlockWrapper,
+  StyledAddressList,
+} from './style';
+import {
+  IAddress,
+  ICustomer,
+  IDraftAddress,
+} from '../../../types/customerTypes';
 import { ActionType } from '../customerProfileData/types';
-import { ICustomerEditFormFields, type IOperationsWithAddress } from './type';
+import {
+  type ICustomerNewAddressInitialData,
+  type IOperationsWithAddress,
+  IAddressEditFormFields,
+  IEditedAddress,
+} from './type';
 import { customerChangeActions } from '../listOfChangeActions';
+import { handleAddressAdd } from './helpers/handleAddressAdd';
+import { handleDefaultAddressKeyAdd } from './helpers/handleDefaultAddressKeyAdd';
 
 export function AddressBlock({ customer }: { customer: ICustomer }) {
-  const [editedAddress, setEditedAddress] = useState<IAddress | null>(null);
+  const [editedAddress, setEditedAddress] = useState<IEditedAddress>(null);
 
   const modalControlls = {
-    showModal(address: IAddress) {
-      toggleBodyScrolling(Boolean(editedAddress));
+    showModal(address: IAddress | ICustomerNewAddressInitialData) {
+      isBodyScroll(false);
       setEditedAddress(address);
     },
     hideModal() {
-      toggleBodyScrolling(Boolean(editedAddress));
+      isBodyScroll(true);
       setEditedAddress(null);
     },
   };
 
-  const initialAddressData = getInitialAddressData(customer);
+  const initialAddressesData = getInitialAddressesData(customer);
 
-  const [currentAddressData, setCurrentAddressData] =
-    useState(initialAddressData);
+  const [currentAddressesData, setCurrentAddressesData] =
+    useState<typeof initialAddressesData>(initialAddressesData);
 
   const {
     addresses,
@@ -38,34 +53,30 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
     shippingAddressIds,
     defaultBillingAddressId,
     defaultShippingAddressId,
-  } = currentAddressData;
+  } = currentAddressesData;
 
   const operationsWithAddress: IOperationsWithAddress = {
     removeAddress(id: string) {
       const newAddressesState = {
-        addresses: currentAddressData.addresses.filter(
-          ({ id: addId }) => addId !== id
-        ),
-        billingAddressIds: currentAddressData.billingAddressIds.filter(
+        addresses: addresses.filter(({ id: addId }) => addId !== id),
+        billingAddressIds: billingAddressIds.filter(
           (billingId) => billingId !== id
         ),
-        shippingAddressIds: currentAddressData.shippingAddressIds.filter(
+        shippingAddressIds: shippingAddressIds.filter(
           (shippingId) => shippingId !== id
         ),
         defaultBillingAddressId:
-          currentAddressData.defaultBillingAddressId === id
-            ? undefined
-            : currentAddressData.defaultBillingAddressId,
+          defaultBillingAddressId === id ? undefined : defaultBillingAddressId,
         defaultShippingAddressId:
-          currentAddressData.defaultShippingAddressId === id
+          defaultShippingAddressId === id
             ? undefined
-            : currentAddressData.defaultShippingAddressId,
+            : defaultShippingAddressId,
       };
       const newAction = makeAddressChangeAction(ActionType.REMOVE_ADDRESS, {
         id,
       });
       customerChangeActions.addCustomerChangeAction(newAction);
-      setCurrentAddressData(newAddressesState);
+      setCurrentAddressesData(newAddressesState);
     },
     changeAddress({
       id,
@@ -77,7 +88,10 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
       shippingAddress: isShipping,
       defaultBilling: isDefaultBilling,
       defaultShipping: isDefaultShipping,
-    }: ICustomerEditFormFields) {
+    }: IAddressEditFormFields) {
+      if (!id) throw new Error('"id" must be frovided for field change');
+      if (!country) throw new Error('"country" can\'t be empty string');
+
       const updatedAddress = {
         id,
         country,
@@ -98,15 +112,15 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
         isLabeled: isShipping,
       });
       const newDefaultBillingAddressId = handleDefaultAddressIdChange({
-        billing: true,
         labeledIds: newBillingAddressIds,
         defaultId: defaultBillingAddressId,
         id,
         isDefault: isDefaultBilling,
+        billing: true,
       });
       const newDefaultShippingAddressId = handleDefaultAddressIdChange({
-        defaultId: defaultShippingAddressId,
         labeledIds: newShippingAddressIds,
+        defaultId: defaultShippingAddressId,
         id,
         isDefault: isDefaultShipping,
       });
@@ -119,7 +133,65 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
         defaultShippingAddressId: newDefaultShippingAddressId,
       };
 
-      setCurrentAddressData(newCurrentAddressData);
+      setCurrentAddressesData(newCurrentAddressData);
+
+      modalControlls.hideModal();
+    },
+    addNewAddress({
+      city,
+      country,
+      postalCode,
+      streetName,
+      billingAddress: isBilling,
+      shippingAddress: isShipping,
+      defaultBilling: isDefaultBilling,
+      defaultShipping: isDefaultShipping,
+    }: IAddressEditFormFields) {
+      if (!country) throw new Error('"country" can\'t be empty string');
+
+      const key = String(Date.now());
+
+      const newAddress: IDraftAddress = {
+        country,
+        postalCode,
+        streetName,
+        city,
+        key,
+      };
+
+      const newAddresses = handleAddressAdd({ newAddress, addresses });
+      const newBillingAddressIds = handleAddressLabelChange({
+        billing: true,
+        addressIds: billingAddressIds,
+        key,
+        isLabeled: isBilling,
+      });
+      const newShippingAddressIds = handleAddressLabelChange({
+        addressIds: shippingAddressIds,
+        key,
+        isLabeled: isShipping,
+      });
+      const newDefaultBillingAddressId = handleDefaultAddressKeyAdd({
+        billing: true,
+        prevDefaultId: defaultBillingAddressId,
+        isDefault: isDefaultBilling,
+        key,
+      });
+      const newDefaultShippingAddressId = handleDefaultAddressKeyAdd({
+        isDefault: isDefaultShipping,
+        prevDefaultId: defaultShippingAddressId,
+        key,
+      });
+
+      const newCurrentAddressData = {
+        addresses: newAddresses,
+        billingAddressIds: newBillingAddressIds,
+        shippingAddressIds: newShippingAddressIds,
+        defaultBillingAddressId: newDefaultBillingAddressId,
+        defaultShippingAddressId: newDefaultShippingAddressId,
+      };
+
+      setCurrentAddressesData(newCurrentAddressData);
 
       modalControlls.hideModal();
     },
@@ -136,20 +208,34 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
       isDefaultShipping: address.id === defaultShippingAddressId,
     })
   );
+
+  const handleAddAddressBtnClick = () => {
+    const addressAddInitialData: ICustomerNewAddressInitialData = {
+      city: '',
+      country: '',
+      postalCode: '',
+      streetName: '',
+    };
+    modalControlls.showModal(addressAddInitialData);
+  };
+
   return (
-    <div>
+    <StyledAddressBlockWrapper>
       <StyledAddressList>{addressItems}</StyledAddressList>
-      {Boolean(editedAddress) && (
+      <StyledAddAddressBtn onClick={handleAddAddressBtnClick}>
+        Add address
+      </StyledAddAddressBtn>
+      {editedAddress !== null && (
         <AddressEditModal
-          oldAddress={editedAddress!}
+          oldAddress={editedAddress}
           cancelEdit={modalControlls.hideModal}
           operationsWithAddress={operationsWithAddress}
-          isBilling={billingAddressIds.includes(editedAddress!.id)}
-          isShipping={shippingAddressIds.includes(editedAddress!.id)}
-          isDefaultBilling={defaultBillingAddressId === editedAddress!.id}
-          isDefaultShipping={defaultShippingAddressId === editedAddress!.id}
+          billingAddressIds={billingAddressIds}
+          shippingAddressIds={shippingAddressIds}
+          defaultBillingAddressId={defaultBillingAddressId}
+          defaultShippingAddressId={defaultShippingAddressId}
         />
       )}
-    </div>
+    </StyledAddressBlockWrapper>
   );
 }

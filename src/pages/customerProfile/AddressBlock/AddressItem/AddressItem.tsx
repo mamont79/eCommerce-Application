@@ -1,8 +1,8 @@
-import { StyledBtn } from '../../../../components/styledBtn';
 import { COUNTRIES_DATA } from '../../../../constants/countries';
+import { StyledBtn } from '../../../../components/styledBtn';
 import { AddressLabel } from '../AddressLabel';
-import { StyledAddressFieldsWrapper } from '../style';
 import {
+  StyledAddressFieldsWrapper,
   StyledAddressItemLabelsWrapper,
   StyledAddressItemWrapper,
 } from './style';

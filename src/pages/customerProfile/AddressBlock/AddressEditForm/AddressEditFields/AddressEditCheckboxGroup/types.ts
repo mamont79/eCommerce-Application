@@ -1,6 +1,6 @@
-import { ICustomerEditFormFields } from '../../../type';
+import { IAddressEditFormFields } from '../../../type';
 
 export type IAddressEditCheckboxProps = {
-  values: ICustomerEditFormFields;
+  values: IAddressEditFormFields;
   isBilling?: boolean;
 };
