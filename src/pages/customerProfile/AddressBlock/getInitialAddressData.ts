@@ -1,6 +1,6 @@
 import { ICustomer } from '../../../types/customerTypes';
 
-export function getInitialAddressData({
+export function getInitialAddressesData({
   addresses,
   billingAddressIds,
   shippingAddressIds,

@@ -6,7 +6,7 @@ import { AddressEditModal } from './AddressEditModal';
 import { handleAddressChange } from './helpers/handleAddressChange';
 import { handleAddressLabelChange } from './helpers/handleAddressLabelChange';
 import { handleDefaultAddressIdChange } from './helpers/handleDefaultAddressIdChange';
-import { getInitialAddressData } from './getInitialAddressData';
+import { getInitialAddressesData } from './getInitialAddressData';
 import {
   StyledAddAddressBtn,
   StyledAddressBlockWrapper,
@@ -42,10 +42,10 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
     },
   };
 
-  const initialAddressData = getInitialAddressData(customer);
+  const initialAddressesData = getInitialAddressesData(customer);
 
   const [currentAddressesData, setCurrentAddressesData] =
-    useState<typeof initialAddressData>(initialAddressData);
+    useState<typeof initialAddressesData>(initialAddressesData);
 
   const {
     addresses,
