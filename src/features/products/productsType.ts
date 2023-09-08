@@ -45,9 +45,24 @@ export interface ProductType {
   key: string;
 }
 
+export type Category = {
+  id: string;
+  key: string;
+  name: {
+    'en-US': string;
+  };
+  slug: {
+    'en-US': string;
+  };
+  description: {
+    'en-US': string;
+  };
+};
+
 export type ProductState = {
   productsData: Array<ProductType>;
   cardData: Array<Product>;
+  categories: Array<Category>;
 };
 
 export type CurrentProductState = {
