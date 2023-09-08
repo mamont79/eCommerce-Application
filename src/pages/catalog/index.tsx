@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
+  fetchAllCategories,
   fetchCatalog,
   fetchCategory,
 } from '../../features/products/productsSlice';
@@ -15,52 +17,38 @@ import {
   StyledCategoryButtonWrapper,
 } from './style';
 import { StyledCardBtn } from '../../components/card/style';
-import { categoryKids } from '../../constants/categories';
+import { Category } from '../../features/products/productsType';
 
 export default function Catalog() {
   const dispatch = useAppDispatch();
   const cardsData = useAppSelector((state) => state.products.cardData);
+  const categoriesData = useAppSelector((state) => state.products.categories);
+
+  const [categoryId, setCategoryId] = useState<string | null>(null);
 
   useEffect(() => {
+    dispatch(fetchAllCategories());
     dispatch(fetchCatalog());
   }, []);
 
-  const handleKids = () => {
-    dispatch(fetchCategory(categoryKids));
-  };
+  useEffect(() => {
+    if (categoryId) {
+      dispatch(fetchCategory(categoryId));
+    }
+    // console.log(categoryId);
+  }, [categoryId]);
+  console.log(cardsData);
 
   return (
     <StyledCatalogWrapper>
       <StyledCatalogFilterBar>
-        <StyledCategoryButtonWrapper>
-          <StyledCardBtn $primary>Women</StyledCardBtn>
-        </StyledCategoryButtonWrapper>
-        <StyledCategoryButtonWrapper>
-          <StyledCardBtn $primary>Women Top</StyledCardBtn>
-        </StyledCategoryButtonWrapper>
-        <StyledCategoryButtonWrapper>
-          <StyledCardBtn $primary>Women Bottom</StyledCardBtn>
-        </StyledCategoryButtonWrapper>
-        <StyledCategoryButtonWrapper>
-          <StyledCardBtn $primary>Men</StyledCardBtn>
-        </StyledCategoryButtonWrapper>
-        <StyledCategoryButtonWrapper>
-          <StyledCardBtn $primary>Men top</StyledCardBtn>
-        </StyledCategoryButtonWrapper>
-        <StyledCategoryButtonWrapper>
-          <StyledCardBtn $primary>Men Bottom</StyledCardBtn>
-        </StyledCategoryButtonWrapper>
-        <StyledCategoryButtonWrapper>
-          <StyledCardBtn $primary onClick={handleKids}>
-            Kids
-          </StyledCardBtn>
-        </StyledCategoryButtonWrapper>
-        <StyledCategoryButtonWrapper>
-          <StyledCardBtn $primary>Kids Top</StyledCardBtn>
-        </StyledCategoryButtonWrapper>
-        <StyledCategoryButtonWrapper>
-          <StyledCardBtn $primary>Kids Bottom</StyledCardBtn>
-        </StyledCategoryButtonWrapper>
+        {categoriesData.map((category: Category) => (
+          <StyledCategoryButtonWrapper key={category.key}>
+            <StyledCardBtn $primary onClick={() => setCategoryId(category.id)}>
+              {category.key.split('-').reverse().join(' ').toUpperCase()}
+            </StyledCardBtn>
+          </StyledCategoryButtonWrapper>
+        ))}
       </StyledCatalogFilterBar>
 
       <StyledCardsWrapper>

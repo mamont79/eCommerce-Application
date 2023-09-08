@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { getAuthToken } from './auth';
 import { publicInstance } from './index';
 
@@ -13,6 +12,5 @@ export const getCategoryById = async (categoryId: string) => {
       Authorization: `Bearer ${authToken}`,
     },
   });
-  console.log(data.results);
   return data.results;
 };

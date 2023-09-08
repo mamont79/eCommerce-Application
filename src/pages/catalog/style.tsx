@@ -17,7 +17,7 @@ const StyledCatalogFilterBar = styled.div`
 const StyledCategoryButtonWrapper = styled.div`
   width: 100%;
   height: 25px;
-  margin: 15px 0;
+  margin: 10px 0;
 `;
 
 export {
