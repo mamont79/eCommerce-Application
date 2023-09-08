@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect, useState } from 'react';
@@ -26,6 +25,12 @@ export default function Catalog() {
 
   const [categoryId, setCategoryId] = useState<string | null>(null);
 
+  function getCurrentId(id: string) {
+    return function newFunc() {
+      setCategoryId(id);
+    };
+  }
+
   useEffect(() => {
     dispatch(fetchAllCategories());
     dispatch(fetchCatalog());
@@ -35,17 +40,15 @@ export default function Catalog() {
     if (categoryId) {
       dispatch(fetchCategory(categoryId));
     }
-    // console.log(categoryId);
   }, [categoryId]);
-  console.log(cardsData);
 
   return (
     <StyledCatalogWrapper>
       <StyledCatalogFilterBar>
-        {categoriesData.map((category: Category) => (
-          <StyledCategoryButtonWrapper key={category.key}>
-            <StyledCardBtn $primary onClick={() => setCategoryId(category.id)}>
-              {category.key.split('-').reverse().join(' ').toUpperCase()}
+        {categoriesData.map(({ key, id }: Category) => (
+          <StyledCategoryButtonWrapper key={key}>
+            <StyledCardBtn $primary onClick={getCurrentId(id)}>
+              {key.split('-').reverse().join(' ').toUpperCase()}
             </StyledCardBtn>
           </StyledCategoryButtonWrapper>
         ))}

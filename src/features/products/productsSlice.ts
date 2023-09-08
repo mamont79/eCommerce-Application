@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
+
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
@@ -31,8 +31,6 @@ export const fetchCategory = createAsyncThunk(
       ...element,
       masterData: { ...element.masterVariant },
     }));
-    console.log(data);
-    console.log(changesData);
     dispatch(setProductsData(changesData));
   }
 );
@@ -56,7 +54,6 @@ export const productsSlice = createSlice({
     setProductsData: (state, action) => {
       state.productsData = [...action.payload];
       state.cardData = preparProducts([...action.payload]);
-      console.log(state.productsData);
     },
     setCategoriesData: (state, action) => {
       state.categories = [...action.payload];
