@@ -39,20 +39,20 @@ export function CustomerProfile() {
       toast.success(`Updated succsessfully!`, toastOptions);
       dispatch(resetStatus());
     }
-  }, [user, navigate, status, dispatch, message]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, status, message]);
 
   customerChangeActions.clearActions();
 
-  let profileContent = null;
-  if (user) {
-    profileContent = (
-      <StyledContentWrapper>
-        <PersonalDataBlock customer={user} />
-        <AddressBlock customer={user} />
-        <StyledBtn onClick={updateCustomerOnServer}>Save changes</StyledBtn>
-      </StyledContentWrapper>
-    );
-  }
-
-  return profileContent;
+  return (
+    <div>
+      {user && (
+        <StyledContentWrapper>
+          <PersonalDataBlock customer={user} />
+          <AddressBlock customer={user} />
+          <StyledBtn onClick={updateCustomerOnServer}>Save changes</StyledBtn>
+        </StyledContentWrapper>
+      )}
+    </div>
+  );
 }

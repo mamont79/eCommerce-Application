@@ -197,17 +197,18 @@ export function AddressBlock({ customer }: { customer: ICustomer }) {
     },
   };
 
-  const addressItems = addresses.map((address) =>
-    AddressItem({
+  const addressItems = addresses.map((address) => {
+    const { id } = address;
+    return AddressItem({
       address,
       operationsWithAddress,
       showModal: modalControlls.showModal,
-      isBilling: billingAddressIds.includes(address.id),
-      isShipping: shippingAddressIds.includes(address.id),
-      isDefaultBilling: address.id === defaultBillingAddressId,
-      isDefaultShipping: address.id === defaultShippingAddressId,
-    })
-  );
+      isBilling: billingAddressIds.includes(id),
+      isShipping: shippingAddressIds.includes(id),
+      isDefaultBilling: id === defaultBillingAddressId,
+      isDefaultShipping: id === defaultShippingAddressId,
+    });
+  });
 
   const handleAddAddressBtnClick = () => {
     const addressAddInitialData: ICustomerNewAddressInitialData = {
