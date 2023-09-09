@@ -25,7 +25,7 @@ export default function NavigationLinks() {
           <LazzoneIconSvg />
         </Link>
         <StyledNavigation>
-          <Link to="/">
+          <Link to="/basket">
             <StyledMenuLinkContainer>
               <BasketSvg color="#FFA555" />
               <StyledMenuLinkLabel>Cart</StyledMenuLinkLabel>
