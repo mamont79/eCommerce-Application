@@ -11,9 +11,9 @@ import {
   StyledCardSale,
   StyledCardTitle,
 } from './style';
-import { Product } from './types';
+import { CardProps } from './types';
 
-export default function Card({ product }: { product: Product }) {
+export default function Card({ product }: CardProps) {
   const {
     id,
     img,

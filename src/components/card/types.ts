@@ -8,3 +8,7 @@ export interface Product {
   discount: number;
   currency: string;
 }
+
+export interface CardProps {
+  product: Product;
+}
