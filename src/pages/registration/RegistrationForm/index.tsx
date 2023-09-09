@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import { RegistrationFormFields, registrationFormFields } from './formFields';
@@ -41,11 +41,8 @@ export function RegistrationForm() {
       navigate('/');
     } else if (status === UserStatusTypes.ERROR) {
       toast.error(message, toastOptions);
-    } else if (status === UserStatusTypes.SUCCESS) {
-      toast.success(
-        `Welcome ${user.customer.firstName} ${user.customer.lastName}`,
-        toastOptions
-      );
+    } else if (user && status === UserStatusTypes.SUCCESS) {
+      toast.success(`Welcome ${user.firstName} ${user.lastName}`, toastOptions);
       dispatch(resetStatus());
       navigate('/');
     }
@@ -107,7 +104,6 @@ export function RegistrationForm() {
           />
 
           <FormGroup>
-            <Link to="/login">Already have an account? Login!</Link>
             <StyledBtn $primary type="submit">
               Submit
             </StyledBtn>

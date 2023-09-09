@@ -1,14 +1,21 @@
 import styled from 'styled-components';
-import { StyledBtn } from '../styledBtn';
+import { StyledBtn } from '../../styledBtn';
 
 export const SearchWrapper = styled.div`
-  min-width: 280px;
+  min-width: 260px;
   display: flex;
   flex-wrap: nowrap;
+  width: 45%;
+
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 export const SearchInput = styled.input`
   color: #cf844e;
+  width: 100%;
   font-family: Arial;
   font-size: 16px;
   padding: 10px 20px;

@@ -5,11 +5,10 @@ import { IRegistrationPageCheckboxProps } from './type';
 export function RegistrationPageCheckbox({
   label,
   name,
-  disabled,
 }: IRegistrationPageCheckboxProps) {
   return (
     <label>
-      <Field disabled={disabled} name={name} type="checkbox" />
+      <Field name={name} type="checkbox" />
       {` ${label}`}
     </label>
   );

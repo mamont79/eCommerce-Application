@@ -16,7 +16,7 @@
 
 a {
   color: #cf844e;
-  text-decoration: underline;
+  text-decoration: none;
   transition: all 0.5s;
 }
 a:hover {

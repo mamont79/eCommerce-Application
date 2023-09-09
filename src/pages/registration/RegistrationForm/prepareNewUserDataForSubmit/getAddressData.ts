@@ -1,24 +1,31 @@
-import { NewCustomerAddressData } from '../CustomFormElements/type';
+import { ICustomerDraft } from '../../../../types/customerTypes';
 import { RegistrationFormFields } from '../formFields';
 import { getAddresses } from './getAddresses';
 
 export function getAddressData(
   values: RegistrationFormFields
-): NewCustomerAddressData {
+): Pick<
+  ICustomerDraft,
+  | 'addresses'
+  | 'billingAddresses'
+  | 'defaultBillingAddress'
+  | 'defaultShippingAddress'
+  | 'shippingAddresses'
+> {
   const addresses = getAddresses(values);
-  const shippingAddress = 0;
-  const billingAddress = addresses.length === 2 ? 1 : 0;
+  const shippingAddresses = [0];
+  const billingAddresses = [addresses.length - 1];
   const defaultShippingAddress = values.isDefaultShippingAddress
-    ? shippingAddress
-    : null;
+    ? shippingAddresses[0]
+    : undefined;
   const defaultBillingAddress = values.isDefaultBillingAddress
-    ? billingAddress
-    : null;
+    ? billingAddresses[0]
+    : undefined;
   return {
     addresses,
-    billingAddress,
+    billingAddresses,
     defaultBillingAddress,
     defaultShippingAddress,
-    shippingAddress,
+    shippingAddresses,
   };
 }

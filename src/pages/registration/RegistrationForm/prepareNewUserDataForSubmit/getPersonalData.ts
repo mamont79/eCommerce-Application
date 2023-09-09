@@ -1,9 +1,12 @@
-import { NewCustomerPersonalData } from '../CustomFormElements/type';
+import { ICustomerDraft } from '../../../../types/customerTypes';
 import { RegistrationFormFields } from '../formFields';
 
 export function getPersonalData(
   values: RegistrationFormFields
-): NewCustomerPersonalData {
+): Pick<
+  ICustomerDraft,
+  'firstName' | 'lastName' | 'email' | 'dateOfBirth' | 'password'
+> {
   const { firstName, lastName, password, email, birthDate } = values;
   return { firstName, lastName, password, email, dateOfBirth: birthDate };
 }

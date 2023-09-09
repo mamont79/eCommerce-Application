@@ -1,4 +1,4 @@
-import { CountriesData } from './CustomFormElements/constants';
+import { ICountriesData } from '../../../types/countryTypes';
 
 const registrationFormPersonalDataFields = {
   firstName: '',
@@ -36,14 +36,14 @@ export type RegistrationFormFields = typeof registrationFormFields & {
   billingSameAsShipping: boolean;
 };
 export type ShippingAddressFields = {
-  shippingCountry: keyof CountriesData | '';
+  shippingCountry: keyof ICountriesData | '';
   shippingPostalCode: string;
   shippingCity: string;
   shippingStreet: string;
   isDefaultShippingAddress: boolean;
 };
 export type BillingAddressFields = {
-  billingCountry: keyof CountriesData | '';
+  billingCountry: keyof ICountriesData | '';
   billingPostalCode: string;
   billingCity: string;
   billingStreet: string;

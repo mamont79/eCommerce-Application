@@ -1,7 +1,8 @@
-import { COUNTRIES_DATA, CountriesData } from '../CustomFormElements/constants';
+import { COUNTRIES_DATA } from '../../../../constants/countries';
+import { ICountriesData } from '../../../../types/countryTypes';
 import { cancelValidate } from './cancelValidate';
 
-export function getPostalCodeValidator(countryKey: keyof CountriesData | '') {
+export function getPostalCodeValidator(countryKey: keyof ICountriesData | '') {
   if (countryKey === '') return cancelValidate;
   const { postalCodePattern, example } = COUNTRIES_DATA[countryKey];
   return (value: string) => {

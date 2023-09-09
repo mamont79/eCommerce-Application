@@ -1,13 +1,16 @@
-import { type CountriesData, type SingleCountryData } from '../constants';
+import {
+  ICountriesData,
+  ISingleCountryData,
+} from '../../../../../types/countryTypes';
 
-export function makeCountryOptions(countries: CountriesData) {
+export function makeCountryOptions(countries: ICountriesData) {
   return Object.entries(countries).map((country) => makeOption(country));
 }
 
-function makeOption(data: [string, SingleCountryData]) {
+function makeOption([value, { name }]: [string, ISingleCountryData]) {
   return (
-    <option value={data[0]} key={data[1].name + Math.random() ** 2}>
-      {data[1].name}
+    <option value={value} key={name + Math.random() ** 2}>
+      {name}
     </option>
   );
 }

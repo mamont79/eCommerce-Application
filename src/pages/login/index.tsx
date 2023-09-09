@@ -19,6 +19,7 @@ import { FormGroup } from '../../components/formInputs/commonStyle';
 import { StyledBtn } from '../../components/styledBtn';
 import { StyledPageContentWrapper } from '../registration/style';
 import { StyledFormikInput } from '../../components/StyledInput';
+import { deleteMailToken } from '../../api/cookieToken';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -40,20 +41,17 @@ export default function Login() {
         progress: undefined,
         theme: 'light',
       });
-    } else if (status === UserStatusTypes.SUCCESS) {
-      toast.success(
-        `Welcome ${user.customer.firstName} ${user.customer.lastName}`,
-        {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        }
-      );
+    } else if (user && status === UserStatusTypes.SUCCESS) {
+      toast.success(`Welcome ${user.firstName} ${user.lastName}`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
       dispatch(resetStatus());
       navigate('/');
     }
@@ -70,7 +68,7 @@ export default function Login() {
           username: values.email,
           password: values.password,
         };
-
+        deleteMailToken('mail_token');
         dispatch(fetchLoginMeCustomer(userData));
         dispatch(fetchAuthEmailToken(userData));
       }}

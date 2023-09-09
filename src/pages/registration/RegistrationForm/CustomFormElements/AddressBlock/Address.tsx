@@ -2,16 +2,16 @@ import { StyledFormikInput } from '../../../../../components/StyledInput';
 import { FormGroup } from '../../../../../components/formInputs/commonStyle';
 import { CustomFormikSelect } from '../../../../../components/StyledSelect';
 import StyledErrorMessage from '../../../../../components/errorMessage/styledErrorMessage';
-import { COUNTRIES_DATA } from '../constants';
 import { makeCountryOptions } from './CountryOptions';
 import { getTextErrorMsg } from '../../validators/getTextErrorMsg';
 import { cancelValidate } from '../../validators/cancelValidate';
 import { getRequiredErrorMsg } from '../../validators/getRequiredErrorMsg';
 import { getPostalCodeValidator } from '../../validators/getPostalCodeErrorMsg';
-import { type IAddress } from './type';
+import { type IAddressProps } from './type';
 import { RegistrationPageCheckbox } from '../RegistrationPageCheckbox';
+import { COUNTRIES_DATA } from '../../../../../constants/countries';
 
-export function Address({ errors, touched, values, billing }: IAddress) {
+export function Address({ errors, touched, values, billing }: IAddressProps) {
   const isSame = billing && values.billingSameAsShipping;
   const countryOptions = makeCountryOptions(COUNTRIES_DATA);
 

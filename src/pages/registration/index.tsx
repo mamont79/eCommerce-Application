@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
-import { StyledPageName } from '../../components/StyledPageTitle';
+import {
+  RegistrationLink,
+  StyledPageName,
+} from '../../components/StyledPageTitle';
 import { RegistrationForm } from './RegistrationForm';
 import { StyledPageContentWrapper, StyledPageHeadingWrapper } from './style';
 
@@ -8,7 +10,9 @@ export default function Registration() {
     <StyledPageContentWrapper>
       <StyledPageHeadingWrapper>
         <StyledPageName>Glad to see you!</StyledPageName>
-        <Link to="/login">Already have an account? Login!</Link>
+        <RegistrationLink to="/login">
+          Already have an account? Login!
+        </RegistrationLink>
       </StyledPageHeadingWrapper>
       <RegistrationForm />
     </StyledPageContentWrapper>

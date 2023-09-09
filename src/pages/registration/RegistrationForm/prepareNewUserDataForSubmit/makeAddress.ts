@@ -1,10 +1,10 @@
-import { CustomerAddress } from '../CustomFormElements/type';
+import { IDraftAddress } from '../../../../types/customerTypes';
 import { RegistrationFormFields } from '../formFields';
 
 export function makeAddress(
   values: RegistrationFormFields,
   isBilling = false
-): CustomerAddress {
+): IDraftAddress {
   const country = isBilling ? values.billingCountry : values.shippingCountry;
   const postalCode = isBilling
     ? values.billingPostalCode
