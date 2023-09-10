@@ -12,6 +12,7 @@ import {
   StyledNavigation,
 } from '../style';
 import { StyledCenteredContentContainer } from '../../contentContainer/contentContainer';
+import TeamIconSvg from '../../../assets/teamIcon';
 
 export default function NavigationLinks() {
   const { user } = useAppSelector((state) => state.users);
@@ -25,10 +26,16 @@ export default function NavigationLinks() {
           <LazzoneIconSvg />
         </Link>
         <StyledNavigation>
-          <Link to="/">
+          <Link to="/basket">
             <StyledMenuLinkContainer>
               <BasketSvg color="#FFA555" />
               <StyledMenuLinkLabel>Cart</StyledMenuLinkLabel>
+            </StyledMenuLinkContainer>
+          </Link>
+          <Link to="/aboutus">
+            <StyledMenuLinkContainer>
+              <TeamIconSvg color="#FFA555" />
+              <StyledMenuLinkLabel>About Us</StyledMenuLinkLabel>
             </StyledMenuLinkContainer>
           </Link>
           <CustomerProfileLink isVisible={Boolean(user)} />

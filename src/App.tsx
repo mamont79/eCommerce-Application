@@ -18,6 +18,8 @@ import Welcome from './pages/welcome';
 import { fetchMeCustomer } from './features/users/usersSlice';
 import { getTokenCookie } from './api/cookieToken';
 import Product from './pages/product';
+import Basket from './pages/basket';
+import AboutUs from './pages/aboutUs';
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -37,6 +39,8 @@ export default function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/profile" element={<CustomerProfile />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/basket" element={<Basket />} />
+        <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/catalog/:productkey" element={<Product />} />
         <Route path="*" element={<NotFound />} />
