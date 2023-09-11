@@ -18,6 +18,7 @@ import Welcome from './pages/welcome';
 import { fetchMeCustomer } from './features/users/usersSlice';
 import { getTokenCookie } from './api/cookieToken';
 import Product from './pages/product';
+import { AboutUs } from './pages/aboutUs';
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/catalog/:productkey" element={<Product />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
       </StyledRoutes>
       <ToastContainer />
