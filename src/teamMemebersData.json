@@ -1,0 +1,118 @@
+[{
+  "photoRef": "./assets/developerImgs/dmitry-mikheev.jpg",
+  "firstName": "Dmitry",
+  "lastName": "Mikheev",
+  "yearOfBirth": 1986,
+  "country": "Russia",
+  "city": "Ekaterinburg",
+  "courses": [
+    {
+      "organisation": "RSSchool",
+      "courseName": "JS/FEPreSchool Q4",
+      "yearOfFinishing": 2022
+    },
+    {
+      "organisation": "RSSchool",
+      "courseName": "JS/FE Q1",
+      "yearOfFinishing": 2023
+    }
+  ],
+  "education": [
+    {
+      "university": "Chelyabinsk State University",
+      "faculty": "Linguistics and translation",
+      "specialization": "Translation and Translation Studies",
+      "yearOfGraduation": 2010
+    }
+  ],
+  "gitHub": "https://github.com/m5production",
+  "roles": ["Layout designer", "Developer"]
+},{
+  "photoRef": "",
+  "firstName": "Paul",
+  "lastName": "Dalhau",
+  "yearOfBirth": 1987,
+  "country": "Poland",
+  "city": "Grodno",
+  "courses": [
+    {
+      "organisation": "RSSchool",
+      "courseName": "JS/FEPreSchool Q4",
+      "yearOfFinishing": 2022
+    },
+    {
+      "organisation": "RSSchool",
+      "courseName": "JS/FE Q1",
+      "yearOfFinishing": 2023
+    }
+  ],
+  "education": [
+    {
+      "university": "Belarus univercity",
+      "faculty": "Economics",
+      "specialization": "Economics",
+      "yearOfGraduation": 2011
+    }
+  ],
+  "gitHub": "https://github.com/mamont79/",
+  "roles": ["Team leader", "Developer"]
+},{
+  "photoRef": "",
+  "firstName": "Elizaveta",
+  "lastName": "Prigozhaya",
+  "yearOfBirth": 2001,
+  "country": "Belarus",
+  "city": "Minsk",
+  "courses": [
+    {
+      "organisation": "RSSchool",
+      "courseName": "JS/FEPreSchool Q4",
+      "yearOfFinishing": 2022
+    },
+    {
+      "organisation": "RSSchool",
+      "courseName": "JS/FE Q1",
+      "yearOfFinishing": 2023
+    }
+  ],
+  "education": [
+    {
+      "university": "Belarus univercity",
+      "faculty": "Math",
+      "specialization": "Math",
+      "yearOfGraduation": 2021
+    }
+  ],
+  "gitHub": "https://github.com/prigozhaya",
+  "roles": ["Chief designer", "Developer"]
+},
+{
+  "photoRef": "",
+  "firstName": "Anna",
+  "lastName": "Ignatova",
+  "yearOfBirth": 1999,
+  "country": "Russia",
+  "city": "Perm",
+  "courses": [
+    {
+      "organisation": "RSSchool",
+      "courseName": "JS/FEPreSchool Q4",
+      "yearOfFinishing": 2020
+    },
+    {
+      "organisation": "RSSchool",
+      "courseName": "JS/FE Q1",
+      "yearOfFinishing": 2021
+    }
+  ],
+  "education": [
+    {
+      "university": "Heavens university",
+      "faculty": "Of Everything",
+      "specialization": "know-it-all",
+      "yearOfGraduation": 2020
+    }
+  ],
+  "gitHub": "https://github.com/",
+  "roles": ["Overlord", "Mentor"]
+}]
