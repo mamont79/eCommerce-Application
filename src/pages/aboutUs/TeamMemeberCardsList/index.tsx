@@ -6,10 +6,10 @@ export function TeamMembersCardsList() {
   return (
     <StyledMemberCardsList>
       {TeamMemebersData.map((member) => {
-        const { firstName, lastName, yearOfBirth } = member;
+        const { firstName, lastName, dateOfBirth } = member;
         return (
           <TeamMemberCard
-            key={`${firstName}${lastName}${yearOfBirth}`}
+            key={`${firstName}${lastName}${dateOfBirth}`}
             teamMemberData={member}
           />
         );
