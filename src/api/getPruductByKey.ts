@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { getAuthToken } from './auth';
 import { publicInstance } from './index';
 
@@ -9,5 +10,6 @@ export const getProductByKey = async (productTitle: string) => {
       Authorization: `Bearer ${authToken}`,
     },
   });
+  console.log(data);
   return data;
 };

@@ -23,7 +23,18 @@ import AboutUs from './pages/aboutUs';
 
 export default function App() {
   const dispatch = useAppDispatch();
-
+  const routingNav = [
+    { path: '/', element: <Welcome /> },
+    { path: '/login', element: <Login /> },
+    { path: '/registration', element: <Registration /> },
+    { path: '/profile', element: <CustomerProfile /> },
+    { path: '/logout', element: <Logout /> },
+    { path: '/basket', element: <Basket /> },
+    { path: '/aboutus', element: <AboutUs /> },
+    { path: '/catalog', element: <Catalog /> },
+    { path: '/catalog/:productkey', element: <Product /> },
+    { path: '*', element: <NotFound /> },
+  ];
   useEffect(() => {
     const mailToken = getTokenCookie('mail_token');
     if (mailToken) dispatch(fetchMeCustomer());
@@ -34,16 +45,9 @@ export default function App() {
     <StyledPageWrapper>
       <NavBar />
       <StyledRoutes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/profile" element={<CustomerProfile />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/basket" element={<Basket />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/catalog/:productkey" element={<Product />} />
-        <Route path="*" element={<NotFound />} />
+        {routingNav.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
+        ))}
       </StyledRoutes>
       <ToastContainer />
       <Footer />
