@@ -7,7 +7,8 @@ export const StyledPhotoWrapper = styled.div`
   border: 2px solid #c1c1c1;
   border-radius: 5px;
 
-  background-size: cover;
+  background-color: #000000;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 `;
