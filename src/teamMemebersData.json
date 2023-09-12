@@ -2,7 +2,7 @@
   "photoRef": "./assets/developerImgs/dmitry-mikheev.jpg",
   "firstName": "Dmitry",
   "lastName": "Mikheev",
-  "yearOfBirth": 1986,
+  "dateOfBirth": "1986/12/18",
   "country": "Russia",
   "city": "Ekaterinburg",
   "courses": [
@@ -31,7 +31,7 @@
   "photoRef": "./assets/developerImgs/pavel-dalhou.jpg",
   "firstName": "Pavel",
   "lastName": "Dalhou",
-  "yearOfBirth": 1987,
+  "dateOfBirth": "1987/06/14",
   "country": "Poland",
   "city": "Gdansk",
   "courses": [
@@ -60,7 +60,7 @@
   "photoRef": "./assets/developerImgs/elizaveta-prigozhaya.png",
   "firstName": "Elizaveta",
   "lastName": "Prigozhaya",
-  "yearOfBirth": 2001,
+  "dateOfBirth": "2001/03/01",
   "country": "Belarus",
   "city": "Minsk",
   "courses": [

@@ -5,7 +5,7 @@ export type ITeamMember = {
   photoRef: string;
   firstName: string;
   lastName: string;
-  yearOfBirth: number;
+  dateOfBirth: string;
   city: string;
   country: string;
   gitHub: string;
