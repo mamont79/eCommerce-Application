@@ -6,7 +6,7 @@ export function AboutUs() {
     <StyledPageContentWrapper>
       <article>
         <StyledAboutUsPageHeading>
-          <h1>Abuout us</h1>
+          <h1>About us</h1>
           <a href="https://rs.school/js/" target="_blank" rel="noreferrer">
             <img
               src="./assets/rs_school_logo.svg"
