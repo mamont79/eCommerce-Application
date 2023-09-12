@@ -43,7 +43,6 @@ export default function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/catalog/:productkey" element={<Product />} />
-        <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
       </StyledRoutes>
       <ToastContainer />
