@@ -63,6 +63,7 @@ export type ProductState = {
   productsData: Array<ProductType>;
   cardData: Array<Product>;
   categories: Array<Category>;
+  catalogCurrentPage: number;
 };
 
 export type CurrentProductState = {

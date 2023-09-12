@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
@@ -13,6 +12,7 @@ const initialState: ProductState = {
   productsData: [],
   cardData: [],
   categories: [],
+  catalogCurrentPage: 1,
 };
 
 export const fetchAllCategories = createAsyncThunk(
@@ -37,8 +37,8 @@ export const fetchCategory = createAsyncThunk(
 
 export const fetchCatalog = createAsyncThunk(
   'products/fetchCatalog',
-  async (_payload, { dispatch }) => {
-    const data = await catalogProducts();
+  async (catalogCurrentPage: number, { dispatch }) => {
+    const data = await catalogProducts(catalogCurrentPage);
     dispatch(setProductsData(data));
   }
 );
@@ -58,6 +58,11 @@ export const productsSlice = createSlice({
     setCategoriesData: (state, action) => {
       state.categories = [...action.payload];
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchCatalog.fulfilled, (state) => {
+      state.catalogCurrentPage += 1;
+    });
   },
 });
 

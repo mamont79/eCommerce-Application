@@ -22,8 +22,12 @@ export default function Catalog() {
   const dispatch = useAppDispatch();
   const cardsData = useAppSelector((state) => state.products.cardData);
   const categoriesData = useAppSelector((state) => state.products.categories);
+  const catalogCurrentPage = useAppSelector(
+    (state) => state.products.catalogCurrentPage
+  );
 
   const [categoryId, setCategoryId] = useState<string | null>(null);
+  const [fetching, setFetching] = useState<boolean>(true);
 
   function getCurrentId(id: string) {
     return function newFunc() {
@@ -31,9 +35,29 @@ export default function Catalog() {
     };
   }
 
+  const scrollHandler = (): void => {
+    if (
+      document.documentElement.scrollHeight -
+        (document.documentElement.scrollTop + window.innerHeight) <
+      100
+    ) {
+      setFetching(true);
+    }
+  };
+
   useEffect(() => {
-    dispatch(fetchAllCategories());
-    dispatch(fetchCatalog());
+    if (fetching) {
+      dispatch(fetchAllCategories());
+      dispatch(fetchCatalog(catalogCurrentPage));
+      setFetching(false);
+    }
+  }, [fetching]);
+
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler);
+    return () => {
+      document.removeEventListener('scroll', scrollHandler);
+    };
   }, []);
 
   useEffect(() => {
