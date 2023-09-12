@@ -26,7 +26,7 @@ export function AboutUs() {
           , - a team of frontend developers from Russia, Belarus, and Poland.
         </p>
         <p>
-          Team members: <strong>Paul Dalhau</strong>,{' '}
+          Team members: <strong>Pavel Dalhou</strong>,{' '}
           <strong>Elizaveta Prigozhaya</strong>, <strong>Dmitry Mikheev</strong>
           .
         </p>
