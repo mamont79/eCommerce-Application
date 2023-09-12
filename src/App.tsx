@@ -19,7 +19,7 @@ import { fetchMeCustomer } from './features/users/usersSlice';
 import { getTokenCookie } from './api/cookieToken';
 import Product from './pages/product';
 import Basket from './pages/basket';
-import AboutUs from './pages/aboutUs';
+import { AboutUs } from './pages/aboutUs';
 
 export default function App() {
   const dispatch = useAppDispatch();
