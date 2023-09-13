@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
 
@@ -9,6 +8,5 @@ export const getMyActiveCart = async () => {
       Authorization: `Bearer ${mailToken}`,
     },
   });
-  console.log(data);
   return data;
 };
