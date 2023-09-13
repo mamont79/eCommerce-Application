@@ -1,7 +1,7 @@
 import { StyledAboutUsPageHeading, StyledPageContentWrapper } from './style';
 import { TeamMembersCardsList } from './TeamMemeberCardsList';
 
-export function AboutUs() {
+export default function AboutUs() {
   return (
     <StyledPageContentWrapper>
       <article>
