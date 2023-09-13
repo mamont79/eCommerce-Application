@@ -4,14 +4,15 @@ import { getIndexMyCart } from './localeStorageCart';
 
 export const addProductToMyCart = async (
   customerId: string,
-  productId: string
+  productId: string,
+  cartVersion: number
 ) => {
   const myCartId = getIndexMyCart(customerId);
   const mailToken = getTokenCookie('mail_token');
   const { data } = await publicInstance.post(
     `/me/carts/${myCartId}`,
     {
-      version: 1,
+      version: cartVersion,
       actions: [
         {
           action: 'addLineItem',

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { createMyCart } from '../../api/cart/createMyCart';
+import { getMyActiveCart } from '../../api/cart/getMyActiveCart';
 
 export default function Basket() {
   useEffect(() => {
-    createMyCart();
+    getMyActiveCart();
   }, []);
   return (
     <div>
