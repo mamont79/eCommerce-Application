@@ -47,7 +47,8 @@ export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    reset: (state) => {
+    resetProducts: (state) => {
+      state.catalogCurrentPage = 1;
       state.productsData = [];
       state.categories = [];
     },
@@ -66,7 +67,7 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { reset, setProductsData, setCategoriesData } =
+export const { resetProducts, setProductsData, setCategoriesData } =
   productsSlice.actions;
 
 export default productsSlice.reducer;

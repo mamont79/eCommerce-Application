@@ -20,8 +20,16 @@ const StyledCategoryButtonWrapper = styled.div`
   margin: 10px 0;
 `;
 
+const StyledCardsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+`;
+
 export {
   StyledCatalogWrapper,
   StyledCatalogFilterBar,
   StyledCategoryButtonWrapper,
+  StyledCardsWrapper,
 };

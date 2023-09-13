@@ -12,7 +12,7 @@ import Product from './pages/product';
 import Basket from './pages/basket';
 import { AboutUs } from './pages/aboutUs';
 import { StyledPageWrapper, StyledRoutes } from './components/routerWrapper';
-// import Spinner from './components/spiner';
+// import Spinner from './components/spinner';
 
 import Catalog from './pages/catalog';
 import CustomerProfile from "./pages/customerProfile"
