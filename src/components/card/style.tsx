@@ -99,6 +99,13 @@ const StyledCardBtn = styled(StyledBtn)`
   &:hover {
     opacity: 0.7;
   }
+
+  &:disabled {
+    background: none;
+    color: #fc86007b;
+    border: solid #fc86007b;
+    opacity: 0.7;
+  }
 `;
 
 export {

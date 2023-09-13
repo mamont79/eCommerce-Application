@@ -1,8 +1,8 @@
 import { StyledBtn } from '../../components/styledBtn';
+import { StyledCardsWrapper } from '../catalog/style';
 import { LoginLink } from '../login/style';
 import handleSayHello from './helpers/hello';
 import {
-  StyledCardsWrapper,
   StyledLinksWrapper,
   StyledWelcomeContainer,
   StyledWelcomeWrapper,

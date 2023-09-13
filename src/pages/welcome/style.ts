@@ -16,16 +16,4 @@ const StyledLinksWrapper = styled.div`
   flex-direction: column;
 `;
 
-const StyledCardsWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 80%;
-`;
-
-export {
-  StyledWelcomeContainer,
-  StyledWelcomeWrapper,
-  StyledLinksWrapper,
-  StyledCardsWrapper,
-};
+export { StyledWelcomeContainer, StyledWelcomeWrapper, StyledLinksWrapper };

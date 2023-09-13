@@ -15,7 +15,7 @@ import { toastOptions } from '../registration/RegistrationForm/toastConfig';
 import { IDataForUpdate } from './type';
 import { customerChangeActions } from './listOfChangeActions';
 
-export function CustomerProfile() {
+export default function CustomerProfile() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user, status, message } = useAppSelector((state) => state.users);

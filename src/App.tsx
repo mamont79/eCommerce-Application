@@ -1,25 +1,24 @@
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { useAppDispatch } from './store/hooks';
 import Footer from './components/footer';
 import NavBar from './components/navBar';
-import {
-  StyledPageWrapper,
-  StyledRoutes,
-} from './components/routerWrapper/style';
-import Catalog from './pages/catalog';
-import { CustomerProfile } from './pages/customerProfile';
-import Login from './pages/login';
-import Logout from './pages/logout';
-import NotFound from './pages/notFound';
-import Registration from './pages/registration';
-import Welcome from './pages/welcome';
 import { fetchMeCustomer } from './features/users/usersSlice';
 import { getTokenCookie } from './api/cookieToken';
-import Product from './pages/product';
-import Basket from './pages/basket';
-import { AboutUs } from './pages/aboutUs';
+import { StyledPageWrapper, StyledRoutes } from './components/routerWrapper';
+import Spinner from './components/spinner';
+
+const Catalog = lazy(() => import('./pages/catalog'));
+const Login = lazy(() => import('./pages/login'));
+const Logout = lazy(() => import('./pages/logout'));
+const NotFound = lazy(() => import('./pages/notFound'));
+const Registration = lazy(() => import('./pages/registration'));
+const Welcome = lazy(() => import('./pages/welcome'));
+const CustomerProfile = lazy(() => import('./pages/customerProfile'));
+const Product = lazy(() => import('./pages/product'));
+const Basket = lazy(() => import('./pages/basket'));
+const AboutUs = lazy(() => import('./pages/aboutUs'));
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -35,6 +34,7 @@ export default function App() {
     { path: '/catalog/:productkey', element: <Product /> },
     { path: '*', element: <NotFound /> },
   ];
+
   useEffect(() => {
     const mailToken = getTokenCookie('mail_token');
     if (mailToken) dispatch(fetchMeCustomer());
@@ -46,7 +46,11 @@ export default function App() {
       <NavBar />
       <StyledRoutes>
         {routingNav.map(({ path, element }) => (
-          <Route key={path} path={path} element={element} />
+          <Route
+            key={path}
+            path={path}
+            element={<Suspense fallback={<Spinner />}>{element}</Suspense>}
+          />
         ))}
       </StyledRoutes>
       <ToastContainer />
