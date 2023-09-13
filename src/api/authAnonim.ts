@@ -1,13 +1,18 @@
-import { CTP_CLIENT_ID, CTP_CLIENT_SECRET } from '../constants/commerceApi';
+/* eslint-disable no-console */
+import {
+  CTP_CLIENT_ID,
+  CTP_CLIENT_SECRET,
+  CTP_PROJECT_KEY,
+} from '../constants/commerceApi';
 import { getTokenCookie, saveTokenToCookie } from './cookieToken';
 import { authInstance } from './index';
 
-export const getAuthToken = async () => {
-  const accessToken = getTokenCookie('access_token');
+export const getAnonimToken = async () => {
+  const accessToken = getTokenCookie('anonim_token');
 
   if (!accessToken) {
     const { data } = await authInstance.post(
-      `/token`,
+      `${CTP_PROJECT_KEY}/anonymous/token`,
       {},
       {
         params: {
@@ -19,8 +24,9 @@ export const getAuthToken = async () => {
         },
       }
     );
-    saveTokenToCookie(data.access_token, data.expires_in, 'access_token');
+    saveTokenToCookie(data.access_token, data.expires_in, 'anonim_token');
     return data.access_token;
   }
+  console.log(accessToken);
   return accessToken;
 };
