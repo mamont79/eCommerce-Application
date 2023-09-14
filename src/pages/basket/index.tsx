@@ -7,12 +7,14 @@ import { StyledPageContentWrapper } from './style';
 
 export default function Basket() {
   const dispatch = useAppDispatch();
-  const { cartFields } = useAppSelector((state) => state.cart);
+  const { cartFields, message } = useAppSelector((state) => state.cart);
 
   const { cart } = useAppSelector((state) => state.cart);
 
   // eslint-disable-next-line no-console
-  console.log(cartFields);
+  console.log(`Error message: ${message}, cart fields data: \n${cartFields}`);
+
+  // console.log(cartFields);
   useEffect(() => {
     if (!cartFields) dispatch(fetchMeActiveCart());
     // eslint-disable-next-line react-hooks/exhaustive-deps
