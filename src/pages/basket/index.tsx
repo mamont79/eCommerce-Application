@@ -4,17 +4,20 @@ import { fetchMeActiveCart } from '../../features/cart/cartSlice';
 import { StyledBasketCardsWrapper, StyledPageContentWrapper } from './style';
 import { EmptyCart, notEmptyCart } from '../../components/emptyCart';
 import { StyledPageContentWrapper } from './style';
-import { CartCardsBlock } from './CartCardsBlock';
 
 export default function Basket() {
   const dispatch = useAppDispatch();
+  const { cartFields } = useAppSelector((state) => state.cart);
 
   const { cart } = useAppSelector((state) => state.cart);
 
+  // eslint-disable-next-line no-console
+  console.log(cartFields);
   useEffect(() => {
-    if (!cart) dispatch(fetchMeActiveCart());
+    if (!cartFields) dispatch(fetchMeActiveCart());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart]);
+  }, [cartFields]);
+  
   const cartMassage = cart ? notEmptyCart() : EmptyCart();
   const goods = cart?.lineItems;
 
