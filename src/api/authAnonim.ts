@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   CTP_CLIENT_ID,
   CTP_CLIENT_SECRET,
@@ -8,9 +7,9 @@ import { getTokenCookie, saveTokenToCookie } from './cookieToken';
 import { authInstance } from './index';
 
 export const getAnonimToken = async () => {
-  const accessToken = getTokenCookie('anonim_token');
+  const anonimToken = getTokenCookie('anonim_token');
 
-  if (!accessToken) {
+  if (!anonimToken) {
     const { data } = await authInstance.post(
       `${CTP_PROJECT_KEY}/anonymous/token`,
       {},
@@ -25,8 +24,12 @@ export const getAnonimToken = async () => {
       }
     );
     saveTokenToCookie(data.access_token, data.expires_in, 'anonim_token');
+    saveTokenToCookie(
+      data.refresh_token,
+      data.expires_in,
+      'refresh_token_anonim'
+    );
     return data.access_token;
   }
-  console.log(accessToken);
-  return accessToken;
+  return anonimToken;
 };
