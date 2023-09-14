@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchMeActiveCart } from '../../features/cart/cartSlice';
@@ -14,12 +15,11 @@ export default function Basket() {
   // eslint-disable-next-line no-console
   console.log(`Error message: ${message}, cart fields data: \n${cartFields}`);
 
-  // console.log(cartFields);
   useEffect(() => {
     if (!cartFields) dispatch(fetchMeActiveCart());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartFields]);
-  
+
   const cartMassage = cart ? notEmptyCart() : EmptyCart();
   const goods = cart?.lineItems;
 
