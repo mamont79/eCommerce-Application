@@ -5,20 +5,23 @@ import { fetchMeActiveCart } from '../../features/cart/cartSlice';
 import { Product } from '../../components/card/types';
 import Card from '../../components/card/card';
 import { StyledBasketCardsWrapper, StyledPageContentWrapper } from './style';
+import { EmptyCart, notEmptyCart } from '../../components/emptyCart';
 
 export default function Basket() {
   const dispatch = useAppDispatch();
 
   const { cart } = useAppSelector((state) => state.cart);
+
   useEffect(() => {
     if (!cart) dispatch(fetchMeActiveCart());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
-
+  const cartMassage = cart ? notEmptyCart() : EmptyCart();
   const goods = cart?.lineItems;
 
   return (
     <StyledPageContentWrapper>
+      {cartMassage}
       <StyledBasketCardsWrapper>
         {goods && goods.map(makeCard)}
       </StyledBasketCardsWrapper>
