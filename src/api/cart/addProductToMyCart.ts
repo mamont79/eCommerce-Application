@@ -6,7 +6,6 @@ export type IAddProductToCartAction = {
   cartId: string;
   cartVersion: number;
   productVariantId: number;
-  quantity: number;
 };
 
 export const addProductToMyCart = async ({
@@ -14,7 +13,6 @@ export const addProductToMyCart = async ({
   cartId,
   cartVersion,
   productVariantId,
-  quantity,
 }: IAddProductToCartAction) => {
   const mailToken = getTokenCookie('mail_token');
   const { data } = await publicInstance.post(
@@ -26,7 +24,7 @@ export const addProductToMyCart = async ({
           action: 'addLineItem',
           productId: `${productId}`,
           variantId: productVariantId,
-          quantity,
+          quantity: 1,
         },
       ],
     },

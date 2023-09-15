@@ -36,7 +36,7 @@ export default function Card({ product }: CardProps) {
   let isInCart = false;
   if (cart) {
     isInCart =
-      cart.lineItems.find(({ id: itemId }) => itemId === id) !== undefined;
+      cart.lineItems.find(({ productId }) => productId === id) !== undefined;
   }
 
   const handleAddProductBtnClick = () => {
@@ -45,7 +45,6 @@ export default function Card({ product }: CardProps) {
       cartVersion: cart?.version,
       productId: id,
       productVariantId: 1,
-      quantity: 1,
     };
     dispatch(addProductToCart(addProductData));
   };

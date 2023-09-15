@@ -25,7 +25,7 @@ export const addProductToCart = createAsyncThunk(
   async (
     actionData: Pick<
       IAddProductToCartAction,
-      'productId' | 'productVariantId' | 'quantity'
+      'productId' | 'productVariantId'
     > &
       Partial<Pick<IAddProductToCartAction, 'cartId' | 'cartVersion'>>,
     { dispatch }
