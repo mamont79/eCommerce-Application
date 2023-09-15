@@ -5,6 +5,9 @@ import { fetchMeActiveCart } from '../../features/cart/cartSlice';
 import { StyledBasketCardsWrapper, StyledPageContentWrapper } from './style';
 import { EmptyCart, notEmptyCart } from '../../components/emptyCart';
 import { StyledPageContentWrapper } from './style';
+import { StyledCartContainer, StyledPageContentWrapper } from './style';
+import { CartCardsBlock } from './cardsBlock';
+import Order from './orderBlock';
 
 export default function Basket() {
   const dispatch = useAppDispatch();
@@ -25,10 +28,14 @@ export default function Basket() {
 
   return (
     <StyledPageContentWrapper>
+      <h1>Cart</h1>
       {cartMassage}
-      <StyledBasketCardsWrapper>
-        {goods && goods.map(makeCard)}
-      </StyledBasketCardsWrapper>
+      <StyledCartContainer>
+        {goodsData && goodsData.length && (
+          <CartCardsBlock goodsData={goodsData} />
+        )}
+        <Order />
+      </StyledCartContainer>
     </StyledPageContentWrapper>
   );
 }
