@@ -21,7 +21,7 @@ export default function Basket() {
   return (
     <StyledPageContentWrapper>
       {!goods && <EmptyCart />}
-      {goods && <NotEmptyCart />}
+      {goods && !!goods.length && <NotEmptyCart />}
       <StyledBasketCardsWrapper>
         {goods && goods.map(makeCard)}
       </StyledBasketCardsWrapper>
