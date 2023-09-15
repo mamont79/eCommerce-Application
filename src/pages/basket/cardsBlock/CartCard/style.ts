@@ -31,6 +31,7 @@ export const StyledPriceWrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    align-items: end;
   }
 `;
 

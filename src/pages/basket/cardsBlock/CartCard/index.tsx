@@ -1,4 +1,3 @@
-import { LineItem } from '@commercetools/platform-sdk';
 import {
   StyledCardInfoWrapper,
   StyledCartCardWrapper,
@@ -8,22 +7,33 @@ import {
 } from './style';
 import { TextBlock } from './components/TextBlock';
 import { PriceBlock } from './components/PriceBlock';
+import { ICartCardProps } from '../../types';
 
-export function CartCard({
-  lineItem: { variant, name, price },
-}: {
-  lineItem: LineItem;
-}) {
-  const { images } = variant;
-  const img = images && images.length ? images[0].url : '';
+export function CartCard({ CardProps }: ICartCardProps) {
+  const {
+    imgUrl,
+    title,
+    attributes,
+    quantity,
+    productPriceInCents,
+    productDiscountedPriceInCents,
+    currencyCode,
+  } = CardProps || {};
+
   return (
     <StyledCartCardWrapper>
       <StyledCardInfoWrapper>
-        <StyledImgWrapper style={{ backgroundImage: `url(${img})` }} />
-        <TextBlock textData={{ name, variant }} />
+        <StyledImgWrapper style={{ backgroundImage: `url(${imgUrl})` }} />
+        <TextBlock CardProps={{ title, attributes, quantity }} />
       </StyledCardInfoWrapper>
       <StyledPriceWrapper>
-        <PriceBlock price={price} />
+        <PriceBlock
+          CardProps={{
+            productPriceInCents,
+            productDiscountedPriceInCents,
+            currencyCode,
+          }}
+        />
         <StyledDeleteCartItemBtn />
       </StyledPriceWrapper>
     </StyledCartCardWrapper>

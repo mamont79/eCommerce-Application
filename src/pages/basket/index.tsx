@@ -31,9 +31,7 @@ export default function Basket() {
       <h1>Cart</h1>
       {cartMassage}
       <StyledCartContainer>
-        {goodsData && goodsData.length && (
-          <CartCardsBlock goodsData={goodsData} />
-        )}
+        {cartFields && <CartCardsBlock goodsData={cartFields} />}
         <Order />
       </StyledCartContainer>
     </StyledPageContentWrapper>

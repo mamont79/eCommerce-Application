@@ -5,7 +5,6 @@ export const StyledpCartPriceContainer = styled.div`
   flex-direction: column;
   gap: 5px;
   @media (max-width: 480px) {
-    flex-direction: row;
     align-items: center;
     gap: 10px;
     margin-top: 10px;

@@ -5,10 +5,14 @@ import {
   StyledCountInput,
   StyledCountWrapper,
 } from './style';
+import { ICartItem } from '../../../../types';
 
-export function AmountController() {
+export function AmountController({ quantity }: ICartItem) {
   const [amount, setAmount] = useState<number>(1);
 
+  if (quantity !== undefined) {
+    // setAmount(quantity)
+  }
   function increaseByOne() {
     setAmount(amount + 1);
   }
@@ -27,7 +31,7 @@ export function AmountController() {
       <StyledCountButton type="button" onClick={decreaseByOne}>
         -
       </StyledCountButton>
-      <StyledCountInput type="number" value={amount} onChange={handleChange} />
+      <StyledCountInput type="number" value={1} onChange={handleChange} />
       <StyledCountButton type="button" onClick={increaseByOne}>
         +
       </StyledCountButton>
