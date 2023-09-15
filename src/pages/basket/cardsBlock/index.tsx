@@ -16,7 +16,7 @@ export function CartCardsBlock({ goodsData }: { goodsData: ICartFields }) {
         <StyledCartText>Empty shopping cart</StyledCartText>
       </StyledEmptyCartContainer>
       {goodsData.items.map((item) => (
-        <CartCard CardProps={item} key={item.title} />
+        <CartCard cardData={item} key={item.title} />
       ))}
     </StyledCartCardsBlockWrapper>
   );

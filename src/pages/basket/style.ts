@@ -15,6 +15,14 @@ export const StyledEmptyCartContainer = styled.div`
   background-color: #fff4ea;
   padding: 15px 15px;
   border-radius: 5px;
+
+  @media (max-width: 768px) {
+    width: 450px;
+  }
+
+  @media (max-width: 480px) {
+    width: 210px;
+  }
 `;
 
 export const StyledCartContainer = styled.div`

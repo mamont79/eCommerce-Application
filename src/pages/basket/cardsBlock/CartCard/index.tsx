@@ -9,7 +9,7 @@ import { TextBlock } from './components/TextBlock';
 import { PriceBlock } from './components/PriceBlock';
 import { ICartCardProps } from '../../types';
 
-export function CartCard({ CardProps }: ICartCardProps) {
+export function CartCard({ cardData }: ICartCardProps) {
   const {
     imgUrl,
     title,
@@ -18,17 +18,17 @@ export function CartCard({ CardProps }: ICartCardProps) {
     productPriceInCents,
     productDiscountedPriceInCents,
     currencyCode,
-  } = CardProps || {};
+  } = cardData || {};
 
   return (
     <StyledCartCardWrapper>
       <StyledCardInfoWrapper>
         <StyledImgWrapper style={{ backgroundImage: `url(${imgUrl})` }} />
-        <TextBlock CardProps={{ title, attributes, quantity }} />
+        <TextBlock cardData={{ title, attributes, quantity }} />
       </StyledCardInfoWrapper>
       <StyledPriceWrapper>
         <PriceBlock
-          CardProps={{
+          cardData={{
             productPriceInCents,
             productDiscountedPriceInCents,
             currencyCode,

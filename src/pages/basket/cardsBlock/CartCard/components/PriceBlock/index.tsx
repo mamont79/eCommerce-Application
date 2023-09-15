@@ -5,17 +5,17 @@ import {
 import { ICartCardProps } from '../../../../types';
 import { StyledpCartPriceContainer } from './style';
 
-export function PriceBlock({ CardProps }: ICartCardProps) {
-  const { currencyCode } = CardProps;
+export function PriceBlock({ cardData }: ICartCardProps) {
+  const { currencyCode } = cardData;
   let currentPrice: number | string = '';
   let priceWithoutDiscount: number | string = '';
 
-  if (CardProps.productPriceInCents) {
-    currentPrice = CardProps.productDiscountedPriceInCents
-      ? CardProps.productDiscountedPriceInCents / 100
-      : CardProps.productPriceInCents;
-    priceWithoutDiscount = CardProps.productDiscountedPriceInCents
-      ? `${CardProps.productPriceInCents / 100} ${currencyCode}`
+  if (cardData.productPriceInCents) {
+    currentPrice = cardData.productDiscountedPriceInCents
+      ? cardData.productDiscountedPriceInCents / 100
+      : cardData.productPriceInCents / 100;
+    priceWithoutDiscount = cardData.productDiscountedPriceInCents
+      ? `${cardData.productPriceInCents / 100} ${currencyCode}`
       : '';
   }
   return (

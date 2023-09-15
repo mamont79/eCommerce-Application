@@ -24,9 +24,11 @@ export const StyledCountButton = styled.button`
   font-size: 18px;
   width: 25px;
   height: 25px;
+  cursor: pointer;
 `;
 
 export const StyledCountWrapper = styled.div`
+  margin-top: 10px;
   display: flex;
   max-width: 100px;
   justify-content: space-between;

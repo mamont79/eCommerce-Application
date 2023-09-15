@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import {
   StyledCountButton,
   StyledCountInput,
@@ -8,11 +8,8 @@ import {
 import { ICartItem } from '../../../../types';
 
 export function AmountController({ quantity }: ICartItem) {
-  const [amount, setAmount] = useState<number>(1);
+  const [amount, setAmount] = useState<number>(quantity || 1);
 
-  if (quantity !== undefined) {
-    // setAmount(quantity)
-  }
   function increaseByOne() {
     setAmount(amount + 1);
   }
@@ -21,9 +18,8 @@ export function AmountController({ quantity }: ICartItem) {
     setAmount(amount - 1);
   }
 
-  function handleChange(e: ChangeEvent) {
-    // eslint-disable-next-line no-console
-    console.log(e);
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setAmount(+e.target.value);
   }
 
   return (
@@ -31,7 +27,7 @@ export function AmountController({ quantity }: ICartItem) {
       <StyledCountButton type="button" onClick={decreaseByOne}>
         -
       </StyledCountButton>
-      <StyledCountInput type="number" value={1} onChange={handleChange} />
+      <StyledCountInput type="number" value={amount} onChange={handleChange} />
       <StyledCountButton type="button" onClick={increaseByOne}>
         +
       </StyledCountButton>

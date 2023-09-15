@@ -16,10 +16,15 @@ export interface ICartItem {
 }
 
 export type ICartCardProps = {
-  CardProps: ICartItem;
+  cardData: ICartItem;
 };
 
 export type IAttribute = {
   name: string;
-  value: string;
+  value: IAttributeValue;
+};
+
+export type IAttributeValue = {
+  key: string;
+  label: string;
 };

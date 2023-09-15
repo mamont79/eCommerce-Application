@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-console */
 import { AmountController } from '../amountController';
 import {
@@ -7,17 +8,20 @@ import {
 } from './style';
 import { ICartCardProps } from '../../../../types';
 
-export function TextBlock({ CardProps }: ICartCardProps) {
-  const { title, attributes, quantity } = CardProps || {};
+export function TextBlock({ cardData }: ICartCardProps) {
+  const { title, attributes, quantity } = cardData || {};
   console.log(title);
-  console.log(attributes);
+  console.log({ attributes });
 
   return (
     <StyledCartProductDescription>
       <StyledCartProductTitle>{title}</StyledCartProductTitle>
       <div>
-        <StyledCartText>color: green</StyledCartText>
-        <StyledCartText>size: xxl</StyledCartText>
+        {attributes?.map((attribute, index) => (
+          <StyledCartText key={index + Math.random()}>
+            {attribute.name}: {attribute.value.label}
+          </StyledCartText>
+        ))}
       </div>
       <AmountController quantity={quantity} />
     </StyledCartProductDescription>

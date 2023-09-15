@@ -8,9 +8,13 @@ export const StyledCartCardWrapper = styled.div`
   padding: 15px 15px;
   border-radius: 5px;
 
+  @media (max-width: 768px) {
+    width: 450px;
+  }
+
   @media (max-width: 480px) {
     flex-direction: column;
-    max-width: 260px;
+    max-width: 210px;
     align-items: center;
   }
 `;
@@ -26,12 +30,14 @@ export const StyledImgWrapper = styled.div`
 export const StyledPriceWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: end;
 
   @media (max-width: 480px) {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     align-items: end;
+    margin-top: 10px;
   }
 `;
 
