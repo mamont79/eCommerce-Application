@@ -2,9 +2,8 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchMeActiveCart } from '../../features/cart/cartSlice';
-import { StyledBasketCardsWrapper, StyledPageContentWrapper } from './style';
+// import { StyledBasketCardsWrapper} from './style';
 import { EmptyCart, notEmptyCart } from '../../components/emptyCart';
-import { StyledPageContentWrapper } from './style';
 import { StyledCartContainer, StyledPageContentWrapper } from './style';
 import { CartCardsBlock } from './cardsBlock';
 import Order from './orderBlock';
@@ -15,7 +14,6 @@ export default function Basket() {
 
   const { cart } = useAppSelector((state) => state.cart);
 
-  // eslint-disable-next-line no-console
   console.log(`Error message: ${message}, cart fields data: \n${cartFields}`);
 
   useEffect(() => {
@@ -24,7 +22,6 @@ export default function Basket() {
   }, [cartFields]);
 
   const cartMassage = cart ? notEmptyCart() : EmptyCart();
-  const goods = cart?.lineItems;
 
   return (
     <StyledPageContentWrapper>
