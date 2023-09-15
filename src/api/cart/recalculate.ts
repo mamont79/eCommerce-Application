@@ -1,12 +1,10 @@
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
-import { getIndexMyCart } from './localeStorageCart';
 
-export const recalculate = async (customerId: string, cartVersion: number) => {
-  const myCartId = getIndexMyCart(customerId);
+export const recalculate = async (cartId: string, cartVersion: number) => {
   const mailToken = getTokenCookie('mail_token');
   const { data } = await publicInstance.post(
-    `/me/carts/${myCartId}`,
+    `/me/carts/${cartId}`,
     {
       version: cartVersion,
       actions: [
