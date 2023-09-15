@@ -1,7 +1,5 @@
-/* eslint-disable no-console */
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
-import { saveIndexMyCart } from './localeStorageCart';
 
 export const createAnonimCart = async () => {
   const anonimToken = getTokenCookie('anonim_token');
@@ -14,7 +12,5 @@ export const createAnonimCart = async () => {
       },
     }
   );
-  console.log(data);
-  saveIndexMyCart('anonimCartId', data.id);
   return data;
 };

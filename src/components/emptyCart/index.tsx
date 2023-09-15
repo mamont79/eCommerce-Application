@@ -26,7 +26,7 @@ export function EmptyCart() {
   );
 }
 
-export function notEmptyCart() {
+export function NotEmptyCart() {
   return (
     <StyledNotEmptyCart>
       Maybe you want to change something in your cart?

@@ -1,6 +1,5 @@
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
-import { saveIndexMyCart } from './localeStorageCart';
 
 export const createMyCart = async () => {
   const mailToken = getTokenCookie('mail_token');
@@ -13,6 +12,5 @@ export const createMyCart = async () => {
       },
     }
   );
-  saveIndexMyCart(data.customerId, data.id);
   return data;
 };

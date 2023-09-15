@@ -1,17 +1,19 @@
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
 
-type IAddDiscoutCode = {
+type IChangeProductQuantity = {
   cartId: string;
+  lineItemId: string;
   cartVersion: number;
-  discountCode: string;
+  newQuantity: number;
 };
 
-export const addDiscountCode = async ({
+export const changeProductQuantity = async ({
   cartId,
+  lineItemId,
   cartVersion,
-  discountCode,
-}: IAddDiscoutCode) => {
+  newQuantity,
+}: IChangeProductQuantity) => {
   const mailToken = getTokenCookie('mail_token');
   const { data } = await publicInstance.post(
     `/me/carts/${cartId}`,
@@ -19,8 +21,9 @@ export const addDiscountCode = async ({
       version: cartVersion,
       actions: [
         {
-          action: 'addDiscountCode',
-          code: discountCode,
+          action: 'changeLineItemQuantity',
+          lineItemId: `${lineItemId}`,
+          quantity: newQuantity,
         },
       ],
     },
