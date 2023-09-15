@@ -3,15 +3,60 @@
 
 import { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { Cart } from '@commercetools/platform-sdk';
 import { ICartState } from './types';
 import { getMyActiveCart } from '../../api/cart/getMyActiveCart';
 import { getCartFields } from './helpers/getCartFields';
+import {
+  IAddProductToCartAction,
+  addProductToMyCart,
+} from '../../api/cart/addProductToMyCart';
+import { createAnonimCart } from '../../api/cart/createAnonimCart';
+import { getAnonimToken } from '../../api/authAnonim';
 
 const initialState: ICartState = {
   cart: null,
   cartFields: null,
   message: null,
 };
+
+export const addProductToCart = createAsyncThunk(
+  'cart/addProductToCart',
+  async (
+    actionData: Pick<
+      IAddProductToCartAction,
+      'productId' | 'productVariantId'
+    > &
+      Partial<Pick<IAddProductToCartAction, 'cartId' | 'cartVersion'>>,
+    { dispatch }
+  ) => {
+    let { cartId, cartVersion } = actionData;
+    let anonimousCustomerCartData: Cart | null = null;
+
+    if (!cartId || !cartVersion) {
+      await getAnonimToken();
+      anonimousCustomerCartData = await createAnonimCart();
+    }
+
+    if (anonimousCustomerCartData) {
+      const { id, version } = anonimousCustomerCartData;
+      cartId = id;
+      cartVersion = version;
+    }
+
+    if (cartId === undefined || cartVersion === undefined)
+      throw new Error('Cart id or Cart version is undefined.');
+
+    const newCartData = await addProductToMyCart({
+      ...actionData,
+      cartId,
+      cartVersion,
+    });
+
+    dispatch(setAllCartData(newCartData));
+    dispatch(setCartFieldsData(newCartData));
+  }
+);
 
 export const fetchMeActiveCart = createAsyncThunk(
   'cart/fetchMeActiveCart',

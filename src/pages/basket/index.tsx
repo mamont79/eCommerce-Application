@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchMeActiveCart } from '../../features/cart/cartSlice';
@@ -10,11 +9,11 @@ import Order from './orderBlock';
 
 export default function Basket() {
   const dispatch = useAppDispatch();
-  const { cartFields, message } = useAppSelector((state) => state.cart);
+  const { cartFields } = useAppSelector((state) => state.cart);
 
   const { cart } = useAppSelector((state) => state.cart);
 
-  console.log(`Error message: ${message}, cart fields data: \n${cartFields}`);
+  // console.log(`Error message: ${message}, cart fields data: \n${cartFields}`);
 
   useEffect(() => {
     if (!cartFields) dispatch(fetchMeActiveCart());
