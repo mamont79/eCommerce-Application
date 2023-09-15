@@ -16,7 +16,7 @@ export const saveIndexAnonimCart = (cartId: string) => {
 };
 
 export const getIndexAnonimCart = () => {
-  const anonimCartId = localStorage.getItem('anonimCart');
+  const anonimCartId = localStorage.getItem('anonimCartId');
   return anonimCartId;
 };
 
