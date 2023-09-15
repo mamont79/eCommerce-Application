@@ -2,9 +2,9 @@
 import { LineItem } from '@commercetools/platform-sdk';
 import { AmountController } from '../amountController';
 import {
-  StyledCartProductAttribute,
   StyledCartProductDescription,
   StyledCartProductTitle,
+  StyledCartText,
 } from './style';
 
 export function TextBlock({
@@ -24,8 +24,8 @@ export function TextBlock({
         Abyr fdsgfj sdhfgxhbvs syfd ygf
       </StyledCartProductTitle>
       <div>
-        <StyledCartProductAttribute>color: green</StyledCartProductAttribute>
-        <StyledCartProductAttribute>size: xxl</StyledCartProductAttribute>
+        <StyledCartText>color: green</StyledCartText>
+        <StyledCartText>size: xxl</StyledCartText>
       </div>
       <AmountController />
     </StyledCartProductDescription>

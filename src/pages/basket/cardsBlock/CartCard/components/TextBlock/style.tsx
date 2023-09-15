@@ -10,7 +10,7 @@ export const StyledCartProductTitle = styled.h3`
   max-width: 150px;
 `;
 
-export const StyledCartProductAttribute = styled.p`
+export const StyledCartText = styled.p`
   color: #9a501bbf;
   margin: 2px;
 `;

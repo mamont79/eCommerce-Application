@@ -8,6 +8,15 @@ export const StyledPageContentWrapper = styled.div`
   padding: 1rem;
 `;
 
+export const StyledEmptyCartContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: #fff4ea;
+  padding: 15px 15px;
+  border-radius: 5px;
+`;
+
 export const StyledCartContainer = styled.div`
   display: flex;
   justify-content: center;
