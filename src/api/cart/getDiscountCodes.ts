@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
 
@@ -9,6 +8,5 @@ export const getDiscountCodes = async () => {
       Authorization: `Bearer ${accessToken}`,
     },
   });
-  console.log(data.results);
   return data.results;
 };
