@@ -4,12 +4,14 @@ import { StyledBtn } from '../../components/styledBtn';
 import { reset } from '../../features/users/usersSlice';
 import { useAppDispatch } from '../../store/hooks';
 import { StyledPageContentWrapper } from '../registration/style';
+import { resetCartData } from '../../features/cart/cartSlice';
 
 export default function Logout() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(reset());
+    dispatch(resetCartData());
     navigate('/');
     toast(`Bye bye lazy bun 🧡`, {
       position: 'top-right',
