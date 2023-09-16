@@ -17,15 +17,14 @@ export default function Basket() {
 
   return (
     <StyledPageContentWrapper>
-      
       <h1>Cart</h1>
       {!cartFields && <EmptyCart />}
       {cartFields && !!cartFields.items.length && <NotEmptyCart />}
-     
-      <StyledCartContainer>
-        {!!cartFields && <CartCardsBlock goodsData={cartFields} /> && <Order />}
-      </StyledCartContainer>
 
+      <StyledCartContainer>
+        {!!cartFields && <CartCardsBlock goodsData={cartFields} />}
+        {!!cartFields && <Order />}
+      </StyledCartContainer>
     </StyledPageContentWrapper>
   );
 }
