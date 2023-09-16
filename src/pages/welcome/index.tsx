@@ -1,13 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 
 import { useEffect } from 'react';
 import { StyledBtn } from '../../components/styledBtn';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { StyledCardsWrapper } from '../catalog/style';
-import { LoginLink } from '../login/style';
 import handleSayHello from './helpers/hello';
 import {
-  StyledLinksWrapper,
+  StyledDiscontCode,
+  StyledDiscountAmount,
+  StyledDiscountCard,
+  StyledDiscountCardsWrapper,
+  StyledDiscountDescription,
+  StyledMainSlogon,
   StyledWelcomeContainer,
   StyledWelcomeWrapper,
 } from './style';
@@ -19,7 +23,6 @@ export default function Welcome() {
 
   useEffect(() => {
     dispatch(fetchDiscountCodes());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(discountData);
@@ -27,15 +30,21 @@ export default function Welcome() {
   return (
     <StyledWelcomeWrapper>
       <StyledWelcomeContainer>
-        <h1>Your Lazy Zone - for Lazy Shopping</h1>
+        <StyledMainSlogon>Your Lazy Zone - for Lazy Shopping</StyledMainSlogon>
+        <StyledDiscountCardsWrapper>
+          {discountData.map((element) => (
+            <StyledDiscountCard key={element.id}>
+              <StyledDiscontCode>{element.code}</StyledDiscontCode>
+              <StyledDiscountAmount>
+                {element.description.pl}
+              </StyledDiscountAmount>
+              <StyledDiscountDescription>
+                {element.description['en-US']}
+              </StyledDiscountDescription>
+            </StyledDiscountCard>
+          ))}
+        </StyledDiscountCardsWrapper>
         <StyledBtn onClick={handleSayHello}>Say hi</StyledBtn>
-
-        <StyledLinksWrapper>
-          <LoginLink to="/registration">Registration</LoginLink>
-          <LoginLink to="/login">Login</LoginLink>
-        </StyledLinksWrapper>
-
-        <StyledCardsWrapper />
       </StyledWelcomeContainer>
     </StyledWelcomeWrapper>
   );

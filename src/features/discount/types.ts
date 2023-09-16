@@ -6,6 +6,7 @@ export interface DiscountType {
   };
   description: {
     'en-US': string;
+    pl: string;
   };
   isActive: boolean;
 }
