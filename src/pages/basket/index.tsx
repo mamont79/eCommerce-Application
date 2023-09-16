@@ -17,7 +17,6 @@ export default function Basket() {
 
   return (
     <StyledPageContentWrapper>
-      <h1>Cart</h1>
       {!cartFields && <EmptyCart />}
       {cartFields && !!cartFields.items.length && <NotEmptyCart />}
 
