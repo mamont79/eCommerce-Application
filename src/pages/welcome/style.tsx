@@ -31,7 +31,7 @@ const StyledDiscountCard = styled.div`
   min-height: 100px;
   margin-bottom: 20px;
   padding: 10px;
-  background: linear-gradient(10deg, #ff9a4760 20%, #0efcb960 80%);
+  background: linear-gradient(10deg, #fde402da 20%, #fcad0e9d 80%);
   border-radius: 10px;
 `;
 

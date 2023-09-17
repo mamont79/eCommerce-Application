@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-console */
 
 import { useEffect } from 'react';
 import { StyledBtn } from '../../components/styledBtn';
@@ -24,8 +23,6 @@ export default function Welcome() {
   useEffect(() => {
     dispatch(fetchDiscountCodes());
   }, []);
-
-  console.log(discountData);
 
   return (
     <StyledWelcomeWrapper>
