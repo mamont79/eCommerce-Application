@@ -15,14 +15,22 @@ import {
   StyledWelcomeWrapper,
 } from './style';
 import { fetchDiscountCodes } from '../../features/discount/discountSlice';
+import { fetchMeActiveCart } from '../../features/cart/cartSlice';
+// import { getMyActiveCart } from '../../api/cart/getMyActiveCart';
 
 export default function Welcome() {
   const dispatch = useAppDispatch();
   const { discountData } = useAppSelector((state) => state.discount);
+  const { cartFields } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
+    dispatch(fetchMeActiveCart());
     dispatch(fetchDiscountCodes());
   }, []);
+
+  useEffect(() => {
+    if (!cartFields) dispatch(fetchMeActiveCart());
+  }, [cartFields]);
 
   return (
     <StyledWelcomeWrapper>

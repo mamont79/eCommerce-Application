@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   CTP_CLIENT_ID,
   CTP_CLIENT_SECRET,
@@ -29,7 +28,7 @@ export const getAuthEmailToken = async (loginData: LoginData) => {
         },
       }
     );
-    console.log(data);
+    // console.log(data);
     saveTokenToCookie(data.access_token, data.expires_in, 'mail_token');
     saveTokenToCookie(data.refresh_token, data.expires_in, 'refresh_token');
     return data;

@@ -37,7 +37,9 @@ export default function App() {
 
   useEffect(() => {
     const mailToken = getTokenCookie('mail_token');
-    if (mailToken) dispatch(fetchMeCustomer());
+    if (mailToken) {
+      dispatch(fetchMeCustomer());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
