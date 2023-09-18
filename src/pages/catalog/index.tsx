@@ -33,22 +33,7 @@ export default function Catalog() {
     (state) => state.products.catalogCurrentPage
   );
 
-  // const { cartFields } = useAppSelector((state) => state.cart);
-
-  // useEffect(() => {
-  //   dispatch(fetchMeActiveCart());
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!cartFields) dispatch(fetchMeActiveCart());
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [cartFields]);
-
-  function getCurrentId(id: string) {
-    return function newFunc() {
-      setCategoryId(id);
-    };
-  }
+  const getCurrentId = (id: string) => () => setCategoryId(id);
 
   function scrollHandler(): void {
     if (

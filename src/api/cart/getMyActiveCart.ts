@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
-import { getMyCarts } from './getMyCarts';
+import { checkExistMyCarts } from './getMyCarts';
 import { createMyCart } from './createMyCart';
 
 export const getMyActiveCart = async () => {
   const mailToken = getTokenCookie('mail_token');
-  const check = await getMyCarts();
+  const check = await checkExistMyCarts();
   console.log(check);
   if (!check) {
     await createMyCart();
