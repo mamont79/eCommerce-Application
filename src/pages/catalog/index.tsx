@@ -33,11 +33,7 @@ export default function Catalog() {
     (state) => state.products.catalogCurrentPage
   );
 
-  function getCurrentId(id: string) {
-    return function newFunc() {
-      setCategoryId(id);
-    };
-  }
+  const getCurrentId = (id: string) => () => setCategoryId(id);
 
   function scrollHandler(): void {
     if (

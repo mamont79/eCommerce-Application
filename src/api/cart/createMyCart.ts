@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
 
@@ -12,5 +13,6 @@ export const createMyCart = async () => {
       },
     }
   );
+  console.log(data);
   return data;
 };
