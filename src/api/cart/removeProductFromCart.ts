@@ -1,18 +1,16 @@
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
 
-type IRemoveProduct = {
-  cartId: string;
-  lineItemId: string;
-  cartVersion: number;
-  removeQuantity: number;
+export type IRemoveProduct = {
+  cartId: string | undefined;
+  lineItemId: string | undefined;
+  cartVersion: number | undefined;
 };
 
 export const removeProduct = async ({
   cartId,
   lineItemId,
   cartVersion,
-  removeQuantity,
 }: IRemoveProduct) => {
   const mailToken = getTokenCookie('mail_token');
   const { data } = await publicInstance.post(
@@ -23,7 +21,6 @@ export const removeProduct = async ({
         {
           action: 'removeLineItem',
           lineItemId: `${lineItemId}`,
-          quantity: removeQuantity,
         },
       ],
     },

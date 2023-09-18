@@ -14,6 +14,10 @@ import {
 import { createAnonimCart } from '../../api/cart/createAnonimCart';
 import { getAnonimToken } from '../../api/authAnonim';
 import { IDeleteMyCart, deleteMyCart } from '../../api/cart/deleteMyCart';
+import {
+  IRemoveProduct,
+  removeProduct,
+} from '../../api/cart/removeProductFromCart';
 
 const initialState: ICartState = {
   cart: null,
@@ -80,6 +84,21 @@ export const deleteMeActiveCart = createAsyncThunk(
     let data = null;
     try {
       data = await deleteMyCart(cartData);
+    } catch (e) {
+      if (!(e instanceof AxiosError)) throw e;
+      dispatch(setErrorMsg(e.response?.data.message));
+    }
+    dispatch(setAllCartData(data));
+    dispatch(setCartFieldsData(data));
+  }
+);
+
+export const deleteCartProduct = createAsyncThunk(
+  'cart/deleteCartProduct',
+  async (cartData: IRemoveProduct, { dispatch }) => {
+    let data = null;
+    try {
+      data = await removeProduct(cartData);
     } catch (e) {
       if (!(e instanceof AxiosError)) throw e;
       dispatch(setErrorMsg(e.response?.data.message));

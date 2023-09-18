@@ -2,6 +2,7 @@ import { Image, LineItem } from '@commercetools/platform-sdk';
 import { ICartItem } from '../../../pages/basket/types';
 
 export function getCartItem({
+  id,
   variant: { attributes, images },
   price: {
     value: { centAmount: singleItemPrice },
@@ -12,6 +13,7 @@ export function getCartItem({
   name,
 }: LineItem): ICartItem {
   return {
+    lineItemId: id,
     attributes: attributes || [],
     currencyCode,
     imgUrl: getImageUrl(images),
