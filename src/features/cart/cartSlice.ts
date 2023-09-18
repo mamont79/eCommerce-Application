@@ -13,6 +13,7 @@ import {
 } from '../../api/cart/addProductToMyCart';
 import { createAnonimCart } from '../../api/cart/createAnonimCart';
 import { getAnonimToken } from '../../api/authAnonim';
+import { IDeleteMyCart, deleteMyCart } from '../../api/cart/deleteMyCart';
 
 const initialState: ICartState = {
   cart: null,
@@ -73,6 +74,21 @@ export const fetchMeActiveCart = createAsyncThunk(
   }
 );
 
+export const deleteMeActiveCart = createAsyncThunk(
+  'cart/deleteMeActiveCart',
+  async (cartData: IDeleteMyCart, { dispatch }) => {
+    let data = null;
+    try {
+      data = await deleteMyCart(cartData);
+    } catch (e) {
+      if (!(e instanceof AxiosError)) throw e;
+      dispatch(setErrorMsg(e.response?.data.message));
+    }
+    dispatch(setAllCartData(data));
+    dispatch(setCartFieldsData(data));
+  }
+);
+
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -91,6 +107,13 @@ export const cartSlice = createSlice({
     setCartFieldsData: (state, action) => {
       state.cartFields = getCartFields(action.payload);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(deleteMeActiveCart.fulfilled, (state) => {
+      state.cart = null;
+      state.cartFields = null;
+      state.message = null;
+    });
   },
 });
 

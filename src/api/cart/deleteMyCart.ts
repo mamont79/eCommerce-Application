@@ -1,9 +1,10 @@
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
+import { createMyCart } from './createMyCart';
 
-type IDeleteMyCart = {
-  cartId: string;
-  myCartVersion: number;
+export type IDeleteMyCart = {
+  cartId?: string;
+  myCartVersion?: number;
 };
 
 export const deleteMyCart = async ({
@@ -19,5 +20,6 @@ export const deleteMyCart = async ({
       Authorization: `Bearer ${mailToken}`,
     },
   });
+  await createMyCart();
   return data;
 };

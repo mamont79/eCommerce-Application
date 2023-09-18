@@ -21,16 +21,11 @@ import { DiscountType } from '../../features/discount/types';
 export default function Welcome() {
   const dispatch = useAppDispatch();
   const { discountData } = useAppSelector((state) => state.discount);
-  const { cartFields } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(fetchMeActiveCart());
     dispatch(fetchDiscountCodes());
   }, []);
-
-  useEffect(() => {
-    if (!cartFields) dispatch(fetchMeActiveCart());
-  }, [cartFields]);
 
   return (
     <StyledWelcomeWrapper>
