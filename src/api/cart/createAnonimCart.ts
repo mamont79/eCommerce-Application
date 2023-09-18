@@ -1,8 +1,10 @@
 import { publicInstance } from '..';
-import { getTokenCookie } from '../cookieToken';
+import { getAnonimToken } from '../authAnonim';
+
+import { saveIndexAnonimCart } from './localeStorageCart';
 
 export const createAnonimCart = async () => {
-  const anonimToken = getTokenCookie('anonim_token');
+  const anonimToken = await getAnonimToken();
   const { data } = await publicInstance.post(
     `/carts`,
     { currency: 'EUR' },
@@ -12,5 +14,6 @@ export const createAnonimCart = async () => {
       },
     }
   );
+  saveIndexAnonimCart(data.id);
   return data;
 };

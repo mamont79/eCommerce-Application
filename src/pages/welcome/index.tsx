@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect } from 'react';
@@ -17,15 +18,27 @@ import {
 import { fetchDiscountCodes } from '../../features/discount/discountSlice';
 import { fetchMeActiveCart } from '../../features/cart/cartSlice';
 import { DiscountType } from '../../features/discount/types';
+import { getAnonimCartById } from '../../api/cart/getAnonimCartById';
 
 export default function Welcome() {
   const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.users);
   const { discountData } = useAppSelector((state) => state.discount);
 
   useEffect(() => {
-    dispatch(fetchMeActiveCart());
     dispatch(fetchDiscountCodes());
+    if (isAuth) {
+      dispatch(fetchMeActiveCart());
+    } else {
+      getAnonimCartById();
+    }
   }, []);
+
+  useEffect(() => {
+    if (isAuth && !cartFields) dispatch(fetchMeActiveCart());
+  }, [cartFields]);
+
+  console.log(isAuth);
 
   return (
     <StyledWelcomeWrapper>
