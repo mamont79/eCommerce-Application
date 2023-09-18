@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-param-reassign */
 import { useEffect } from 'react';
@@ -56,8 +57,8 @@ export default function Order() {
         promocode: '',
       }}
       onSubmit={(values) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { promocode } = values;
+        console.log(promocode);
       }}
     >
       <StyledOrderForm>
