@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import { publicInstance } from '..';
-import { getTokenCookie } from '../cookieToken';
+import { getAnonimToken } from '../authAnonim';
 import { createAnonimCart } from './createAnonimCart';
 import { getIndexAnonimCart } from './localeStorageCart';
 
 export const getAnonimCartById = async () => {
-  const anonimToken = getTokenCookie('anonim_token');
+  const anonimToken = await getAnonimToken();
   const anonimCartId = getIndexAnonimCart();
   console.log(anonimCartId);
   if (!anonimCartId) await createAnonimCart();

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect } from 'react';
@@ -26,9 +27,9 @@ export default function Welcome() {
   const { cartFields } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
+    dispatch(fetchDiscountCodes());
     if (isAuth) {
       dispatch(fetchMeActiveCart());
-      dispatch(fetchDiscountCodes());
     } else {
       getAnonimCartById();
     }
@@ -38,6 +39,7 @@ export default function Welcome() {
     if (isAuth && !cartFields) dispatch(fetchMeActiveCart());
   }, [cartFields]);
 
+  console.log(isAuth);
   return (
     <StyledWelcomeWrapper>
       <StyledWelcomeContainer>

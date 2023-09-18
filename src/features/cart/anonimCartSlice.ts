@@ -5,13 +5,11 @@ import { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Cart } from '@commercetools/platform-sdk';
 import { ICartState } from './types';
-import { getMyActiveCart } from '../../api/cart/getMyActiveCart';
 import { getCartFields } from './helpers/getCartFields';
 import {
   IAddProductToCartAction,
-  addProductToMyCart,
-} from '../../api/cart/addProductToMyCart';
-// import { createAnonimCart } from '../../api/cart/createAnonimCart';
+  addProductAnonimCart,
+} from '../../api/cart/addProductAnonimCart';
 import { getAnonimToken } from '../../api/authAnonim';
 import { getAnonimCartById } from '../../api/cart/getAnonimCartById';
 
@@ -21,8 +19,8 @@ const initialState: ICartState = {
   message: null,
 };
 
-export const addProductToCart = createAsyncThunk(
-  'cart/addProductToCart',
+export const addProductToAnonimCart = createAsyncThunk(
+  'cart/addProductAnonimCart',
   async (
     actionData: Pick<
       IAddProductToCartAction,
@@ -48,7 +46,7 @@ export const addProductToCart = createAsyncThunk(
     if (cartId === undefined || cartVersion === undefined)
       throw new Error('Cart id or Cart version is undefined.');
 
-    const newCartData = await addProductToMyCart({
+    const newCartData = await addProductAnonimCart({
       ...actionData,
       cartId,
       cartVersion,
@@ -64,7 +62,7 @@ export const fetchMeActiveCart = createAsyncThunk(
   async (_payload, { dispatch }) => {
     let data = null;
     try {
-      data = await getMyActiveCart();
+      data = await getAnonimCartById();
     } catch (e) {
       if (!(e instanceof AxiosError)) throw e;
       dispatch(setErrorMsg(e.response?.data.message));
@@ -75,7 +73,7 @@ export const fetchMeActiveCart = createAsyncThunk(
 );
 
 export const cartSlice = createSlice({
-  name: 'cart',
+  name: 'anonimCart',
   initialState,
   reducers: {
     resetCartData: (state) => {

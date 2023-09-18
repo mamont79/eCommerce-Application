@@ -154,6 +154,7 @@ export const usersSlice = createSlice({
       })
       .addCase(fetchMeCustomer.fulfilled, (state, { payload: customer }) => {
         state.status = UserStatusTypes.SUCCESS;
+        state.isAuth = true;
         state.user = state.user ? { ...state.user, ...customer } : customer;
       })
       .addCase(fetchMeCustomer.rejected, (state, { payload }) => {
@@ -168,6 +169,7 @@ export const usersSlice = createSlice({
         fetchLoginMeCustomer.fulfilled,
         (state, { payload: { customer } }) => {
           state.status = UserStatusTypes.SUCCESS;
+          state.isAuth = true;
           state.user = state.user ? { ...state.user, ...customer } : customer;
         }
       )
@@ -183,6 +185,7 @@ export const usersSlice = createSlice({
         fetchRegisterCustomer.fulfilled,
         (state, { payload: { customer } }) => {
           state.status = UserStatusTypes.SUCCESS;
+          state.isAuth = true;
           state.user = state.user ? { ...state.user, ...customer } : customer;
         }
       )
@@ -196,6 +199,7 @@ export const usersSlice = createSlice({
       })
       .addCase(fetchUpdateCustomerData.fulfilled, (state, { payload }) => {
         state.status = UserStatusTypes.SUCCESS;
+        state.isAuth = true;
         state.user = state.user ? { ...state.user, ...payload } : payload;
       })
       .addCase(fetchUpdateCustomerData.rejected, (state, { payload }) => {

@@ -10,8 +10,6 @@ import { authInstance } from './index';
 export const getAuthEmailToken = async (loginData: LoginData) => {
   const mailToken = getTokenCookie('mail_token');
 
-  // const getEnvVariable = import.meta.env.VITE_REACT_APP_CTP_PROJECT_KEY;
-
   if (!mailToken) {
     const { data } = await authInstance.post(
       `${CTP_PROJECT_KEY}/customers/token`,
@@ -28,7 +26,6 @@ export const getAuthEmailToken = async (loginData: LoginData) => {
         },
       }
     );
-    // console.log(data);
     saveTokenToCookie(data.access_token, data.expires_in, 'mail_token');
     saveTokenToCookie(data.refresh_token, data.expires_in, 'refresh_token');
     return data;
