@@ -24,7 +24,6 @@ export default function Welcome() {
   const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector((state) => state.users);
   const { discountData } = useAppSelector((state) => state.discount);
-  const { cartFields } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(fetchDiscountCodes());
@@ -40,6 +39,7 @@ export default function Welcome() {
   }, [cartFields]);
 
   console.log(isAuth);
+
   return (
     <StyledWelcomeWrapper>
       <StyledWelcomeContainer>

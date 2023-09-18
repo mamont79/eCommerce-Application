@@ -1,3 +1,6 @@
+/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable no-param-reassign */
+import { useEffect } from 'react';
 import { Formik } from 'formik';
 import {
   StyledOrderBtn,
@@ -13,8 +16,40 @@ import {
 } from './style';
 import StyledErrorMessage from '../../../components/errorMessage/styledErrorMessage';
 import { StyledBtn } from '../../../components/styledBtn';
+import { fetchMeActiveCart } from '../../../features/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import handleOreder from './helpers/handlerOrder';
 
 export default function Order() {
+  const dispatch = useAppDispatch();
+  const { cartFields } = useAppSelector((state) => state.cart);
+  const priceCurrencyCode = cartFields?.currencyCode;
+  const totalPrice =
+    cartFields?.cartPriceInCents &&
+    typeof cartFields?.cartPriceInCents === 'number'
+      ? `${cartFields?.cartPriceInCents / 100}`
+      : '';
+  const totalQuntety = cartFields?.items.reduce((accumulator, currentItem) => {
+    if (currentItem.quantity) {
+      accumulator += currentItem.quantity;
+    }
+    return accumulator;
+  }, 0);
+  let totalDiscountedPrice: string | number | undefined =
+    cartFields?.items.reduce((accumulator, currentItem) => {
+      if (currentItem.productDiscountedPriceInCents) {
+        accumulator += currentItem.productDiscountedPriceInCents;
+      }
+      return accumulator;
+    }, 0);
+  totalDiscountedPrice =
+    typeof totalDiscountedPrice === 'number' ? totalDiscountedPrice / 100 : '';
+
+  useEffect(() => {
+    if (!cartFields) dispatch(fetchMeActiveCart());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartFields]);
+
   return (
     <Formik
       initialValues={{
@@ -30,12 +65,14 @@ export default function Order() {
         <StyledOrderInfo>
           <StyledOrderInfoPoint>
             <StyledOrderText>Goods</StyledOrderText>
-            <StyledOrderText>2</StyledOrderText>
+            <StyledOrderText>{totalQuntety}</StyledOrderText>
           </StyledOrderInfoPoint>
 
           <StyledOrderInfoPoint>
             <StyledOrderText>Discount</StyledOrderText>
-            <StyledOrderText>30</StyledOrderText>
+            <StyledOrderText>
+              {totalDiscountedPrice} {priceCurrencyCode}
+            </StyledOrderText>
           </StyledOrderInfoPoint>
         </StyledOrderInfo>
 
@@ -48,9 +85,13 @@ export default function Order() {
         <StyledResultLine />
         <StyledOrderInfoPoint>
           <StyledOrderResultText>Result</StyledOrderResultText>
-          <StyledOrderResultText>35</StyledOrderResultText>
+          <StyledOrderResultText>
+            {totalPrice} {priceCurrencyCode}
+          </StyledOrderResultText>
         </StyledOrderInfoPoint>
-        <StyledOrderBtn $primary>Order</StyledOrderBtn>
+        <StyledOrderBtn $primary onClick={handleOreder}>
+          Order
+        </StyledOrderBtn>
       </StyledOrderForm>
     </Formik>
   );

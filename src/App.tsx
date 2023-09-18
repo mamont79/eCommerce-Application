@@ -20,6 +20,7 @@ const Product = lazy(() => import('./pages/product'));
 const Basket = lazy(() => import('./pages/basket'));
 const AboutUs = lazy(() => import('./pages/aboutUs'));
 
+
 export default function App() {
   const dispatch = useAppDispatch();
   const routingNav = [
@@ -54,6 +55,7 @@ export default function App() {
             element={<Suspense fallback={<Spinner />}>{element}</Suspense>}
           />
         ))}
+
       </StyledRoutes>
       <ToastContainer />
       <Footer />

@@ -4,7 +4,7 @@ import { fetchMeActiveCart } from '../../features/cart/cartSlice';
 import { StyledCartContainer, StyledPageContentWrapper } from './style';
 import { CartCardsBlock } from './cardsBlock';
 import Order from './orderBlock';
-import { EmptyCart, NotEmptyCart } from '../../components/emptyCart';
+import { EmptyCart } from '../../components/emptyCart';
 
 export default function Basket() {
   const dispatch = useAppDispatch();
@@ -17,12 +17,13 @@ export default function Basket() {
 
   return (
     <StyledPageContentWrapper>
-      {!cartFields && <EmptyCart />}
-      {cartFields && !!cartFields.items.length && <NotEmptyCart />}
+      {!cartFields?.items.length && <EmptyCart />}
 
       <StyledCartContainer>
-        {!!cartFields && <CartCardsBlock goodsData={cartFields} />}
-        {!!cartFields && <Order />}
+        {!!cartFields?.items.length && (
+          <CartCardsBlock goodsData={cartFields} />
+        )}
+        {!!cartFields?.items.length && <Order />}
       </StyledCartContainer>
     </StyledPageContentWrapper>
   );
