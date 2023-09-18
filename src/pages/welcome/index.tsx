@@ -17,19 +17,25 @@ import {
 import { fetchDiscountCodes } from '../../features/discount/discountSlice';
 import { fetchMeActiveCart } from '../../features/cart/cartSlice';
 import { DiscountType } from '../../features/discount/types';
+import { getAnonimCartById } from '../../api/cart/getAnonimCartById';
 
 export default function Welcome() {
   const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.users);
   const { discountData } = useAppSelector((state) => state.discount);
   const { cartFields } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
-    dispatch(fetchMeActiveCart());
-    dispatch(fetchDiscountCodes());
+    if (isAuth) {
+      dispatch(fetchMeActiveCart());
+      dispatch(fetchDiscountCodes());
+    } else {
+      getAnonimCartById();
+    }
   }, []);
 
   useEffect(() => {
-    if (!cartFields) dispatch(fetchMeActiveCart());
+    if (isAuth && !cartFields) dispatch(fetchMeActiveCart());
   }, [cartFields]);
 
   return (

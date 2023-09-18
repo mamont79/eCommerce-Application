@@ -12,7 +12,7 @@ export const deleteMyCart = (customerId: string) => {
 };
 
 export const saveIndexAnonimCart = (cartId: string) => {
-  localStorage.setItem('anonimCart', cartId);
+  localStorage.setItem('anonimCartId', cartId);
 };
 
 export const getIndexAnonimCart = () => {
