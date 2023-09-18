@@ -5,6 +5,7 @@ export interface ICartFields {
 }
 
 export interface ICartItem {
+  lineItemId?: string;
   imgUrl?: string;
   title?: string;
   attributes?: IAttribute[];
