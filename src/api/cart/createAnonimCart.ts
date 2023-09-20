@@ -5,6 +5,7 @@ import { saveIndexAnonimCart } from './localeStorageCart';
 
 export const createAnonimCart = async () => {
   const anonimToken = await getAnonimToken();
+
   const { data } = await publicInstance.post(
     `/carts`,
     { currency: 'EUR' },

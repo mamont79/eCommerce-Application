@@ -6,8 +6,12 @@ import { getIndexAnonimCart } from './localeStorageCart';
 
 export const getAnonimCartById = async () => {
   const anonimToken = await getAnonimToken();
+
   let anonimCartId = getIndexAnonimCart();
-  if (!anonimCartId) anonimCartId = await createAnonimCart();
+  if (!anonimCartId) {
+    const newAnonimCart = await createAnonimCart();
+    anonimCartId = newAnonimCart.id;
+  }
   const { data } = await publicInstance.get(`/carts/${anonimCartId}`, {
     headers: {
       Authorization: `Bearer ${anonimToken}`,
