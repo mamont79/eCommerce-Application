@@ -4,20 +4,28 @@ import { StyledEmptyCartContainer } from '../style';
 import { StyledDeleteCartItemBtn } from './CartCard/style';
 import { StyledCartText } from './CartCard/components/TextBlock/style';
 import { ICartFields } from '../types';
-import { deleteMeActiveCart } from '../../../features/cart/cartSlice';
+import {
+  deleteMeActiveCart,
+  fetchDeleteAnonimousCart,
+} from '../../../features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { IDeleteMyCart } from '../../../api/cart/deleteMyCart';
 
 export function CartCardsBlock({ goodsData }: { goodsData: ICartFields }) {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
+  const { isAuth } = useAppSelector((state) => state.users);
   const cartData: IDeleteMyCart = {
     cartId: cart?.id,
     myCartVersion: cart?.version,
   };
 
   const handleEmptyCart = () => {
-    dispatch(deleteMeActiveCart(cartData));
+    if (isAuth) {
+      dispatch(deleteMeActiveCart(cartData));
+    } else {
+      dispatch(fetchDeleteAnonimousCart(cartData));
+    }
   };
 
   return (
