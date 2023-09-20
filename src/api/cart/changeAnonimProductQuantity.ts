@@ -8,7 +8,7 @@ type IChangeProductQuantity = {
   newQuantity: number;
 };
 
-export const changeProductQuantity = async ({
+export const changeAnonimProductQuantity = async ({
   cartId,
   lineItemId,
   cartVersion,

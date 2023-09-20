@@ -7,7 +7,7 @@ export type IRemoveProduct = {
   cartVersion: number | undefined;
 };
 
-export const removeProduct = async ({
+export const removeProductAnonim = async ({
   cartId,
   lineItemId,
   cartVersion,

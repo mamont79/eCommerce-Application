@@ -1,30 +1,26 @@
 import { publicInstance } from '..';
 import { getAnonimToken } from '../authAnonim';
 
-export type IAddProductToCartAction = {
-  productId: string;
+type IAddDiscoutCode = {
   cartId: string;
   cartVersion: number;
-  productVariantId: number;
+  discountCode: string;
 };
 
-export const addProductToAnonimousCart = async ({
-  productId,
+export const addDiscountCodeAnonim = async ({
   cartId,
   cartVersion,
-  productVariantId,
-}: IAddProductToCartAction) => {
+  discountCode,
+}: IAddDiscoutCode) => {
   const anonimToken = await getAnonimToken();
   const { data } = await publicInstance.post(
-    `/carts/${cartId}`,
+    `/me/carts/${cartId}`,
     {
       version: cartVersion,
       actions: [
         {
-          action: 'addLineItem',
-          productId: `${productId}`,
-          variantId: productVariantId,
-          quantity: 1,
+          action: 'addDiscountCode',
+          code: discountCode,
         },
       ],
     },
