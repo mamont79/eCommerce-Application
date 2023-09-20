@@ -8,6 +8,8 @@ import { fetchMeCustomer } from './features/users/usersSlice';
 import { getTokenCookie } from './api/cookieToken';
 import { StyledPageWrapper, StyledRoutes } from './components/routerWrapper';
 import Spinner from './components/spinner';
+import { getAuthToken } from './api/auth';
+import { getAnonimToken } from './api/authAnonim';
 
 const Catalog = lazy(() => import('./pages/catalog'));
 const Login = lazy(() => import('./pages/login'));
@@ -19,7 +21,6 @@ const CustomerProfile = lazy(() => import('./pages/customerProfile'));
 const Product = lazy(() => import('./pages/product'));
 const Basket = lazy(() => import('./pages/basket'));
 const AboutUs = lazy(() => import('./pages/aboutUs'));
-
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -37,6 +38,8 @@ export default function App() {
   ];
 
   useEffect(() => {
+    getAuthToken();
+    getAnonimToken();
     const mailToken = getTokenCookie('mail_token');
     if (mailToken) {
       dispatch(fetchMeCustomer());
@@ -55,7 +58,6 @@ export default function App() {
             element={<Suspense fallback={<Spinner />}>{element}</Suspense>}
           />
         ))}
-
       </StyledRoutes>
       <ToastContainer />
       <Footer />
