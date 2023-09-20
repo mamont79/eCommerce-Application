@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import { AmountController } from '../amountController';
 import {
   StyledCartProductDescription,
@@ -7,7 +9,7 @@ import {
 import { ICartCardProps } from '../../../../types';
 
 export function TextBlock({ cardData }: ICartCardProps) {
-  const { title, attributes, quantity } = cardData || {};
+  const { lineItemId, title, attributes, quantity } = cardData || {};
 
   return (
     <StyledCartProductDescription>
@@ -19,7 +21,7 @@ export function TextBlock({ cardData }: ICartCardProps) {
           </StyledCartText>
         ))}
       </div>
-      <AmountController quantity={quantity} />
+      <AmountController cardData={{ lineItemId, quantity }} />
     </StyledCartProductDescription>
   );
 }

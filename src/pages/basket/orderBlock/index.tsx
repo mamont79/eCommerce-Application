@@ -28,7 +28,7 @@ export default function Order() {
   const totalPrice =
     cartFields?.cartPriceInCents &&
     typeof cartFields?.cartPriceInCents === 'number'
-      ? `${cartFields?.cartPriceInCents / 100}`
+      ? cartFields?.cartPriceInCents / 100
       : '';
   const totalQuntety = cartFields?.items.reduce((accumulator, currentItem) => {
     if (currentItem.quantity) {
@@ -36,15 +36,20 @@ export default function Order() {
     }
     return accumulator;
   }, 0);
-  let totalDiscountedPrice: string | number | undefined =
-    cartFields?.items.reduce((accumulator, currentItem) => {
-      if (currentItem.productDiscountedPriceInCents) {
-        accumulator += currentItem.productDiscountedPriceInCents;
+  const totalFullPrice = cartFields?.items.reduce(
+    (accumulator, currentItem) => {
+      if (currentItem.productPriceInCents && currentItem.quantity) {
+        accumulator += currentItem.productPriceInCents * currentItem.quantity;
       }
       return accumulator;
-    }, 0);
-  totalDiscountedPrice =
-    typeof totalDiscountedPrice === 'number' ? totalDiscountedPrice / 100 : '';
+    },
+    0
+  );
+
+  const totalDiscountedPrice =
+    totalFullPrice && typeof totalPrice === 'number'
+      ? (totalFullPrice / 100 - +totalPrice).toFixed(2)
+      : '';
 
   useEffect(() => {
     if (!cartFields) dispatch(fetchMeActiveCart());
