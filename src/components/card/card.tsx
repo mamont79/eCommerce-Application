@@ -1,4 +1,7 @@
-import { addProductToCart } from '../../features/cart/cartSlice';
+import {
+  fetchProductToAnonimousCart,
+  fetchProductToMyCart,
+} from '../../features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   StyledCard,
@@ -18,6 +21,7 @@ import { CardProps } from './types';
 export default function Card({ product }: CardProps) {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
+  const { isAuth } = useAppSelector((state) => state.users);
 
   const {
     id,
@@ -41,12 +45,13 @@ export default function Card({ product }: CardProps) {
 
   const handleAddProductBtnClick = () => {
     const addProductData = {
-      cartId: cart?.id,
-      cartVersion: cart?.version,
+      cartId: cart!.id,
+      cartVersion: cart!.version,
       productId: id,
       productVariantId: 1,
     };
-    dispatch(addProductToCart(addProductData));
+    if (isAuth) dispatch(fetchProductToMyCart(addProductData));
+    else dispatch(fetchProductToAnonimousCart(addProductData));
   };
 
   return (

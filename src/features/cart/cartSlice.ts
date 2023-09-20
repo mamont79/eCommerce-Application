@@ -3,18 +3,20 @@
 
 import { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Cart } from '@commercetools/platform-sdk';
-import { IAddProductToCartPayload, ICartState } from './types';
+import { ICartState } from './types';
 import { getMyActiveCart } from '../../api/cart/getMyActiveCart';
 import { getCartFields } from './helpers/getCartFields';
-import { addProductToMyCart } from '../../api/cart/addProductToMyCart';
-import { getAnonimToken } from '../../api/authAnonim';
 import { getAnonimCartById } from '../../api/cart/getAnonimCartById';
 import { IDeleteMyCart, deleteMyCart } from '../../api/cart/deleteMyCart';
 import {
   IRemoveProduct,
   removeProduct,
 } from '../../api/cart/removeProductFromCart';
+import {
+  IAddProductToCartAction,
+  addProductToAnonimousCart,
+} from '../../api/cart/addProductAnonimCart';
+import { addProductToMyCart } from '../../api/cart/addProductToMyCart';
 
 const initialState: ICartState = {
   cart: null,
@@ -22,34 +24,39 @@ const initialState: ICartState = {
   message: null,
 };
 
-export const addProductToCart = createAsyncThunk(
-  'cart/addProductToCart',
-  async (actionData: IAddProductToCartPayload, { dispatch }) => {
-    let { cartId, cartVersion } = actionData;
-    let anonimousCustomerCartData: Cart | null = null;
-
-    if (!cartId || !cartVersion) {
-      await getAnonimToken();
-      anonimousCustomerCartData = await getAnonimCartById();
-    }
-
-    if (anonimousCustomerCartData) {
-      const { id, version } = anonimousCustomerCartData;
-      cartId = id;
-      cartVersion = version;
-    }
-
-    if (cartId === undefined || cartVersion === undefined)
-      throw new Error('Cart id or Cart version is undefined.');
-
-    const newCartData = await addProductToMyCart({
-      ...actionData,
-      cartId,
-      cartVersion,
-    });
+export const fetchProductToAnonimousCart = createAsyncThunk(
+  'cart/fetchProductToAnonimousCart',
+  async (actionData: IAddProductToCartAction, { dispatch }) => {
+    const newCartData = await addProductToAnonimousCart(actionData);
 
     dispatch(setAllCartData(newCartData));
     dispatch(setCartFieldsData(newCartData));
+  }
+);
+
+export const fetchProductToMyCart = createAsyncThunk(
+  'cart/fetchProductToMyCart',
+  async (actionData: IAddProductToCartAction, { dispatch }) => {
+    const newCartData = await addProductToMyCart(actionData);
+
+    dispatch(setAllCartData(newCartData));
+    dispatch(setCartFieldsData(newCartData));
+  }
+);
+
+export const fetchAnonCart = createAsyncThunk(
+  'cart/fetchAnonCart',
+  async (_payload, { dispatch }) => {
+    let data = null;
+    try {
+      data = await getAnonimCartById();
+    } catch (e) {
+      if (!(e instanceof AxiosError)) throw e;
+      dispatch(setErrorMsg(e.response?.data.message));
+    }
+
+    dispatch(setAllCartData(data));
+    dispatch(setCartFieldsData(data));
   }
 );
 

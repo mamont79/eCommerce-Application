@@ -15,9 +15,11 @@ import {
   StyledWelcomeWrapper,
 } from './style';
 import { fetchDiscountCodes } from '../../features/discount/discountSlice';
-import { fetchMeActiveCart } from '../../features/cart/cartSlice';
+import {
+  fetchAnonCart,
+  fetchMeActiveCart,
+} from '../../features/cart/cartSlice';
 import { DiscountType } from '../../features/discount/types';
-import { getAnonimCartById } from '../../api/cart/getAnonimCartById';
 
 export default function Welcome() {
   const dispatch = useAppDispatch();
@@ -30,7 +32,7 @@ export default function Welcome() {
     if (isAuth) {
       dispatch(fetchMeActiveCart());
     } else {
-      getAnonimCartById();
+      dispatch(fetchAnonCart());
     }
   }, []);
 

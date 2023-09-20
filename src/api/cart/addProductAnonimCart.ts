@@ -8,13 +8,13 @@ export type IAddProductToCartAction = {
   productVariantId: number;
 };
 
-export const addProductAnonimCart = async ({
+export const addProductToAnonimousCart = async ({
   productId,
   cartId,
   cartVersion,
   productVariantId,
 }: IAddProductToCartAction) => {
-  const mailToken = getTokenCookie('mail_token');
+  const anonToken = getTokenCookie('anonim_token');
   const { data } = await publicInstance.post(
     `/carts/${cartId}`,
     {
@@ -30,7 +30,7 @@ export const addProductAnonimCart = async ({
     },
     {
       headers: {
-        Authorization: `Bearer ${mailToken}`,
+        Authorization: `Bearer ${anonToken}`,
       },
     }
   );
