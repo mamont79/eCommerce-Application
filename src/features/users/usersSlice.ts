@@ -50,19 +50,13 @@ export const fetchAuthEmailToken = createAsyncThunk(
 
 export const fetchMeCustomer = createAsyncThunk(
   'users/fetchMeCustomer',
-  async () => {
+  async (_payload, { rejectWithValue }) => {
     let response = null;
     try {
       response = await getCustomer();
     } catch (error) {
       if (error instanceof AxiosError) {
-        // const message =
-        //   (error.response &&
-        //     error.response.data &&
-        //     error.response.data.message) ||
-        //   error.message ||
-        //   error.toString();
-        // return thunkAPI.rejectWithValue(message);
+        rejectWithValue(error.message);
       }
     }
     return response;

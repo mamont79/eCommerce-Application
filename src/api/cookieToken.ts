@@ -13,7 +13,7 @@ export const deleteMailToken = (name: string) => {
   document.cookie = `${name}=; max-age=-1`;
 };
 
-export const getTokenCookie = (name: string) => {
+export const getTokenCookie = (name: string): string | undefined => {
   const matches = document.cookie.match(
     new RegExp(
       `(?:^|; )${name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1')}=([^;]*)`

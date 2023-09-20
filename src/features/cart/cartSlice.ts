@@ -4,14 +4,10 @@
 import { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Cart } from '@commercetools/platform-sdk';
-import { ICartState } from './types';
+import { IAddProductToCartPayload, ICartState } from './types';
 import { getMyActiveCart } from '../../api/cart/getMyActiveCart';
 import { getCartFields } from './helpers/getCartFields';
-import {
-  IAddProductToCartAction,
-  addProductToMyCart,
-} from '../../api/cart/addProductToMyCart';
-// import { createAnonimCart } from '../../api/cart/createAnonimCart';
+import { addProductToMyCart } from '../../api/cart/addProductToMyCart';
 import { getAnonimToken } from '../../api/authAnonim';
 import { getAnonimCartById } from '../../api/cart/getAnonimCartById';
 import { IDeleteMyCart, deleteMyCart } from '../../api/cart/deleteMyCart';
@@ -28,14 +24,7 @@ const initialState: ICartState = {
 
 export const addProductToCart = createAsyncThunk(
   'cart/addProductToCart',
-  async (
-    actionData: Pick<
-      IAddProductToCartAction,
-      'productId' | 'productVariantId'
-    > &
-      Partial<Pick<IAddProductToCartAction, 'cartId' | 'cartVersion'>>,
-    { dispatch }
-  ) => {
+  async (actionData: IAddProductToCartPayload, { dispatch }) => {
     let { cartId, cartVersion } = actionData;
     let anonimousCustomerCartData: Cart | null = null;
 

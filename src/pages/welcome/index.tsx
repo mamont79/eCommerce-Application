@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect } from 'react';
@@ -38,8 +37,6 @@ export default function Welcome() {
   useEffect(() => {
     if (isAuth && !cartFields) dispatch(fetchMeActiveCart());
   }, [cartFields]);
-
-  console.log(isAuth);
 
   return (
     <StyledWelcomeWrapper>
