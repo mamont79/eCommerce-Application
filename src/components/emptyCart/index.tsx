@@ -4,7 +4,6 @@ import {
   StyledEmptyCartTitle,
   StyledEmptyCartWrapper,
   StyledMessageEmptyCart,
-  StyledNotEmptyCart,
 } from './style';
 import BoySearchingSvg from '../../assets/boySearchingIcon';
 
@@ -23,13 +22,5 @@ export function EmptyCart() {
         Click on Boy. He will help you find amazing things
       </StyledMessageEmptyCart>
     </StyledEmptyCartWrapper>
-  );
-}
-
-export function NotEmptyCart() {
-  return (
-    <StyledNotEmptyCart>
-      Maybe you want to change something in your cart?
-    </StyledNotEmptyCart>
   );
 }

@@ -25,8 +25,8 @@ export const discountCodesSlice = createSlice({
     reset: (state) => {
       state.discountData = [];
     },
-    setDiscountCodesData: (state, action) => {
-      state.discountData = [...action.payload];
+    setDiscountCodesData: (state, { payload }) => {
+      state.discountData = [...payload];
     },
   },
 });

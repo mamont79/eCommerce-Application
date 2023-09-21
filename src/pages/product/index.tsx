@@ -23,8 +23,6 @@ import {
   fetchProductToAnonimousCart,
   fetchProductToMyCart,
 } from '../../features/cart/cartSlice';
-import { fetchDiscountCodes } from '../../features/discount/discountSlice';
-
 
 export default function Product() {
   const dispatch = useAppDispatch();
@@ -72,7 +70,6 @@ export default function Product() {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchDiscountCodes());
     if (isAuth) {
       dispatch(fetchMeActiveCart());
     } else {

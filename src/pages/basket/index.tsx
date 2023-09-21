@@ -9,7 +9,6 @@ import { StyledCartContainer, StyledPageContentWrapper } from './style';
 import { CartCardsBlock } from './cardsBlock';
 import Order from './orderBlock';
 import { EmptyCart } from '../../components/emptyCart';
-import { fetchDiscountCodes } from '../../features/discount/discountSlice';
 
 export default function Basket() {
   const dispatch = useAppDispatch();
@@ -17,7 +16,6 @@ export default function Basket() {
   const { cartFields } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
-    dispatch(fetchDiscountCodes());
     if (isAuth) {
       dispatch(fetchMeActiveCart());
     } else {
