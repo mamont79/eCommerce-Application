@@ -1,19 +1,19 @@
 import { publicInstance } from '..';
 import { getAnonimToken } from '../authAnonim';
 
-export type IAddProductToCartAction = {
-  productId: string;
+type IChangeProductQuantity = {
   cartId: string;
+  lineItemId: string;
   cartVersion: number;
-  productVariantId: number;
+  newQuantity: number;
 };
 
-export const addProductToAnonimousCart = async ({
-  productId,
+export const changeAnonimProductQuantity = async ({
   cartId,
+  lineItemId,
   cartVersion,
-  productVariantId,
-}: IAddProductToCartAction) => {
+  newQuantity,
+}: IChangeProductQuantity) => {
   const anonimToken = await getAnonimToken();
   const { data } = await publicInstance.post(
     `/carts/${cartId}`,
@@ -21,10 +21,9 @@ export const addProductToAnonimousCart = async ({
       version: cartVersion,
       actions: [
         {
-          action: 'addLineItem',
-          productId: `${productId}`,
-          variantId: productVariantId,
-          quantity: 1,
+          action: 'changeLineItemQuantity',
+          lineItemId: `${lineItemId}`,
+          quantity: newQuantity,
         },
       ],
     },
