@@ -14,7 +14,7 @@ export const addDiscountCodeAnonim = async ({
 }: IAddDiscoutCode) => {
   const anonimToken = await getAnonimToken();
   const { data } = await publicInstance.post(
-    `/me/carts/${cartId}`,
+    `/carts/${cartId}`,
     {
       version: cartVersion,
       actions: [
