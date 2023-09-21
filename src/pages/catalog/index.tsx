@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
@@ -39,7 +37,7 @@ export default function Catalog() {
     return () => {
       dispatch(resetProducts());
     };
-  }, [location]);
+  }, [location, dispatch]);
 
   useEffect(() => {
     if (fetching) {
@@ -47,7 +45,7 @@ export default function Catalog() {
       dispatch(fetchCatalog(catalogCurrentPage));
       setFetching(false);
     }
-  }, [fetching]);
+  }, [fetching, dispatch, setFetching, catalogCurrentPage]);
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);

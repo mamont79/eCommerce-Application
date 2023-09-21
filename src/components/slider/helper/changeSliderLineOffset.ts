@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable no-plusplus */
 import { ImagesType } from '../../../features/products/productsType';
 import { CurrentSliderimg } from './types';
 
@@ -10,7 +9,7 @@ export function switchPrevSliderImg(
 ): () => void {
   return () => {
     if (ref.current) {
-      currentimg.current--;
+      currentimg.current -= 1;
 
       if (currentimg.current < 0) {
         currentimg.current = allImages.length - 1;
@@ -28,7 +27,7 @@ export function switchNextSliderImg(
 ): () => void {
   return () => {
     if (ref.current) {
-      currentimg.current++;
+      currentimg.current += 1;
 
       if (currentimg.current >= allImages.length) {
         currentimg.current = 0;

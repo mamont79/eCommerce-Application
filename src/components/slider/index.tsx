@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import { useRef } from 'react';
 import { ImagesType } from '../../features/products/productsType';
 import {
@@ -21,8 +20,8 @@ export default function Slider({ allImages }: { allImages: ImagesType[] }) {
     <StyledSliderContainer>
       <StyledSlider>
         <StyledSliderLine ref={sliderLineRef}>
-          {allImages.map(({ url }, index) => (
-            <StyledSliderImgContainer key={index}>
+          {allImages.map(({ url }) => (
+            <StyledSliderImgContainer key={url}>
               <StyledSliderImg src={url} alt="product" />
             </StyledSliderImgContainer>
           ))}
