@@ -26,17 +26,16 @@ export function AmountController({ cardData }: ICartCardProps) {
     dispatch(
       changeProductCartQuantity({ ...cartData, newQuantity: amount + 1 })
     );
-  }
+  };
 
-  function decreaseByOne() {
+  const decreaseByOne = () => {
     if (amount > 1) {
       setAmount(amount - 1);
       dispatch(
         changeProductCartQuantity({ ...cartData, newQuantity: amount - 1 })
       );
     }
-  }
-
+  };
 
   return (
     <StyledCountWrapper>
