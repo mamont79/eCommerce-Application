@@ -9,7 +9,10 @@ import { TextBlock } from './components/TextBlock';
 import { PriceBlock } from './components/PriceBlock';
 import { ICartCardProps } from '../../types';
 import { IRemoveProduct } from '../../../../api/cart/removeProductFromCart';
-import { deleteCartProduct } from '../../../../features/cart/cartSlice';
+import {
+  deleteAnonimousCartProduct,
+  deleteCartProduct,
+} from '../../../../features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 
 export function CartCard({ cardData }: ICartCardProps) {
@@ -25,6 +28,7 @@ export function CartCard({ cardData }: ICartCardProps) {
   } = cardData || {};
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
+  const { isAuth } = useAppSelector((state) => state.users);
   const cartData: IRemoveProduct = {
     cartId: cart?.id,
     cartVersion: cart?.version,
@@ -32,7 +36,8 @@ export function CartCard({ cardData }: ICartCardProps) {
   };
 
   const handleDeleteCartItem = () => {
-    dispatch(deleteCartProduct(cartData));
+    if (isAuth) dispatch(deleteCartProduct(cartData));
+    else dispatch(deleteAnonimousCartProduct(cartData));
   };
 
   return (
