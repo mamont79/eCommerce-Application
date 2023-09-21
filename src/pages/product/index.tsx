@@ -20,11 +20,15 @@ import Slider from '../../components/slider';
 import {
   fetchMeActiveCart,
   fetchAnonCart,
+  fetchProductToAnonimousCart,
+  fetchProductToMyCart,
 } from '../../features/cart/cartSlice';
 import { fetchDiscountCodes } from '../../features/discount/discountSlice';
 
+
 export default function Product() {
   const dispatch = useAppDispatch();
+  const { cart } = useAppSelector((state) => state.cart);
   const { data } = useAppSelector((state) => state.currentProduct);
   const { isAuth } = useAppSelector((state) => state.users);
 
@@ -44,6 +48,24 @@ export default function Product() {
 
   const cost = discontPrice || fullPrice;
   const previousCost = discontPrice ? `${fullPrice! / 100} ${currency}` : '';
+
+  let isInCart = false;
+  if (cart) {
+    isInCart =
+      cart.lineItems.find(({ productId }) => productId === data?.id) !==
+      undefined;
+  }
+
+  const handleAddProductBtnClick = () => {
+    const addProductData = {
+      cartId: cart!.id,
+      cartVersion: cart!.version,
+      productId: data?.id || '',
+      productVariantId: 1,
+    };
+    if (isAuth) dispatch(fetchProductToMyCart(addProductData));
+    else dispatch(fetchProductToAnonimousCart(addProductData));
+  };
 
   useEffect(() => {
     dispatch(fetchProductByKey(productKey!));
@@ -72,7 +94,13 @@ export default function Product() {
           <StyledPreviousPrice>{previousCost}</StyledPreviousPrice>
         </StyledPriceInfo>
         <StyledButtonWrapper>
-          <StyledCardBtn $primary>LAZY SHOPPING</StyledCardBtn>
+          <StyledCardBtn
+            $primary
+            disabled={isInCart}
+            onClick={handleAddProductBtnClick}
+          >
+            LAZY SHOPPING
+          </StyledCardBtn>
         </StyledButtonWrapper>
         <StyledProductDescription>
           {currentDescription}
