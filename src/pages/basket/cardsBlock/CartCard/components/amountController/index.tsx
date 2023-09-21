@@ -5,7 +5,10 @@ import {
   StyledCountWrapper,
 } from './style';
 import { IChangeProductQuantity } from '../../../../../../api/cart/changeProductQuanity';
-import { changeProductCartQuantity } from '../../../../../../features/cart/cartSlice';
+import {
+  changeProductCartQuantity,
+  fetchChangeProductCartQuantityInAnomimousCart,
+} from '../../../../../../features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../../../../../store/hooks';
 import { ICartCardProps } from '../../../../types';
 
@@ -14,6 +17,7 @@ export function AmountController({ cardData }: ICartCardProps) {
   const [amount, setAmount] = useState<number>(quantity || 1);
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
+  const { isAuth } = useAppSelector((state) => state.users);
   const cartData: IChangeProductQuantity = {
     cartId: cart?.id,
     cartVersion: cart?.version,
@@ -22,18 +26,30 @@ export function AmountController({ cardData }: ICartCardProps) {
   };
 
   const increaseByOne = () => {
-    setAmount(amount + 1);
-    dispatch(
-      changeProductCartQuantity({ ...cartData, newQuantity: amount + 1 })
-    );
+    const newQuantity = amount + 1;
+    setAmount(newQuantity);
+    const newData = {
+      ...cartData,
+      newQuantity,
+    };
+    if (isAuth) {
+      dispatch(changeProductCartQuantity(newData));
+    } else {
+      dispatch(fetchChangeProductCartQuantityInAnomimousCart(newData));
+    }
   };
 
   const decreaseByOne = () => {
-    if (amount > 1) {
-      setAmount(amount - 1);
-      dispatch(
-        changeProductCartQuantity({ ...cartData, newQuantity: amount - 1 })
-      );
+    const newQuantity = amount - 1;
+    setAmount(newQuantity);
+    const newData = {
+      ...cartData,
+      newQuantity,
+    };
+    if (isAuth) {
+      dispatch(changeProductCartQuantity(newData));
+    } else {
+      dispatch(fetchChangeProductCartQuantityInAnomimousCart(newData));
     }
   };
 
