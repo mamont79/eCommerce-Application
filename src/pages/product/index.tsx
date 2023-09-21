@@ -17,10 +17,16 @@ import {
 } from './style';
 import { StyledCardBtn } from '../../components/card/style';
 import Slider from '../../components/slider';
+import {
+  fetchMeActiveCart,
+  fetchAnonCart,
+} from '../../features/cart/cartSlice';
+import { fetchDiscountCodes } from '../../features/discount/discountSlice';
 
 export default function Product() {
   const dispatch = useAppDispatch();
   const { data } = useAppSelector((state) => state.currentProduct);
+  const { isAuth } = useAppSelector((state) => state.users);
 
   const productName = useParams();
   const productKey = productName.productkey;
@@ -41,6 +47,15 @@ export default function Product() {
 
   useEffect(() => {
     dispatch(fetchProductByKey(productKey!));
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchDiscountCodes());
+    if (isAuth) {
+      dispatch(fetchMeActiveCart());
+    } else {
+      dispatch(fetchAnonCart());
+    }
   }, []);
 
   return (

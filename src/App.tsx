@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Suspense, lazy, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { useAppDispatch } from './store/hooks';
+import { useAppDispatch, useAppSelector } from './store/hooks';
 import Footer from './components/footer';
 import NavBar from './components/navBar';
 import { fetchMeCustomer } from './features/users/usersSlice';
@@ -10,6 +11,8 @@ import { StyledPageWrapper, StyledRoutes } from './components/routerWrapper';
 import Spinner from './components/spinner';
 import { getAuthToken } from './api/auth';
 import { getAnonimToken } from './api/authAnonim';
+import { fetchMeActiveCart, fetchAnonCart } from './features/cart/cartSlice';
+import { fetchDiscountCodes } from './features/discount/discountSlice';
 
 const Catalog = lazy(() => import('./pages/catalog'));
 const Login = lazy(() => import('./pages/login'));
@@ -24,6 +27,7 @@ const AboutUs = lazy(() => import('./pages/aboutUs'));
 
 export default function App() {
   const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.users);
   const routingNav = [
     { path: '/', element: <Welcome /> },
     { path: '/login', element: <Login /> },
@@ -44,9 +48,16 @@ export default function App() {
     if (mailToken) {
       dispatch(fetchMeCustomer());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    dispatch(fetchDiscountCodes());
+    if (isAuth) {
+      dispatch(fetchMeActiveCart());
+    } else {
+      dispatch(fetchAnonCart());
+    }
+  }, []);
   return (
     <StyledPageWrapper>
       <NavBar />
