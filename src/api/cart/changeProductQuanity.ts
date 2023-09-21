@@ -1,11 +1,11 @@
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
 
-type IChangeProductQuantity = {
-  cartId: string;
-  lineItemId: string;
-  cartVersion: number;
-  newQuantity: number;
+export type IChangeProductQuantity = {
+  cartId: string | undefined;
+  lineItemId: string | undefined;
+  cartVersion: number | undefined;
+  newQuantity: number | undefined;
 };
 
 export const changeProductQuantity = async ({
