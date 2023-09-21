@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { catalogProducts } from '../../api/catalog';
 import { ProductState } from './productsType';
 import preparProducts from './helpers/prepareProducts';
-import { getCategoryById } from '../../api/getProductsByCategory';
 import { getCategories } from '../../api/getCategories';
 
 const initialState: ProductState = {
@@ -20,18 +18,6 @@ export const fetchAllCategories = createAsyncThunk(
   async (_payload, { dispatch }) => {
     const data = await getCategories();
     dispatch(setCategoriesData(data));
-  }
-);
-
-export const fetchCategory = createAsyncThunk(
-  'products/fetchCategory',
-  async (categoryId: string, { dispatch }: any) => {
-    const data = await getCategoryById(categoryId);
-    const changesData = data.map((element: { masterVariant: any }) => ({
-      ...element,
-      masterData: { ...element.masterVariant },
-    }));
-    dispatch(setProductsData(changesData));
   }
 );
 

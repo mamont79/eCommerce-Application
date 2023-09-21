@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import { useState } from 'react';
 import {
   StyledCountButton,
@@ -10,17 +9,17 @@ import { ICartItem } from '../../../../types';
 export function AmountController({ quantity }: ICartItem) {
   const [amount, setAmount] = useState<number>(quantity || 1);
 
-  function increaseByOne() {
+  const increaseByOne = () => {
     setAmount(amount + 1);
-  }
+  };
 
-  function decreaseByOne() {
+  const decreaseByOne = () => {
     setAmount(amount - 1);
-  }
+  };
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(+e.target.value);
-  }
+  };
 
   return (
     <StyledCountWrapper>

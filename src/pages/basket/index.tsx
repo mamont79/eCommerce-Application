@@ -12,8 +12,7 @@ export default function Basket() {
 
   useEffect(() => {
     if (!cartFields) dispatch(fetchMeActiveCart());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cartFields]);
+  }, [cartFields, dispatch]);
 
   return (
     <StyledPageContentWrapper>
