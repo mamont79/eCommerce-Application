@@ -5,6 +5,7 @@ const StyledCatalogWrapper = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 95%;
+  max-width: 1200px;
   margin: 0 auto;
 `;
 
@@ -24,7 +25,8 @@ const StyledCardsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 80%;
+  width: 90%;
+  margin: 0 auto;
 `;
 
 export {

@@ -1,11 +1,11 @@
 import { publicInstance } from '..';
-import { getTokenCookie } from '../cookieToken';
+import { getAuthToken } from '../auth';
 
 export const getDiscountCodes = async () => {
-  const accessToken = getTokenCookie('access_token');
+  const authToken = await getAuthToken();
   const { data } = await publicInstance.get(`/discount-codes`, {
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${authToken}`,
     },
   });
   return data.results;

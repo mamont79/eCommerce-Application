@@ -71,13 +71,7 @@ export const fetchUpdateCustomerData = createAsyncThunk(
       response = await updateCustomer(customerUpdateData);
     } catch (error) {
       if (error instanceof AxiosError) {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        return thunkAPI.rejectWithValue(message);
+        return thunkAPI.rejectWithValue(error.message);
       }
     }
     return response;
@@ -153,7 +147,7 @@ export const usersSlice = createSlice({
       })
       .addCase(fetchMeCustomer.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = payload;
+        state.message = payload as string;
         state.user = null;
       })
       .addCase(fetchLoginMeCustomer.pending, (state) => {
@@ -169,7 +163,7 @@ export const usersSlice = createSlice({
       )
       .addCase(fetchLoginMeCustomer.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = payload;
+        state.message = payload as string;
         state.user = null;
       })
       .addCase(fetchRegisterCustomer.pending, (state) => {
@@ -185,7 +179,7 @@ export const usersSlice = createSlice({
       )
       .addCase(fetchRegisterCustomer.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = payload;
+        state.message = payload as string;
         state.user = null;
       })
       .addCase(fetchUpdateCustomerData.pending, (state) => {
@@ -198,7 +192,7 @@ export const usersSlice = createSlice({
       })
       .addCase(fetchUpdateCustomerData.rejected, (state, { payload }) => {
         state.status = UserStatusTypes.ERROR;
-        state.message = payload;
+        state.message = payload as string;
         state.user = null;
       });
   },

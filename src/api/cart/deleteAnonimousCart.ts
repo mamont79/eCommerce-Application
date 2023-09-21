@@ -1,5 +1,5 @@
 import { publicInstance } from '..';
-import { getTokenCookie } from '../cookieToken';
+import { getAnonimToken } from '../authAnonim';
 import { createAnonimCart } from './createAnonimCart';
 
 export type IDeleteMyCart = {
@@ -11,7 +11,7 @@ export const deleteAnonimousCart = async ({
   cartId,
   myCartVersion,
 }: IDeleteMyCart) => {
-  const anonimToken = getTokenCookie('anonim_token');
+  const anonimToken = await getAnonimToken();
 
   await publicInstance.delete(`/carts/${cartId}`, {
     params: {

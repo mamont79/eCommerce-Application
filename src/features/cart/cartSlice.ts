@@ -19,8 +19,7 @@ import {
 import { addProductToMyCart } from '../../api/cart/addProductToMyCart';
 import { deleteAnonimousCart } from '../../api/cart/deleteAnonimousCart';
 import { IChangeProductQuantity, changeProductQuantity } from '../../api/cart/changeProductQuanity';
-
-
+import { removeProductFromAnonimousCart } from '../../api/cart/removeProductFromAnonimousCart';
 
 const initialState: ICartState = {
   cart: null,
@@ -100,6 +99,21 @@ export const fetchDeleteAnonimousCart = createAsyncThunk(
     let data = null;
     try {
       data = await deleteAnonimousCart(cartData);
+    } catch (e) {
+      if (!(e instanceof AxiosError)) throw e;
+      dispatch(setErrorMsg(e.response?.data.message));
+    }
+    dispatch(setAllCartData(data));
+    dispatch(setCartFieldsData(data));
+  }
+);
+
+export const deleteAnonimousCartProduct = createAsyncThunk(
+  'cart/deleteAnonimousCartProduct',
+  async (cartData: IRemoveProduct, { dispatch }) => {
+    let data = null;
+    try {
+      data = await removeProductFromAnonimousCart(cartData);
     } catch (e) {
       if (!(e instanceof AxiosError)) throw e;
       dispatch(setErrorMsg(e.response?.data.message));

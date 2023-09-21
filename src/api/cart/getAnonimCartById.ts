@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { publicInstance } from '..';
 import { getAnonimToken } from '../authAnonim';
 import { createAnonimCart } from './createAnonimCart';
@@ -17,6 +16,5 @@ export const getAnonimCartById = async () => {
       Authorization: `Bearer ${anonimToken}`,
     },
   });
-  console.log(data);
   return data;
 };

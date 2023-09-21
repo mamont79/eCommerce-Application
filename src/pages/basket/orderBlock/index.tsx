@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-param-reassign */
 import { useEffect } from 'react';
@@ -53,18 +52,18 @@ export default function Order() {
 
   useEffect(() => {
     if (!cartFields) dispatch(fetchMeActiveCart());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cartFields]);
+  }, [cartFields, dispatch]);
 
   return (
     <Formik
       initialValues={{
         promocode: '',
       }}
-      onSubmit={(values) => {
-        const { promocode } = values;
-        console.log(promocode);
-      }}
+      onSubmit={
+        (/* values */) => {
+          // const { promocode } = values;
+        }
+      }
     >
       <StyledOrderForm>
         <StyledOrderTitle>Order price</StyledOrderTitle>

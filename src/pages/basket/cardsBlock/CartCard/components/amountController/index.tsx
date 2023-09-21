@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import { useState } from 'react';
 import {
   StyledCountButton,
@@ -22,7 +21,7 @@ export function AmountController({ cardData }: ICartCardProps) {
     newQuantity: amount,
   };
 
-  function increaseByOne() {
+  const increaseByOne = () => {
     setAmount(amount + 1);
     dispatch(
       changeProductCartQuantity({ ...cartData, newQuantity: amount + 1 })
@@ -37,6 +36,7 @@ export function AmountController({ cardData }: ICartCardProps) {
       );
     }
   }
+
 
   return (
     <StyledCountWrapper>
