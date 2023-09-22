@@ -7,7 +7,7 @@ import {
 import { IChangeProductQuantity } from '../../../../../../api/cart/changeProductQuanity';
 import {
   changeProductCartQuantity,
-  fetchChangeProductCartQuantityInAnomimousCart,
+  fetchChangeProductQuantityInAnonimousCart,
 } from '../../../../../../features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../../../../../store/hooks';
 import { ICartCardProps } from '../../../../types';
@@ -35,7 +35,7 @@ export function AmountController({ cardData }: ICartCardProps) {
     if (isAuth) {
       dispatch(changeProductCartQuantity(newData));
     } else {
-      dispatch(fetchChangeProductCartQuantityInAnomimousCart(newData));
+      dispatch(fetchChangeProductQuantityInAnonimousCart(newData));
     }
   };
 
@@ -49,7 +49,7 @@ export function AmountController({ cardData }: ICartCardProps) {
     if (isAuth) {
       dispatch(changeProductCartQuantity(newData));
     } else {
-      dispatch(fetchChangeProductCartQuantityInAnomimousCart(newData));
+      dispatch(fetchChangeProductQuantityInAnonimousCart(newData));
     }
   };
 

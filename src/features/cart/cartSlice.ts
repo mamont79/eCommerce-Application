@@ -161,8 +161,8 @@ export const changeProductCartQuantity = createAsyncThunk(
   }
 );
 
-export const fetchChangeProductCartQuantityInAnomimousCart = createAsyncThunk(
-  'cart/fetchChangeProductCartQuantityInAnomimousCart',
+export const fetchChangeProductQuantityInAnonimousCart = createAsyncThunk(
+  'cart/fetchChangeProductQuantityInAnonimousCart',
   async (cartData: IChangeProductQuantity, { dispatch }) => {
     let data = null;
     try {
