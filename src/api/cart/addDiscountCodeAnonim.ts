@@ -1,11 +1,6 @@
 import { publicInstance } from '..';
 import { getAnonimToken } from '../authAnonim';
-
-type IAddDiscoutCode = {
-  cartId: string;
-  cartVersion: number;
-  discountCode: string;
-};
+import { IAddDiscoutCode } from './types';
 
 export const addDiscountCodeAnonim = async ({
   cartId,

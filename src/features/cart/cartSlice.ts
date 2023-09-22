@@ -24,6 +24,9 @@ import {
 } from '../../api/cart/changeProductQuanity';
 import { removeProductFromAnonimousCart } from '../../api/cart/removeProductFromAnonimousCart';
 import { changeProductQuantityInAnomimousCart } from '../../api/cart/changeProductQuanityInAnonimousCart';
+import { IAddDiscoutCode } from '../../api/cart/types';
+import { addDiscountCodeAnonim } from '../../api/cart/addDiscountCodeAnonim';
+import { addDiscountCode } from '../../api/cart/addDiscountCode';
 
 const initialState: ICartState = {
   cart: null,
@@ -35,7 +38,6 @@ export const fetchProductToAnonimousCart = createAsyncThunk(
   'cart/fetchProductToAnonimousCart',
   async (actionData: IAddProductToCartAction, { dispatch }) => {
     const newCartData = await addProductToAnonimousCart(actionData);
-
     dispatch(setAllCartData(newCartData));
     dispatch(setCartFieldsData(newCartData));
   }
@@ -61,7 +63,7 @@ export const fetchAnonCart = createAsyncThunk(
       if (!(e instanceof AxiosError)) throw e;
       dispatch(setErrorMsg(e.response?.data.message));
     }
-
+    dispatch(resetErrorMsg());
     dispatch(setAllCartData(data));
     dispatch(setCartFieldsData(data));
   }
@@ -77,6 +79,7 @@ export const fetchMeActiveCart = createAsyncThunk(
       if (!(e instanceof AxiosError)) throw e;
       dispatch(setErrorMsg(e.response?.data.message));
     }
+    dispatch(resetErrorMsg());
     dispatch(setAllCartData(data));
     dispatch(setCartFieldsData(data));
   }
@@ -158,8 +161,8 @@ export const changeProductCartQuantity = createAsyncThunk(
   }
 );
 
-export const fetchChangeProductCartQuantityInAnomimousCart = createAsyncThunk(
-  'cart/fetchChangeProductCartQuantityInAnomimousCart',
+export const fetchChangeProductQuantityInAnonimousCart = createAsyncThunk(
+  'cart/fetchChangeProductQuantityInAnonimousCart',
   async (cartData: IChangeProductQuantity, { dispatch }) => {
     let data = null;
     try {
@@ -174,6 +177,42 @@ export const fetchChangeProductCartQuantityInAnomimousCart = createAsyncThunk(
   }
 );
 
+export const fetchApplyPromoCodeToAnonimousCart = createAsyncThunk(
+  'cart/fetchApplyPromoCodeToAnonimousCart',
+  async (cartData: IAddDiscoutCode, { dispatch }) => {
+    let data = null;
+    try {
+      data = await addDiscountCodeAnonim(cartData);
+    } catch (e) {
+      if (!(e instanceof AxiosError)) throw e;
+      dispatch(setErrorMsg(e.response?.data.message));
+    }
+    if (data) {
+      dispatch(resetErrorMsg());
+      dispatch(setAllCartData(data));
+      dispatch(setCartFieldsData(data));
+    }
+  }
+);
+
+export const fetchApplyPromoCodeToAuthCart = createAsyncThunk(
+  'cart/fetchApplyPromoCodeToAuthCart',
+  async (cartData: IAddDiscoutCode, { dispatch }) => {
+    let data = null;
+    try {
+      data = await addDiscountCode(cartData);
+    } catch (e) {
+      if (!(e instanceof AxiosError)) throw e;
+      dispatch(setErrorMsg(e.response?.data.message));
+    }
+    if (data) {
+      dispatch(resetErrorMsg());
+      dispatch(setAllCartData(data));
+      dispatch(setCartFieldsData(data));
+    }
+  }
+);
+
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -181,6 +220,9 @@ export const cartSlice = createSlice({
     resetCartData: (state) => {
       state.cart = null;
       state.cartFields = null;
+      state.message = null;
+    },
+    resetErrorMsg: (state) => {
       state.message = null;
     },
     setErrorMsg: (state, { payload }) => {
@@ -202,6 +244,11 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { resetCartData, setAllCartData, setCartFieldsData, setErrorMsg } =
-  cartSlice.actions;
+export const {
+  resetErrorMsg,
+  resetCartData,
+  setAllCartData,
+  setCartFieldsData,
+  setErrorMsg,
+} = cartSlice.actions;
 export default cartSlice.reducer;

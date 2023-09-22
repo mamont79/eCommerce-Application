@@ -1,11 +1,6 @@
 import { publicInstance } from '..';
 import { getTokenCookie } from '../cookieToken';
-
-type IAddDiscoutCode = {
-  cartId: string;
-  cartVersion: number;
-  discountCode: string;
-};
+import { IAddDiscoutCode } from './types';
 
 export const addDiscountCode = async ({
   cartId,

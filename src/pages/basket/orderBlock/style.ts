@@ -1,6 +1,5 @@
 import { Form } from 'formik';
 import styled from 'styled-components';
-import { StyledFormikInput } from '../../../components/StyledInput';
 import { StyledBtn } from '../../../components/styledBtn';
 
 export const StyledOrderForm = styled(Form)`
@@ -23,6 +22,7 @@ export const StyledOrderInfo = styled.div`
 export const StyledOrderInfoPoint = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 `;
 
@@ -37,7 +37,21 @@ export const StyledResultLine = styled.div`
   margin-top: 15px;
 `;
 
-export const StyledPromocodeInput = styled(StyledFormikInput)`
+export const StyledPromocodeInput = styled.input`
+  background: none;
+  color: #cf844e;
+  font-family: Arial;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 1px solid #c4c4c4;
+  width: -webkit-fill-available;
+  outline: 0;
+  outline-offset: 0;
+
+  &::placeholder {
+    color: #cf844e;
+  }
+
   border-radius: 7px 0 0 7px;
 `;
 
