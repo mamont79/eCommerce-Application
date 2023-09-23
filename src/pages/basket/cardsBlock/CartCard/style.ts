@@ -19,7 +19,8 @@ export const StyledCartCardWrapper = styled.div`
   }
 `;
 
-export const StyledImgWrapper = styled.div`
+export const StyledImgWrapper = styled.div<{ $backgroundImgUrl?: string }>`
+  background-image: url(${(props) => props.$backgroundImgUrl || ''});
   width: 170px;
   height: 150px;
   background-repeat: no-repeat;
