@@ -16,14 +16,14 @@ export function MemberCardBody({
     <StyledMemberCardBodyWrapper>
       <StyledMemberCardBodySection>
         <StyledCarSectionHeading>Education</StyledCarSectionHeading>
-        {education && education.length && (
+        {!!education && !!education.length && (
           <EducationBlock education={education} />
         )}
       </StyledMemberCardBodySection>
 
       <StyledMemberCardBodySection>
         <StyledCarSectionHeading>Courses</StyledCarSectionHeading>
-        {courses && courses.length && <CoursesBlock courses={courses} />}
+        {!!courses && !!courses.length && <CoursesBlock courses={courses} />}
       </StyledMemberCardBodySection>
     </StyledMemberCardBodyWrapper>
   );

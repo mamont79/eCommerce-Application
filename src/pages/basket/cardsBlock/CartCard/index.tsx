@@ -43,7 +43,7 @@ export function CartCard({ cardData }: ICartCardProps) {
   return (
     <StyledCartCardWrapper id={lineItemId}>
       <StyledCardInfoWrapper>
-        <StyledImgWrapper style={{ backgroundImage: `url(${imgUrl})` }} />
+        <StyledImgWrapper $imgUrl={imgUrl} />
         <TextBlock cardData={{ lineItemId, title, attributes, quantity }} />
       </StyledCardInfoWrapper>
       <StyledPriceWrapper>

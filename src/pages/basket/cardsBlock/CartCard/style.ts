@@ -19,9 +19,11 @@ export const StyledCartCardWrapper = styled.div`
   }
 `;
 
-export const StyledImgWrapper = styled.div`
+export const StyledImgWrapper = styled.div<{ $imgUrl?: string }>`
   width: 170px;
   height: 150px;
+
+  background-image: url(${({ $imgUrl }) => `${$imgUrl}` || ''});
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
