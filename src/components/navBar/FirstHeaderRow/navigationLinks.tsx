@@ -23,25 +23,25 @@ export default function NavigationLinks() {
   const menuLinks = [
     {
       link: '/basket',
-      IconTag: <BasketSvg color="#FFA555" />,
+      iconTag: <BasketSvg color="#FFA555" />,
       label: 'Cart',
       visibility: true,
     },
     {
       link: '/aboutus',
-      IconTag: <TeamIconSvg color="#FFA555" />,
+      iconTag: <TeamIconSvg color="#FFA555" />,
       label: 'About Us',
       visibility: true,
     },
     {
       link: '/profile',
-      IconTag: <UserIconSvg color="#FFA555" />,
+      iconTag: <UserIconSvg color="#FFA555" />,
       label: 'Account',
       visibility: Boolean(user),
     },
     {
       link: route,
-      IconTag: <DoorSvg color="#FFA555" />,
+      iconTag: <DoorSvg color="#FFA555" />,
       label: routeLabel,
       visibility: true,
     },
@@ -53,10 +53,10 @@ export default function NavigationLinks() {
           <LazzoneIconSvg />
         </Link>
         <StyledNavigation>
-          {menuLinks.map(({ link, IconTag, label, visibility }) => (
+          {menuLinks.map(({ link, iconTag, label, visibility }) => (
             <StyledMenuLinkContainer key={label} $isVisible={visibility}>
               <StyleMenuLink to={link}>
-                {IconTag}
+                {iconTag}
                 <StyledMenuLinkLabel>{label}</StyledMenuLinkLabel>
               </StyleMenuLink>
             </StyledMenuLinkContainer>
