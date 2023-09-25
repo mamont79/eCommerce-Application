@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchProductByKey } from '../../features/products/currentProductSlice';
 import {
@@ -14,6 +14,11 @@ import {
   StyledProductTitle,
   StyledPreviousPrice,
   StyledButtonWrapper,
+  StyledModalContent,
+  StyledModalWindow,
+  StyledModalSlider,
+  StyledModalArea,
+  StyledModalZoom,
 } from './style';
 import { StyledCardBtn } from '../../components/card/style';
 import Slider from '../../components/slider';
@@ -23,12 +28,14 @@ import {
   fetchProductToAnonimousCart,
   fetchProductToMyCart,
 } from '../../features/cart/cartSlice';
+import ModalZoomIconSvg from '../../assets/modalZoomIcon';
 
 export default function Product() {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
   const { data } = useAppSelector((state) => state.currentProduct);
   const { isAuth } = useAppSelector((state) => state.users);
+  const [openedModal, setOpenedModal] = useState<boolean>(false);
 
   const productName = useParams();
   const productKey = productName.productkey;
@@ -53,6 +60,11 @@ export default function Product() {
       cart.lineItems.find(({ productId }) => productId === data?.id) !==
       undefined;
   }
+
+  const handleOpenModal = () => {
+    const opened = openedModal === false;
+    setOpenedModal(opened);
+  };
 
   const handleAddProductBtnClick = () => {
     const addProductData = {
@@ -81,6 +93,9 @@ export default function Product() {
     <StyledProductPageWrapper>
       <StyledImagesWrapper>
         <Slider allImages={allImages} />
+        <StyledModalZoom onClick={handleOpenModal}>
+          <ModalZoomIconSvg />
+        </StyledModalZoom>
       </StyledImagesWrapper>
       <StyledProductInfoWrapper>
         <StyledProductTitle>{currentName}</StyledProductTitle>
@@ -103,6 +118,12 @@ export default function Product() {
           {currentDescription}
         </StyledProductDescription>
       </StyledProductInfoWrapper>
+      <StyledModalWindow $opened={openedModal}>
+        <StyledModalArea onClick={handleOpenModal} />
+        <StyledModalContent>
+          <StyledModalSlider allImages={allImages} modal />
+        </StyledModalContent>
+      </StyledModalWindow>
     </StyledProductPageWrapper>
   );
 }

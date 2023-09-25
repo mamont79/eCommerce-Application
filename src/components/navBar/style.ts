@@ -26,8 +26,8 @@ export const StyledContainerForUserControlsLinks = styled.div`
   }
 `;
 
-export const StyledMenuLinkContainer = styled.div`
-  display: flex;
+export const StyledMenuLinkContainer = styled.div<{ $isVisible?: boolean }>`
+  display: ${({ $isVisible }) => ($isVisible ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
 `;
@@ -70,6 +70,9 @@ export const StyledBurgerMenuLink = styled(Link)`
   &:hover {
     color: #ffa555;
   }
+`;
+export const StyleMenuLink = styled(Link)`
+  display: contents;
 `;
 
 export const StyledTextLink = styled(Link)`
