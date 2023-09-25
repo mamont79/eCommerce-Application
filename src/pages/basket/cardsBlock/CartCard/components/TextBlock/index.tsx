@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
 import { AmountController } from '../amountController';
 import {
   StyledCartProductDescription,
