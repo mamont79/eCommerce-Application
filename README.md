@@ -1,9 +1,16 @@
 # eCommerce-Application
 
-This platform replicates real-world shopping experiences in a digital environment . It's a comprehensive online shopping portal that provides an interactive and seamless experience to users. 
+[Lazzone](https://lazzone-ecommerce.netlify.app/) is a platform that replicates real-world shopping experiences in a digital environment . It's a comprehensive online shopping portal that provides an interactive and seamless experience to users. 
 
 ----
 
+# Deploy
+You can view the full version of the application here
+[Lazzone](https://lazzone-ecommerce.netlify.app/) 
+
+![Снимок экрана 2023-09-27 113233](https://github.com/mamont79/eCommerce-Application/assets/43904197/55218832-acaa-464b-ac8f-616fea434305)
+
+----
 ## Project goals
 
 Creation of a working e-comerce training project for possible further use as a template in similar projects. Learn the process of developing web applications from the inside, using a flexible project management system. Learn modern web development tools. Improve soft and hard skills.
