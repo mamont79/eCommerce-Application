@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Slider from '../../components/slider';
 
 export const StyledProductPageWrapper = styled.div`
   display: flex;
@@ -8,7 +9,9 @@ export const StyledProductPageWrapper = styled.div`
   margin: 20px 10px;
 `;
 
-export const StyledImagesWrapper = styled.div``;
+export const StyledImagesWrapper = styled.div`
+  position: relative;
+`;
 
 export const StyledProductImage = styled.img`
   width: 100%;
@@ -60,6 +63,49 @@ export const StyledButtonWrapper = styled.div`
   width: 40%;
   min-width: 150px;
   margin: 30px auto 30px 0;
+`;
+
+export const StyledModalWindow = styled.div<{
+  $modal?: boolean;
+  $opened?: boolean;
+}>`
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #0000007c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: ${({ $opened }) => ($opened ? 1 : 0)};
+  visibility: ${({ $opened }) => ($opened ? 'visible' : 'hidden')};
+`;
+
+export const StyledModalArea = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+`;
+
+export const StyledModalContent = styled.div`
+  min-height: 100%;
+`;
+
+export const StyledModalSlider = styled(Slider)`
+  width: 50%;
+  height: 50%;
+`;
+
+export const StyledModalZoom = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 `;
 
 export const StyledProductDescription = styled.p``;

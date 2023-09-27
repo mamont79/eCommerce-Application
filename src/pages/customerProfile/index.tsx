@@ -15,7 +15,7 @@ import { toastOptions } from '../registration/RegistrationForm/toastConfig';
 import { IDataForUpdate } from './type';
 import { customerChangeActions } from './listOfChangeActions';
 
-export function CustomerProfile() {
+export default function CustomerProfile() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user, status, message } = useAppSelector((state) => state.users);
@@ -39,8 +39,7 @@ export function CustomerProfile() {
       toast.success(`Updated succsessfully!`, toastOptions);
       dispatch(resetStatus());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, status, message]);
+  }, [user, status, message, navigate, dispatch]);
 
   customerChangeActions.clearActions();
 

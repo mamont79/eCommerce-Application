@@ -13,18 +13,33 @@ const StyledSliderBtn = styled.button<{ $next?: boolean }>`
   }
 `;
 
-const StyledSliderContainer = styled.div`
-  max-width: 320px;
-  height: 300px;
+const StyledSliderContainer = styled.div<{ $modal?: boolean }>`
+  max-width: ${({ $modal }) => ($modal ? '700px' : '320px')};
+  height: ${({ $modal }) => ($modal ? '650px' : '300px')};
   background: #ffffff;
   display: flex;
   position: relative;
+
+  @media (max-width: 767px) {
+    max-width: ${({ $modal }) => ($modal ? '400px' : '320px')};
+    height: ${({ $modal }) => ($modal ? '350px' : '300px')};
+  }
 `;
 
-const StyledSlider = styled.div`
-  width: 320px;
-  height: 300px;
+const StyledSlider = styled.div<{ $modal?: boolean }>`
+  width: ${({ $modal }) => ($modal ? '700px' : '320px')};
+  height: ${({ $modal }) => ($modal ? '650px' : '300px')};
   overflow: hidden;
+
+  @media (max-width: 767px) {
+    max-width: ${({ $modal }) => ($modal ? '400px' : '320px')};
+    height: ${({ $modal }) => ($modal ? '350px' : '300px')};
+  }
+
+  @media (max-width: 480px) {
+    max-width: 320px;
+    height: 320px;
+  }
 `;
 
 const StyledSliderLine = styled.div`
@@ -34,20 +49,45 @@ const StyledSliderLine = styled.div`
   transition: all ease 1s;
 `;
 
-const StyledSliderImgContainer = styled.div`
-  width: 320px;
-  height: 300px;
+const StyledSliderImgContainer = styled.div<{ $modal?: boolean }>`
+  width: ${({ $modal }) => ($modal ? '700px' : '320px')};
+  height: ${({ $modal }) => ($modal ? '650px' : '300px')};
   display: flex;
   flex: 0 0 auto;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 767px) {
+    max-width: ${({ $modal }) => ($modal ? '400px' : '320px')};
+    height: ${({ $modal }) => ($modal ? '350px' : '300px')};
+  }
+
+  @media (max-width: 480px) {
+    max-width: 320px;
+    height: 320px;
+  }
 `;
 
-const StyledSliderImg = styled.img`
-  height: 256px;
-  max-width: 256px;
+const StyledSliderImg = styled.img<{ $modal?: boolean }>`
+  height: ${({ $modal }) => ($modal ? '560px' : '256px')};
+  max-width: ${({ $modal }) => ($modal ? '560px' : '256px')};
   margin: 0 auto;
   display: flex;
+
+  @media (max-width: 767px) {
+    max-width: ${({ $modal }) => ($modal ? '320px' : '256px')};
+    height: ${({ $modal }) => ($modal ? '320px' : '256px')};
+  }
+
+  @media (max-width: 480px) {
+    max-width: 320px;
+    height: 320px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 256px;
+    height: 256px;
+  }
 `;
 
 export {

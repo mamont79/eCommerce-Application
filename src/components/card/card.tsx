@@ -1,4 +1,9 @@
 import {
+  fetchProductToAnonimousCart,
+  fetchProductToMyCart,
+} from '../../features/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import {
   StyledCard,
   StyledCardBtn,
   StyledCardDiscountPrice,
@@ -14,6 +19,10 @@ import {
 import { CardProps } from './types';
 
 export default function Card({ product }: CardProps) {
+  const dispatch = useAppDispatch();
+  const { cart } = useAppSelector((state) => state.cart);
+  const { isAuth } = useAppSelector((state) => state.users);
+
   const {
     id,
     img,
@@ -27,6 +36,23 @@ export default function Card({ product }: CardProps) {
   const cost = discountPrice || price;
   const fullPrice = discountPrice ? `${price} ${currency}` : '';
   const productUrl = `/catalog/${title.toLowerCase().split(' ').join('-')}`;
+
+  let isInCart = false;
+  if (cart) {
+    isInCart =
+      cart.lineItems.find(({ productId }) => productId === id) !== undefined;
+  }
+
+  const handleAddProductBtnClick = () => {
+    const addProductData = {
+      cartId: cart!.id,
+      cartVersion: cart!.version,
+      productId: id,
+      productVariantId: 1,
+    };
+    if (isAuth) dispatch(fetchProductToMyCart(addProductData));
+    else dispatch(fetchProductToAnonimousCart(addProductData));
+  };
 
   return (
     <StyledCard>
@@ -49,7 +75,13 @@ export default function Card({ product }: CardProps) {
           </StyledCardPriceContainer>
         </StyledCardLink>
 
-        <StyledCardBtn $primary>Add to cart</StyledCardBtn>
+        <StyledCardBtn
+          disabled={isInCart}
+          onClick={handleAddProductBtnClick}
+          $primary
+        >
+          Add to cart
+        </StyledCardBtn>
       </StyledCardInfo>
     </StyledCard>
   );

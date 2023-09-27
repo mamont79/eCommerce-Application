@@ -11,7 +11,6 @@ export type User = { userName?: string; email?: string; phone?: string };
 export interface UsersState {
   user: ICustomer | null;
   status: UserStatusTypes | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  message: any | null;
+  message: string | null;
   isAuth: boolean;
 }

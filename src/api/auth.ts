@@ -7,9 +7,12 @@ export const getAuthToken = async () => {
 
   if (!accessToken) {
     const { data } = await authInstance.post(
-      `/token?grant_type=client_credentials`,
+      `/token`,
       {},
       {
+        params: {
+          grant_type: 'client_credentials',
+        },
         auth: {
           username: `${CTP_CLIENT_ID}`,
           password: `${CTP_CLIENT_SECRET}`,
