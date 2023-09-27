@@ -1,0 +1,39 @@
+{
+  "id": "2fc899fb-e743-4950-bea5-cec46386f67c",
+  "name": "cuber-dranik-ecommerce",
+  "values": [
+    {
+      "key": "host",
+      "value": "https://api.europe-west1.gcp.commercetools.com",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "auth_url",
+      "value": "https://auth.europe-west1.gcp.commercetools.com",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "projectKey",
+      "value": "cuber-dranik-ecommerce",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "client_id",
+      "value": "J5huPXjl_icdfcvIMBrxKRH9",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "client_secret",
+      "value": "cX0r3zRiHI1c1w1yBCXQAdS8X1NJ0_tS",
+      "enabled": true,
+      "type": "text"
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2023-08-17T16:17:58.476Z",
+  "_postman_exported_using": "Postman/6.0.10"
+}
