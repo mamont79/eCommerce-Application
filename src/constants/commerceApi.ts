@@ -1,7 +1,7 @@
 export const credentials = 'after-dranik';
 export const projectKey = 'after-dranik';
 export const clientId = 'MDnuFO_5C_g2FLT0xU5mY2jd';
-export const secret = 'cX0r3zRiHI1c1w1yBCXQAdS8X1NJ0_tS';
+export const secret = 'PSq48LMBI_dGOF1bS4n8w_krba8shzYx';
 export const apiUrl = 'https://api.europe-west1.gcp.commercetools.com';
 export const authUrl = 'https://auth.europe-west1.gcp.commercetools.com';
 
