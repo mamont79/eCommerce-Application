@@ -14,7 +14,7 @@ export function EmptyCart() {
         It seems like your cart is empty
       </StyledEmptyCartTitle>
       <Link to="/catalog">
-        <StyledMenuLinkContainer>
+        <StyledMenuLinkContainer $isVisible>
           <BoySearchingSvg />
         </StyledMenuLinkContainer>
       </Link>
